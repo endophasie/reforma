@@ -1,0 +1,14 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img {
+	user-select: none;
+}
+
+.master {
+	size: 100%;
+	background-color: #fff;
+}
