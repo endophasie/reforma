@@ -1,0 +1,47 @@
+.reforma_card {
+	background-color: #fff;
+	border-radius: 3px;
+	padding: 30px;
+	color: #272727;
+	box-shadow: 0 1px 1px #757575;
+	margin: 0 20px;
+}
+
+.reforma-deck_tag {
+	font: italic 400 14px/22px 'LavaPro Regita', Georgia, serif;
+	margin-bottom: 10px;
+}
+
+.reforma_card-content {
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 15px;
+}
+
+.reforma_card-title {
+	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
+	margin-bottom: 15px;
+}
+
+.reforma_card-text {
+	color: #4c4c4c;
+	font: 400 14px/20px 'LavaPro Regita', Georgia, serif;
+	padding-bottom: 30px;
+}
+
+.reforma-deck_actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+}
+
+.reforma-deck_action {
+	size: 33.3333% 40px;
+	line-height: 40px;
+	border-right: 1px solid #e5e5e5;
+	cursor: pointer;
+
+	&:last-child {
+		border: 0;
+	}
+}

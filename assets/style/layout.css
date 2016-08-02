@@ -3,7 +3,63 @@ img {
 	user-select: none;
 }
 
-.master {
+.reforma {
+	size: 100% calc(100vh - 61px);
+	background: #333 url('../img/bg-main.png') 0 0 repeat;
+	display: flex;
+}
+
+.reforma-desk {
+	flex: 1;
+	display: flex;
 	size: 100%;
-	background-color: #fff;
+	justify-content: center;
+	align-items: center;
+}
+
+.reforma-desk_content {
+	width: 70%;
+	color: #999;
+	font: 400 17px/23px Formular, Helvetica, Arial, sans-serif;
+}
+
+.reforma-desk_par {
+	margin-bottom: 18px;
+}
+
+.reforma-desk_rules {
+	margin-top: 35px;
+}
+
+.reforma-desk_rules-item {
+	margin-bottom: 16px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.reforma-game {
+	size: 340px 100%;
+	background-color: #272727;
+}
+
+.reforma-game_state {
+	height: 22px;
+	padding: 17px 0;
+	margin: 0 20px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+.reforma-game_lives {
+	width: 50%;
+	border-right: 1px solid #4c4c4c;
+}
+
+.reforma-game_score {
+	width: 50%;
+	color: #999;
+	font-size: 21px;
 }

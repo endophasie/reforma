@@ -1,0 +1,36 @@
+@define-mixin icon $name {
+    background: url('../img/$(name).png') center center no-repeat;
+    size: size('../img/$name.png');
+    background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-desk_icon-add {
+	@mixin icon i-add-grey;
+}
+
+.reforma-desk_icon-skip {
+	@mixin icon i-skip;
+}
+
+.reforma-desk_icon-discard {
+	@mixin icon i-discard-grey;
+}
+
+.reforma-deck_icon-add {
+	@mixin icon i-add;
+}
+
+.reforma-deck_icon-skip {
+	@mixin icon i-skip;
+}
+
+.reforma-deck_icon-discard {
+	@mixin icon i-discard;
+}
+
+.reforma-game_live {
+	@mixin icon i-life;
+	cursor: pointer;
+}

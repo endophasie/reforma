@@ -423,6 +423,70 @@ td,
 th {
   padding: 0;
 }
+
+.reforma-desk_icon-add {
+	background: url('../img/i-add-grey.png') center center no-repeat;
+	width: 21px;
+	height: 16px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-desk_icon-skip {
+	background: url('../img/i-skip.png') center center no-repeat;
+	width: 22px;
+	height: 21px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-desk_icon-discard {
+	background: url('../img/i-discard-grey.png') center center no-repeat;
+	width: 18px;
+	height: 18px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-deck_icon-add {
+	background: url('../img/i-add.png') center center no-repeat;
+	width: 21px;
+	height: 16px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-deck_icon-skip {
+	background: url('../img/i-skip.png') center center no-repeat;
+	width: 22px;
+	height: 21px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-deck_icon-discard {
+	background: url('../img/i-discard.png') center center no-repeat;
+	width: 18px;
+	height: 18px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-game_live {
+	background: url('../img/i-life.png') center center no-repeat;
+	width: 22px;
+	height: 20px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+}
 img {
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -430,8 +494,134 @@ img {
 	        user-select: none;
 }
 
-.master {
+.reforma {
+	width: 100%;
+	height: calc(100vh - 61px);
+	background: #333 url('../img/bg-main.png') 0 0 repeat;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.reforma-desk {
+	-webkit-box-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
 	width: 100%;
 	height: 100%;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+
+.reforma-desk_content {
+	width: 70%;
+	color: #999;
+	font: 400 17px/23px Formular, Helvetica, Arial, sans-serif;
+}
+
+.reforma-desk_par {
+	margin-bottom: 18px;
+}
+
+.reforma-desk_rules {
+	margin-top: 35px;
+}
+
+.reforma-desk_rules-item {
+	margin-bottom: 16px;
+}
+
+.reforma-desk_rules-item:last-child {
+  margin-bottom: 0;
+}
+
+.reforma-game {
+	width: 340px;
+	height: 100%;
+	background-color: #272727;
+}
+
+.reforma-game_state {
+	height: 22px;
+	padding: 17px 0;
+	margin: 0 20px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	text-align: center;
+}
+
+.reforma-game_lives {
+	width: 50%;
+	border-right: 1px solid #4c4c4c;
+}
+
+.reforma-game_score {
+	width: 50%;
+	color: #999;
+	font-size: 21px;
+}
+.reforma_card {
 	background-color: #fff;
+	border-radius: 3px;
+	padding: 30px;
+	color: #272727;
+	box-shadow: 0 1px 1px #757575;
+	margin: 0 20px;
+}
+
+.reforma-deck_tag {
+	font: italic 400 14px/22px 'LavaPro Regita', Georgia, serif;
+	margin-bottom: 10px;
+}
+
+.reforma_card-content {
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 15px;
+}
+
+.reforma_card-title {
+	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
+	margin-bottom: 15px;
+}
+
+.reforma_card-text {
+	color: #4c4c4c;
+	font: 400 14px/20px 'LavaPro Regita', Georgia, serif;
+	padding-bottom: 30px;
+}
+
+.reforma-deck_actions {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	text-align: center;
+}
+
+.reforma-deck_action {
+	width: 33.3333%;
+	height: 40px;
+	line-height: 40px;
+	border-right: 1px solid #e5e5e5;
+	cursor: pointer;
+}
+
+.reforma-deck_action:last-child {
+  border: 0;
 }
