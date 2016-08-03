@@ -34,3 +34,25 @@
 	@mixin icon i-life;
 	cursor: pointer;
 }
+
+.reforma-game_live-lose {
+	@mixin icon i-life-grey;
+	cursor: pointer;
+}
+
+.reforma-deck_economy {
+	@mixin icon i-economy;
+	margin-right: 10px;
+}
+
+.reforma-game_i-economy {
+	@mixin icon i-economy-white;
+}
+
+.reforma-game_i-social {
+	@mixin icon i-social-white;
+}
+
+.reforma-game_i-war {
+	@mixin icon i-war-white;
+}

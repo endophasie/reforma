@@ -1,0 +1,83 @@
+.reforma-desk {
+	flex: 1;
+	display: flex;
+	size: 100%;
+
+	&.is-base {
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+.reforma-desk_content {
+	width: 70%;
+	color: #999;
+	font: 400 17px/23px Formular, Helvetica, Arial, sans-serif;
+}
+
+.reforma-desk_par {
+	margin-bottom: 18px;
+}
+
+.reforma-desk_rules {
+	margin-top: 35px;
+}
+
+.reforma-desk_rules-item {
+	margin-bottom: 16px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.reforma-desk_game {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding-top: 17px;
+	margin: 0 25px;
+}
+
+.reforma-game_col {
+	width: 33%;
+	margin: 0 12px;
+}
+
+.reforma-game_title {
+	text-align: center;
+	margin-bottom: 18px;
+	position: relative;
+
+	&:before,
+	&:after {
+		content: '';
+		size: 28% 1px;
+		position: absolute;
+		top: 50%;
+		background-color: #4c4c4c;
+	}
+
+	&:before {
+		left: 0;
+	}
+
+	&:after {
+		right: 0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

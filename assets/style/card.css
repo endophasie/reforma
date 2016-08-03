@@ -1,31 +1,64 @@
+.reforma_deck {
+	flex: 1;
+	margin-bottom: 20px;
+}
+
 .reforma_card {
 	background-color: #fff;
 	border-radius: 3px;
 	padding: 30px;
 	color: #272727;
 	box-shadow: 0 1px 1px #757575;
-	margin: 0 20px;
+	height: 100%;
+	box-sizing: border-box;
+
+	&.on-desk {
+		padding: 20px 30px 19px 18px;
+		margin-bottom: 20px;
+		border-right: 8px solid #E6E6E6;
+	}
+
+	&.is-act {
+		border-color: #00E25D;
+	}
 }
 
 .reforma-deck_tag {
 	font: italic 400 14px/22px 'LavaPro Regita', Georgia, serif;
 	margin-bottom: 10px;
+
+	.on-desk & {
+		display: none;
+	}
 }
 
 .reforma_card-content {
-	border-bottom: 1px solid #e5e5e5;
-	margin-bottom: 15px;
 }
 
 .reforma_card-title {
 	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
 	margin-bottom: 15px;
+
+	.on-desk & {
+		font-size: 13px;
+		line-height: 17px;
+		margin-bottom: 0;
+		opacity: .7;
+	}
+
+	.is-act & {
+		opacity: 1;
+	}
 }
 
 .reforma_card-text {
 	color: #4c4c4c;
 	font: 400 14px/20px 'LavaPro Regita', Georgia, serif;
 	padding-bottom: 30px;
+
+	.on-desk & {
+		display: none;
+	}
 }
 
 .reforma-deck_actions {
@@ -33,6 +66,12 @@
 	justify-content: space-between;
 	align-items: center;
 	text-align: center;
+	border-top: 1px solid #e5e5e5;
+	margin-top: 15px;
+
+	.on-desk & {
+		display: none;
+	}
 }
 
 .reforma-deck_action {

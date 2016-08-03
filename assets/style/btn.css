@@ -1,0 +1,20 @@
+.reforma_btn-main {
+	display: block;
+	box-sizing: border-box;
+	border: 0;
+	outline: 0;
+	size: 100% 66px;
+	text-align: center;
+	font: 700 15px/64px Formular, Helvetica, Arial, sans-serif;
+	border: 2px solid #e5e5e5;
+	color: #e5e5e5;
+	align-self: flex-end;
+	transition: background-color .3s ease,
+				color .3s ease;
+
+	&:hover {
+		border: 2px solid #e5e5e5;
+		background-color: #e5e5e5;
+		color: #272727;
+	}
+}

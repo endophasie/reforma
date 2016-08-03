@@ -487,6 +487,53 @@ th {
 	vertical-align: middle;
 	cursor: pointer;
 }
+
+.reforma-game_live-lose {
+	background: url('../img/i-life-grey.png') center center no-repeat;
+	width: 21px;
+	height: 20px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.reforma-deck_economy {
+	background: url('../img/i-economy.png') center center no-repeat;
+	width: 19px;
+	height: 19px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.reforma-game_i-economy {
+	background: url('../img/i-economy-white.png') center center no-repeat;
+	width: 19px;
+	height: 19px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-game_i-social {
+	background: url('../img/i-social-white.png') center center no-repeat;
+	width: 22px;
+	height: 21px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.reforma-game_i-war {
+	background: url('../img/i-war-white.png') center center no-repeat;
+	width: 19px;
+	height: 19px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
 img {
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -501,8 +548,10 @@ img {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	/*min-width: 1024px;
+	max-width: 1400px;
+	margin: 0 auto;*/
 }
-
 .reforma-desk {
 	-webkit-box-flex: 1;
 	    -ms-flex: 1;
@@ -512,12 +561,15 @@ img {
 	display: flex;
 	width: 100%;
 	height: 100%;
-	-webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	        justify-content: center;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+}
+.reforma-desk.is-base {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+              -ms-grid-row-align: center;
+          align-items: center;
 }
 
 .reforma-desk_content {
@@ -542,16 +594,166 @@ img {
   margin-bottom: 0;
 }
 
+.reforma-desk_game {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	width: 100%;
+	padding-top: 17px;
+	margin: 0 25px;
+}
+
+.reforma-game_col {
+	width: 33%;
+	margin: 0 12px;
+}
+
+.reforma-game_title {
+	text-align: center;
+	margin-bottom: 18px;
+	position: relative;
+}
+
+.reforma-game_title:before,
+	.reforma-game_title:after {
+  content: '';
+  width: 28%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  background-color: #4c4c4c;
+}
+
+.reforma-game_title:before {
+  left: 0;
+}
+
+.reforma-game_title:after {
+  right: 0;
+}
+.reforma_deck {
+	-webkit-box-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	margin-bottom: 20px;
+}
+
+.reforma_card {
+	background-color: #fff;
+	border-radius: 3px;
+	padding: 30px;
+	color: #272727;
+	box-shadow: 0 1px 1px #757575;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.reforma_card.on-desk {
+  padding: 20px 30px 19px 18px;
+  margin-bottom: 20px;
+  border-right: 8px solid #E6E6E6;
+}
+
+.reforma_card.is-act {
+  border-color: #00E25D;
+}
+
+.reforma-deck_tag {
+	font: italic 400 14px/22px 'LavaPro Regita', Georgia, serif;
+	margin-bottom: 10px;
+}
+
+.on-desk .reforma-deck_tag {
+  display: none;
+}
+
+.reforma_card-content {
+}
+
+.reforma_card-title {
+	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
+	margin-bottom: 15px;
+}
+
+.on-desk .reforma_card-title {
+  font-size: 13px;
+  line-height: 17px;
+  margin-bottom: 0;
+  opacity: .7;
+}
+
+.is-act .reforma_card-title {
+  opacity: 1;
+}
+
+.reforma_card-text {
+	color: #4c4c4c;
+	font: 400 14px/20px 'LavaPro Regita', Georgia, serif;
+	padding-bottom: 30px;
+}
+
+.on-desk .reforma_card-text {
+  display: none;
+}
+
+.reforma-deck_actions {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	text-align: center;
+	border-top: 1px solid #e5e5e5;
+	margin-top: 15px;
+}
+
+.on-desk .reforma-deck_actions {
+  display: none;
+}
+
+.reforma-deck_action {
+	width: 33.3333%;
+	height: 40px;
+	line-height: 40px;
+	border-right: 1px solid #e5e5e5;
+	cursor: pointer;
+}
+
+.reforma-deck_action:last-child {
+  border: 0;
+}
 .reforma-game {
 	width: 340px;
 	height: 100%;
 	background-color: #272727;
 }
 
+.reforma-game_info {
+	padding: 0 20px 20px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	height: 100%;
+	box-sizing: border-box;
+}
+
 .reforma-game_state {
 	height: 22px;
 	padding: 17px 0;
-	margin: 0 20px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -571,57 +773,26 @@ img {
 	color: #999;
 	font-size: 21px;
 }
-.reforma_card {
-	background-color: #fff;
-	border-radius: 3px;
-	padding: 30px;
-	color: #272727;
-	box-shadow: 0 1px 1px #757575;
-	margin: 0 20px;
-}
-
-.reforma-deck_tag {
-	font: italic 400 14px/22px 'LavaPro Regita', Georgia, serif;
-	margin-bottom: 10px;
-}
-
-.reforma_card-content {
-	border-bottom: 1px solid #e5e5e5;
-	margin-bottom: 15px;
-}
-
-.reforma_card-title {
-	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
-	margin-bottom: 15px;
-}
-
-.reforma_card-text {
-	color: #4c4c4c;
-	font: 400 14px/20px 'LavaPro Regita', Georgia, serif;
-	padding-bottom: 30px;
-}
-
-.reforma-deck_actions {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+.reforma_btn-main {
+	display: block;
+	box-sizing: border-box;
+	border: 0;
+	outline: 0;
+	width: 100%;
+	height: 66px;
 	text-align: center;
+	font: 700 15px/64px Formular, Helvetica, Arial, sans-serif;
+	border: 2px solid #e5e5e5;
+	color: #e5e5e5;
+	-ms-flex-item-align: end;
+	    align-self: flex-end;
+	-webkit-transition: background-color .3s ease,
+				color .3s ease;
+	transition: background-color .3s ease,
+				color .3s ease;
 }
-
-.reforma-deck_action {
-	width: 33.3333%;
-	height: 40px;
-	line-height: 40px;
-	border-right: 1px solid #e5e5e5;
-	cursor: pointer;
-}
-
-.reforma-deck_action:last-child {
-  border: 0;
+.reforma_btn-main:hover, .reforma_btn-main:focus {
+  border: 2px solid #e5e5e5;
+  background-color: #e5e5e5;
+  color: #272727;
 }

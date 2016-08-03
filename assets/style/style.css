@@ -3,4 +3,7 @@
 @import 'var';
 @import 'icons';
 @import 'layout';
+@import 'desk';
 @import 'card';
+@import 'game-info';
+@import 'btn';
