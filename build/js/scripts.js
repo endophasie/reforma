@@ -57,6 +57,56 @@ var Reforma = function() {
 	var activeCard = '';
 
 	_this.init = function() {
+
+		_this.reset();
+
+		shuffle(deck);
+		createCard();
+
+		console.log('deck1',deck[1].title)
+		setPoints();
+
+		actions();
+
+		// card actions
+	    var addCardLink = $('.js-act-add');
+	    var skipCardLink = $('.js-act-skip');
+	    var removeCardLink = $('.js-act-remove');
+
+	    addCardLink.on('click', function() {
+	    	var actId = activeCard.attr('id');
+	    	activeCard.removeClass('is-active');
+	    	playDeck.splice( 0, 1 );
+	    	putOnTable(actId);
+
+	    	setActiveCard();
+	    });
+
+	    skipCardLink.on('click', function() {
+	    	playDeck.push( playDeck.splice( 0, 1 )[0] );
+	    	setActiveCard();
+	    });
+
+	    removeCardLink.on('click', function() {
+	    	playDeck.splice( 0, 1 );
+	    	setActiveCard();
+
+	    	if(playDeck.length == 0) {
+	    		activeCard.removeClass('is-active');
+	    		endGame();
+	    	}
+	    });
+	};
+
+	_this.reset = function() {
+		console.log('reset', 1)
+		points = 0;
+		lifes = 2;
+		playDeck = [];
+		playedCards = [];
+		activeCard = '';
+
+
 		if( $('.reforma-desk_base').hasClass('is-hide') ) {
 			$('.reforma-desk_base').removeClass('is-hide');
 			$('.reforma-desk_game').addClass('is-hide');
@@ -72,19 +122,8 @@ var Reforma = function() {
 
 		$('.reforma_card').remove();
 
-		points = 0;
-		lifes = 2;
-		playDeck = [];
-		playedCards = [];
-		activeCard = '';
-
 		shuffle(deck);
 		createCard();
-
-		console.log('deck1',deck[1].title)
-		setPoints();
-
-		actions();
 	};
 
 	var createCard = function() {
@@ -116,34 +155,6 @@ var Reforma = function() {
 	    }
 
 	    setActiveCard();
-
-	    var addCardLink = $('.js-act-add');
-	    var skipCardLink = $('.js-act-skip');
-	    var removeCardLink = $('.js-act-remove');
-
-	    addCardLink.on('click', function() {
-	    	var actId = activeCard.attr('id');
-	    	activeCard.removeClass('is-active');
-	    	playDeck.splice( 0, 1 );
-	    	putOnTable(actId);
-
-	    	setActiveCard();
-	    });
-
-	    skipCardLink.on('click', function() {
-	    	playDeck.push( playDeck.splice( 0, 1 )[0] );
-	    	setActiveCard();
-	    });
-
-	    removeCardLink.on('click', function() {
-	    	playDeck.splice( 0, 1 );
-	    	setActiveCard();
-
-	    	if(playDeck.length == 0) {
-	    		activeCard.removeClass('is-active');
-	    		endGame();
-	    	}
-	    });
 	};
 
 	var setActiveCard = function() {
@@ -323,6 +334,6 @@ $(document).ready(function() {
 
 	$start.on('click', function(e) {
 		e.preventDefault();
-		reforma.init();
+		reforma.reset();
 	});
 });
