@@ -71,12 +71,13 @@ var Reforma = function() {
 		gameBlock.removeClass('is-hide');
 
 		$('.reforma_card').remove();
-/*
+
 		points = 0;
 		lifes = 2;
 		playDeck = [];
 		playedCards = [];
-		activeCard = '';*/
+		activeCard = '';
+
 		shuffle(deck);
 		createCard();
 
@@ -256,7 +257,7 @@ var Reforma = function() {
 		if(points < 100) {
 			totalInfo('loose');
 		}
-		//totalInfo(popupType);
+		totalInfo(popupType);
 		console.log('end',endGame)
 	};
 
@@ -268,7 +269,7 @@ var Reforma = function() {
 		gameBlock.addClass('is-hide');
 
 		$('.js-popup-info-link').on('click', function() {
-			popup(popupType);
+			popup('victory');
 		});
 	};
 

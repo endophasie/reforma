@@ -118,7 +118,7 @@
 
 .reforma-popup_wrap {
 	margin-bottom: 10px;
-	padding: 0 45px;
+	padding: 0 45px 45px;
 }
 
 .reforma-popup_par {
@@ -150,7 +150,6 @@
 .reforma-popup_btn-wrap {
 	text-align: center;
 	margin-top: 25px;
-	padding-bottom: 44px;
 }
 
 .reforma-popup_card-content {
@@ -220,7 +219,7 @@
 	}
 
 	.reforma-popup_content-card & {
-		padding-bottom: 40px;
+		padding-bottom: 30px;
 	}
 }
 
