@@ -424,6 +424,14 @@ th {
   padding: 0;
 }
 
+.is-show {
+	display: block;
+}
+
+.is-hide {
+	display: none !important;
+}
+
 .reforma-desk_icon-add {
 	background: url('../img/i-add-grey.png') center center no-repeat;
 	width: 21px;
@@ -478,7 +486,7 @@ th {
 	vertical-align: middle;
 }
 
-.reforma-game_live {
+.reforma-game_life {
 	background: url('../img/i-life.png') center center no-repeat;
 	width: 22px;
 	height: 20px;
@@ -488,24 +496,44 @@ th {
 	cursor: pointer;
 }
 
-.reforma-game_live-lose {
-	background: url('../img/i-life-grey.png') center center no-repeat;
-	width: 21px;
-	height: 20px;
-	background-size: 100% 100%;
-	display: inline-block;
-	vertical-align: middle;
-	cursor: pointer;
+.reforma-game_life.is-burn {
+  background: url('../img/i-life-grey.png') center center no-repeat;
+  width: 21px;
+  height: 20px;
+  background-size: 100% 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.reforma-deck_economy {
-	background: url('../img/i-economy.png') center center no-repeat;
-	width: 19px;
-	height: 19px;
-	background-size: 100% 100%;
-	display: inline-block;
-	vertical-align: middle;
+.reforma-card_icon {
 	margin-right: 10px;
+}
+
+.economics .reforma-card_icon {
+  background: url('../img/i-economy.png') center center no-repeat;
+  width: 19px;
+  height: 19px;
+  background-size: 100% 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.social .reforma-card_icon {
+  background: url('../img/i-economy.png') center center no-repeat;
+  width: 19px;
+  height: 19px;
+  background-size: 100% 100%;
+  display: inline-block;
+  vertical-align: middle;/* TODO: replace to social */
+}
+
+.war .reforma-card_icon {
+  background: url('../img/i-economy.png') center center no-repeat;
+  width: 19px;
+  height: 19px;
+  background-size: 100% 100%;
+  display: inline-block;
+  vertical-align: middle;/* TODO: replace to war */
 }
 
 .reforma-game_i-economy {
@@ -543,7 +571,7 @@ img {
 
 .reforma {
 	width: 100%;
-	height: calc(100vh - 61px);
+	height: 100%;
 	background: #333 url('../img/bg-main.png') 0 0 repeat;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -556,20 +584,22 @@ img {
 	-webkit-box-flex: 1;
 	    -ms-flex: 1;
 	        flex: 1;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
 	width: 100%;
 	height: 100%;
 }
-.reforma-desk.is-base {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-              -ms-grid-row-align: center;
-          align-items: center;
+
+.reforma-desk_base {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 .reforma-desk_content {
@@ -603,7 +633,7 @@ img {
 	        justify-content: space-between;
 	width: 100%;
 	padding-top: 17px;
-	margin: 0 25px;
+	/*margin: 0 25px;*/
 }
 
 .reforma-game_col {
@@ -633,70 +663,6 @@ img {
 
 .reforma-game_title:after {
   right: 0;
-}
-.reforma_deck {
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
-	margin-bottom: 20px;
-}
-
-.reforma_card {
-	background-color: #fff;
-	border-radius: 3px;
-	padding: 30px;
-	color: #272727;
-	box-shadow: 0 1px 1px #757575;
-	height: 100%;
-	box-sizing: border-box;
-}
-
-.reforma_card.on-desk {
-  padding: 20px 30px 19px 18px;
-  margin-bottom: 20px;
-  border-right: 8px solid #E6E6E6;
-}
-
-.reforma_card.is-act {
-  border-color: #00E25D;
-}
-
-.reforma-deck_tag {
-	font: italic 400 14px/22px 'LavaPro Regita', Georgia, serif;
-	margin-bottom: 10px;
-}
-
-.on-desk .reforma-deck_tag {
-  display: none;
-}
-
-.reforma_card-content {
-}
-
-.reforma_card-title {
-	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
-	margin-bottom: 15px;
-}
-
-.on-desk .reforma_card-title {
-  font-size: 13px;
-  line-height: 17px;
-  margin-bottom: 0;
-  opacity: .7;
-}
-
-.is-act .reforma_card-title {
-  opacity: 1;
-}
-
-.reforma_card-text {
-	color: #4c4c4c;
-	font: 400 14px/20px 'LavaPro Regita', Georgia, serif;
-	padding-bottom: 30px;
-}
-
-.on-desk .reforma_card-text {
-  display: none;
 }
 
 .reforma-deck_actions {
@@ -729,14 +695,73 @@ img {
 .reforma-deck_action:last-child {
   border: 0;
 }
+.reforma_card {
+	background-color: #fff;
+	border-radius: 3px;
+	color: #272727;
+	/*box-shadow: 0 1px 1px #757575;
+	padding: 30px;
+	height: 100%;*/
+	box-sizing: border-box;
+}
+.reforma_card.on-desk {
+  padding: 20px 30px 19px 18px;
+  margin-bottom: 20px;
+  border-right: 8px solid #E6E6E6;
+}
+.reforma_card.is-act {
+  border-color: #00E25D;
+}
+.reforma-deck_card .reforma_card {
+  min-height: 300px;
+}
+
+.reforma-card_tag {
+	font: italic 400 14px/22px 'LavaPro Regita', Georgia, serif;
+	margin-bottom: 10px;
+}
+
+.on-desk .reforma-card_tag {
+  display: none;
+}
+
+.reforma_card-content {
+}
+
+.reforma_card-title {
+	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
+	margin-bottom: 15px;
+}
+
+.on-desk .reforma_card-title {
+  font-size: 13px;
+  line-height: 17px;
+  margin-bottom: 0;
+  opacity: .7;
+}
+
+.is-act .reforma_card-title,
+	.card-active .reforma_card-title {
+  opacity: 1;
+}
+
+.reforma_card-text {
+	color: #4c4c4c;
+	font: 400 14px/20px 'LavaPro Regita', Georgia, serif;
+	padding-bottom: 30px;
+}
+
+.on-desk .reforma_card-text {
+  display: none;
+}
 .reforma-game {
 	width: 340px;
 	height: 100%;
-	background-color: #272727;
+	background-color: #222;   /* в макете определяется как #272727 */
 }
 
 .reforma-game_info {
-	padding: 0 20px 20px;
+	padding: 20px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -753,7 +778,7 @@ img {
 
 .reforma-game_state {
 	height: 22px;
-	padding: 17px 0;
+	padding: 0 0 20px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -763,7 +788,7 @@ img {
 	text-align: center;
 }
 
-.reforma-game_lives {
+.reforma-game_lifes {
 	width: 50%;
 	border-right: 1px solid #4c4c4c;
 }
@@ -773,26 +798,348 @@ img {
 	color: #999;
 	font-size: 21px;
 }
-.reforma_btn-main {
-	display: block;
+
+.reforma_deck {
+	-webkit-box-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	margin-bottom: 20px;
+}
+
+.reforma-deck_card {
+	background-color: #fff;
+	border-radius: 3px;
+	padding: 30px;
+	color: #272727;
+	box-shadow: 0 1px 1px #757575;
+	/*height: 100%;*/
 	box-sizing: border-box;
-	border: 0;
-	outline: 0;
-	width: 100%;
-	height: 66px;
+}
+
+.reforma-deck_card .reforma_card {
+  display: none;
+}
+
+.reforma-deck_card .reforma_card.is-active {
+  display: block;
+}
+
+.reforma-game_info-message {
 	text-align: center;
-	font: 700 15px/64px Formular, Helvetica, Arial, sans-serif;
+}
+
+.reforma-game_info-message-pic {
+	width: 104px;
+	height: 102px;
+	background: url('../img/i-victory.png') 0 0 no-repeat;
+	margin: 0 auto 20px;
+}
+
+.reforma-game_info-message-title-text {
+	font: 700 23px/1 'Formular', sans-serif;
+	margin-bottom: 9px;
+	color: #fff;
+}
+
+.reforma-game_info-message-score {
+	font: 400 italic 13px/20px 'Lava Pro', 'Lava 3', serif;
+	color: #999;
+}
+
+.reforma-game_info-message-text {
+	color: #e5e5e5;
+	font: 400 13px/18px 'Lava Pro', 'Lava 3', serif;
+	margin-bottom: 15px;
+}
+
+.reforma-game_info-message-link {
+	font: 400 italic 13px/20px 'Lava Pro', 'Lava 3', serif;
+	color: #999;
+	border-bottom: 1px solid;
+}
+
+.reforma-game_info-message-link:hover, .reforma-game_info-message-link:focus {
+  border-bottom-color: transparent;
+}
+.btn {
+	display: inline-block;
+	box-sizing: border-box;
+	text-decoration: none;
+	outline: 0;
+	text-align: center;
+	font: 700 16px/50px 'Formular', sans-serif;
 	border: 2px solid #e5e5e5;
 	color: #e5e5e5;
-	-ms-flex-item-align: end;
-	    align-self: flex-end;
+	padding: 0 36px;
+	height: 55px;
 	-webkit-transition: background-color .3s ease,
 				color .3s ease;
 	transition: background-color .3s ease,
 				color .3s ease;
 }
-.reforma_btn-main:hover, .reforma_btn-main:focus {
-  border: 2px solid #e5e5e5;
+.btn:hover, .btn:focus {
   background-color: #e5e5e5;
   color: #272727;
+}
+.btn.is-invert {
+  color: #444;
+  border-color: #444;
+  background-color: #fff;
+}
+.btn.is-invert:hover, .btn.is-invert:focus {
+  color: #fff;
+  background-color: #444;
+}
+
+.reforma_btn-main {
+	display: block;
+	width: 100%;
+	height: 66px;
+	line-height: 64px;
+	font-size: 15px;
+	-ms-flex-item-align: end;
+	    align-self: flex-end;
+}
+.reforma-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(39, 39, 39, 0.7);
+}
+
+.reforma-popup {
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	z-index: 100;
+	background-color: #fff;
+	-webkit-transform: translate(-50%);
+	        transform: translate(-50%);
+}
+
+.reforma-popup.card-info {
+  border-top: 13px solid #e6e6e6;
+  border-radius: 4px;
+}
+
+.reforma-popup.card-info.is-act {
+  border-color: #00E25D;
+}
+
+.reforma-popup.card-active {
+  border-top: 13px solid #00E25D;
+  border-radius: 4px;
+}
+
+.reforma-popup_close {
+	position: absolute;
+	right: 20px;
+	top: 22px;
+	width: 15px;
+	height: 15px;
+	background: url('../img/i-cross.png') 0 0 no-repeat;
+	-webkit-transition: background-image 300ms ease;
+	transition: background-image 300ms ease;
+	cursor: pointer;
+}
+
+.reforma-popup_close:hover, .reforma-popup_close:focus {
+  background-image: url('../img/i-cross-hov.png');
+}
+
+.reforma-popup_content {
+	padding: 44px 0 0;
+	color: #272727;
+    overflow-y: auto;
+    max-height: 90vh;
+    box-sizing: border-box;
+}
+
+.reforma-popup_top-icon {
+	text-align: center;
+	margin: 0 auto 15px;
+	height: 33px;
+	min-width: 28px;
+	background: url('../img/i-popup-victory.png') center 0 no-repeat;
+}
+
+.reforma-popup_top-icon:before,
+	.reforma-popup_top-icon:after {
+  content: '';
+  display: inline-block;
+  width: 37px;
+  height: 1px;
+  background-color: #d4d4d4;
+}
+
+.reforma-popup_top-icon:before {
+  margin-right: 52px;
+}
+
+.reforma-popup_title {
+	font: 700 28px/33px 'Formular', sans-serif;
+	padding: 0 45px 30px;
+	margin: 0 auto 30px;
+	position: relative;
+	text-align: center;
+}
+
+.reforma-popup_title:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -18px;
+  width: 37px;
+  height: 1px;
+  background-color: #D5D5D5;
+}
+
+.lost-life .reforma-popup_title {
+  color: #f00;
+  width: 70%;
+}
+
+.lost-life .reforma-popup_title:after {
+  background-color: #F00;
+}
+
+.conflict .reforma-popup_title {
+  padding-bottom: 0;
+  margin-bottom: 15px;
+}
+
+.conflict .reforma-popup_title:after {
+  display: none;
+}
+
+.reforma-popup_subtitle {
+	font: 400 14px/18px 'Lava Pro', 'Lava 3', serif;
+	color: rgba(26, 26, 26, 0.6);
+	text-align: center;
+	padding: 0 30px;
+	margin-bottom: 30px;
+}
+
+.reforma-popup_wrap {
+	margin-bottom: 10px;
+	padding: 0 45px;
+}
+
+.reforma-popup_par {
+	margin-bottom: 15px;
+	color: #4c4c4c;
+	font: 400 15px/21px 'Lava Pro', 'Lava 3', serif;
+}
+
+.reforma-popup_par.is-info {
+  font-style: italic;
+  text-align: center;
+}
+
+.reforma-popup_par p {
+  margin-bottom: 20px;
+}
+
+.reforma-popup_par p:last-child {
+  margin-bottom: 0;
+}
+
+.reforma-popup_par-extra {
+	font: 700 16px/19px 'Formular', sans-serif;
+	color: #272727;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.reforma-popup_btn-wrap {
+	text-align: center;
+	margin-top: 25px;
+	padding-bottom: 44px;
+}
+
+.reforma-popup_card-content {
+	background-color: #F7F7F7;
+	padding: 30px;
+	position: relative;
+}
+
+.conflict .reforma-popup_card-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.conflict .reforma-popup_card-content .reforma_card {
+  width: 48%;
+  cursor: pointer;
+}
+
+.conflict .reforma-popup_card-content:after {
+  content: '?';
+  position: absolute;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #222;
+  text-align: center;
+  padding-top: 6px;
+  box-sizing: border-box;
+  color: #fff;
+  font: 700 30px 'Formular', sans-serif;
+}
+
+.card-info .reforma-popup_card-content {
+  display: none;
+}
+
+.card-active .reforma-popup_card-content {
+  border-radius: 0 0 4px 4px;
+  display: block;
+}
+
+.reforma-popup_card-wrap {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+}
+
+.reforma-popup_card-wrap .reforma_card {
+  margin: 0 8px 8px 0;
+  padding: 10px;
+  width: 49%;
+  border: 0;
+}
+
+.reforma-popup_card-wrap .reforma_card:nth-child(even) {
+  margin-right: 0;
+}
+
+.reforma-popup_comment {
+	font-size: 13px;
+	opacity: .5;
+	margin-bottom: 13px;
+}
+
+.card-active .reforma-popup_content-card .reforma-popup_comment {
+  display: none;
+}
+
+.reforma-popup_content-card .reforma-popup_comment {
+  padding-bottom: 40px;
+}
+
+.reforma-popup_content-card {
+	padding: 0 30px;
 }

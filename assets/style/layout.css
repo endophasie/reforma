@@ -4,7 +4,7 @@ img {
 }
 
 .reforma {
-	size: 100% calc(100vh - 61px);
+	size: 100%;
 	background: #333 url('../img/bg-main.png') 0 0 repeat;
 	display: flex;
 	/*min-width: 1024px;

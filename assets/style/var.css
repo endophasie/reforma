@@ -1,6 +1,16 @@
 $base-text: #fff;
+$subtext: #999;
+$active: #00E25D;
 
-$sans-serif: 'PT Sans', Helvetica, Arial, sans-serif;
+$serif: 'Lava Pro', 'Lava 3', serif;
+$sans: 'Formular', sans-serif;
 
 @custom-media --medium  (width <= 650px);
 
+.is-show {
+	display: block;
+}
+
+.is-hide {
+	display: none !important;
+}

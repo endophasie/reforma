@@ -1,0 +1,240 @@
+.reforma-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	size: 100%;
+	background-color: #272727.7;
+}
+
+.reforma-popup {
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	z-index: 100;
+	background-color: $base-text;
+	transform: translate(-50%);
+
+	&.card-info {
+		border-top: 13px solid #e6e6e6;
+		border-radius: 4px;
+
+		&.is-act {
+			border-color: $active;
+		}
+	}
+
+	&.card-active {
+		border-top: 13px solid $active;
+		border-radius: 4px;
+	}
+}
+
+.reforma-popup_close {
+	position: absolute;
+	right: 20px;
+	top: 22px;
+	size: size('../img/i-cross.png');
+	background: url('../img/i-cross.png') 0 0 no-repeat;
+	transition: background-image 300ms ease;
+	cursor: pointer;
+
+	&:hover {
+		background-image: url('../img/i-cross-hov.png');
+	}
+}
+
+.reforma-popup_content {
+	padding: 44px 0 0;
+	color: #272727;
+    overflow-y: auto;
+    max-height: 90vh;
+    box-sizing: border-box;
+}
+
+.reforma-popup_top-icon {
+	text-align: center;
+	margin: 0 auto 15px;
+	height: height('../img/i-popup-victory.png');
+	min-width: width('../img/i-popup-victory.png');
+	background: url('../img/i-popup-victory.png') center 0 no-repeat;
+
+	&:before,
+	&:after {
+		content: '';
+		display: inline-block;
+		size: 37px 1px;
+		background-color: #d4d4d4;
+	}
+
+	&:before {
+		margin-right: 52px;
+	}
+}
+
+.reforma-popup_title {
+	font: 700 28px/33px $sans;
+	padding: 0 45px 30px;
+	margin: 0 auto 30px;
+	position: relative;
+	text-align: center;
+
+	&:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		margin-left: -18px;
+		size: 37px 1px;
+		background-color: #D5D5D5;
+	}
+
+	.lost-life & {
+		color: #f00;
+		width: 70%;
+
+		&:after {
+			background-color: #F00;
+		}
+	}
+
+	.conflict & {
+		padding-bottom: 0;
+		margin-bottom: 15px;
+
+		&:after {
+			display: none;
+		}
+	}
+}
+
+.reforma-popup_subtitle {
+	font: 400 14px/18px $serif;
+	color: rgba(26, 26, 26, 0.6);
+	text-align: center;
+	padding: 0 30px;
+	margin-bottom: 30px;
+}
+
+.reforma-popup_wrap {
+	margin-bottom: 10px;
+	padding: 0 45px;
+}
+
+.reforma-popup_par {
+	margin-bottom: 15px;
+	color: #4c4c4c;
+	font: 400 15px/21px $serif;
+
+	&.is-info {
+		font-style: italic;
+		text-align: center;
+	}
+
+	p {
+		margin-bottom: 20px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.reforma-popup_par-extra {
+	font: 700 16px/19px $sans;
+	color: #272727;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.reforma-popup_btn-wrap {
+	text-align: center;
+	margin-top: 25px;
+	padding-bottom: 44px;
+}
+
+.reforma-popup_card-content {
+	background-color: #F7F7F7;
+	padding: 30px;
+	position: relative;
+
+	.conflict & {
+		display: flex;
+		justify-content: space-between;
+
+		.reforma_card {
+			width: 48%;
+			cursor: pointer;
+		}
+
+		&:after {
+			content: '?';
+			position: absolute;
+			left: 50%;
+			margin: -25px 0 0 -25px;
+			top: 50%;
+			size: 50px;
+			border-radius: 50%;
+			background-color: #222;
+			text-align: center;
+			padding-top: 6px;
+			box-sizing: border-box;
+			color: $base-text;
+			font: 700 30px $sans;
+		}
+	}
+
+	.card-info & {
+		display: none;
+	}
+
+	.card-active & {
+		border-radius: 0 0 4px 4px;
+		display: block;
+	}
+}
+
+.reforma-popup_card-wrap {
+	display: flex;
+	flex-wrap: wrap;
+
+	.reforma_card {
+		margin: 0 8px 8px 0;
+		padding: 10px;
+		width: 49%;
+		border: 0;
+
+		&:nth-child(even) {
+			margin-right: 0;
+		}
+	}
+}
+
+.reforma-popup_comment {
+	font-size: 13px;
+	opacity: .5;
+	margin-bottom: 13px;
+
+	.card-active .reforma-popup_content-card & {
+		display: none;
+	}
+
+	.reforma-popup_content-card & {
+		padding-bottom: 40px;
+	}
+}
+
+.reforma-popup_content-card {
+	padding: 0 30px;
+}
+
+
+
+
+
+
+
+
+
+
+

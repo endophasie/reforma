@@ -30,19 +30,29 @@
 	@mixin icon i-discard;
 }
 
-.reforma-game_live {
+.reforma-game_life {
 	@mixin icon i-life;
 	cursor: pointer;
+
+	&.is-burn {
+		@mixin icon i-life-grey;
+	}
 }
 
-.reforma-game_live-lose {
-	@mixin icon i-life-grey;
-	cursor: pointer;
-}
-
-.reforma-deck_economy {
-	@mixin icon i-economy;
+.reforma-card_icon {
 	margin-right: 10px;
+
+	.economics & {
+		@mixin icon i-economy;
+	}
+
+	.social & {
+		@mixin icon i-economy;  /* TODO: replace to social */
+	}
+
+	.war & {
+		@mixin icon i-economy; /* TODO: replace to war */
+	}
 }
 
 .reforma-game_i-economy {

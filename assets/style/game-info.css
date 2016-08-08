@@ -1,10 +1,10 @@
 .reforma-game {
 	size: 340px 100%;
-	background-color: #272727;
+	background-color: #222;   /* в макете определяется как #272727 */
 }
 
 .reforma-game_info {
-	padding: 0 20px 20px;
+	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -14,13 +14,13 @@
 
 .reforma-game_state {
 	height: 22px;
-	padding: 17px 0;
+	padding: 0 0 20px;
 	display: flex;
 	align-items: center;
 	text-align: center;
 }
 
-.reforma-game_lives {
+.reforma-game_lifes {
 	width: 50%;
 	border-right: 1px solid #4c4c4c;
 }
@@ -30,3 +30,83 @@
 	color: #999;
 	font-size: 21px;
 }
+
+.reforma_deck {
+	flex: 1;
+	margin-bottom: 20px;
+}
+
+.reforma-deck_card {
+	background-color: #fff;
+	border-radius: 3px;
+	padding: 30px;
+	color: #272727;
+	box-shadow: 0 1px 1px #757575;
+	/*height: 100%;*/
+	box-sizing: border-box;
+
+	.reforma_card {
+		display: none;
+
+		&.is-active {
+			display: block;
+		}
+	}
+}
+
+.reforma-game_info-message {
+	text-align: center;
+}
+
+.reforma-game_info-message-pic {
+	size: size('../img/i-victory.png');
+	background: url('../img/i-victory.png') 0 0 no-repeat;
+	margin: 0 auto 20px;
+}
+
+.reforma-game_info-message-title-text {
+	font: 700 23px/1 $sans;
+	margin-bottom: 9px;
+	color: $base-text;
+}
+
+.reforma-game_info-message-score {
+	font: 400 italic 13px/20px $serif;
+	color: $subtext;
+}
+
+.reforma-game_info-message-text {
+	color: #e5e5e5;
+	font: 400 13px/18px $serif;
+	margin-bottom: 15px;
+}
+
+.reforma-game_info-message-link {
+	font: 400 italic 13px/20px $serif;
+	color: $subtext;
+	border-bottom: 1px solid;
+
+	&:hover {
+		border-bottom-color: transparent;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

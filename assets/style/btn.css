@@ -1,20 +1,38 @@
-.reforma_btn-main {
-	display: block;
+.btn {
+	display: inline-block;
 	box-sizing: border-box;
-	border: 0;
+	text-decoration: none;
 	outline: 0;
-	size: 100% 66px;
 	text-align: center;
-	font: 700 15px/64px Formular, Helvetica, Arial, sans-serif;
+	font: 700 16px/50px $sans;
 	border: 2px solid #e5e5e5;
 	color: #e5e5e5;
-	align-self: flex-end;
+	padding: 0 36px;
+	height: 55px;
 	transition: background-color .3s ease,
 				color .3s ease;
 
 	&:hover {
-		border: 2px solid #e5e5e5;
 		background-color: #e5e5e5;
 		color: #272727;
 	}
+
+	&.is-invert {
+		color: #444;
+		border-color: #444;
+		background-color: $base-text;
+
+		&:hover {
+			color: $base-text;
+			background-color: #444;
+		}
+	}
+}
+
+.reforma_btn-main {
+	display: block;
+	size: 100% 66px;
+	line-height: 64px;
+	font-size: 15px;
+	align-self: flex-end;
 }

@@ -7,44 +7,182 @@
 	<link rel="stylesheet" href="build/css/style.min.css">
 </head>
 <body>
-<header class="js-site-header header-page header-page-dark header-page-shown"><div class="mobile_menu_btn"></div><div class="logo logo-short"><a href="/"></a></div><div class="search"><a class="btn-search" id="btn-site-search-open" style="display: block;"></a><a class="btn-close" id="btn-site-search-close" style="display: none;"></a></div><nav class="nav-top"><ul><li><a href="/courses">Курсы</a></li><li><a href="/mag">Журнал</a></li></ul><div class="header-special-link"><a class="header-special emoji" href="/special/shakemoji"><img class="white-header" src="//cdn-s-assets.arzamas.academy/assets/emoji/emoshake-top-ad-for-black-6f4130ad1a6253b30e6a79391ee4e8ac4e9df919e044794a477d023b7855e059.png" alt="Emoshake top ad for black"><img class="black-header" src="//cdn-s-assets.arzamas.academy/assets/emoji/emoshake-top-ad-for-white-811b22281c193e52890ebfdcc0ea891cfbbf0b4da2710670d202de980930bfdd.png" alt="Emoshake top ad for white"></a></div></nav><div class="b-site-search" id="site-search" style=""><form action="/search" method="get"><input name="query" type="search" value=""><input name="" type="submit" value="Найти"></form></div></header>
 <!--   NEW GAME PREFIX: reforma-   -->
 	<div class="reforma">
-		<div class="reforma-desk is-base">
-			<div class="reforma-desk_content">
-				<p class="reforma-desk_par">Добавляйте хорошие карточки реформ на поле, чтобы что-то.</p>
-				<p class="reforma-desk_par">Плохие не добавляйте, а то жизнь снимем.</p>
-				<ul class="reforma-desk_rules">
-					<li class="reforma-desk_rules-item"><span class="reforma-desk_icon-add"></span>&nbsp;&mdash;&nbsp;добавить реформу на поле</li>
-					<li class="reforma-desk_rules-item"><span class="reforma-desk_icon-skip"></span>&nbsp;&mdash;&nbsp;пропустить, но оставить в колоде</li>
-					<li class="reforma-desk_rules-item"><span class="reforma-desk_icon-discard"></span>&nbsp;&mdash;&nbsp;выбросить навсегда</li>
-				</ul>
+		<div class="reforma-desk">
+			<div class="reforma-desk_base">
+				<div class="reforma-desk_content">
+					<p class="reforma-desk_par">Добавляйте хорошие карточки реформ на поле, чтобы что-то.</p>
+					<p class="reforma-desk_par">Плохие не добавляйте, а то жизнь снимем.</p>
+					<ul class="reforma-desk_rules">
+						<li class="reforma-desk_rules-item"><span class="reforma-desk_icon-add"></span>&nbsp;&mdash;&nbsp;добавить реформу на поле</li>
+						<li class="reforma-desk_rules-item"><span class="reforma-desk_icon-skip"></span>&nbsp;&mdash;&nbsp;пропустить, но оставить в колоде</li>
+						<li class="reforma-desk_rules-item"><span class="reforma-desk_icon-discard"></span>&nbsp;&mdash;&nbsp;выбросить навсегда</li>
+					</ul>
+				</div>
+			</div>
+			<div class="reforma-desk_game is-hide">
+				<div class="reforma-game_col is-economy">
+					<div class="reforma-game_title"><span class="reforma-game_i-economy"></span></div>
+					<div class="reforma-game_content">
+					</div>
+				</div>
+				<div class="reforma-game_col is-social">
+					<div class="reforma-game_title"><span class="reforma-game_i-social"></span></div>
+					<div class="reforma-game_content">
+					</div>
+				</div>
+				<div class="reforma-game_col is-war">
+					<div class="reforma-game_title"><span class="reforma-game_i-war"></span></div>
+					<div class="reforma-game_content">
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="reforma-game">
-			<div class="reforma-game_info">
+			<div class="reforma-game_info reforma-game_info-action">
 				<div class="reforma-game_state">
-					<div class="reforma-game_lives">
-						<span class="reforma-game_live"></span>
-						<span class="reforma-game_live-lose"></span>
+					<div class="reforma-game_lifes">
+						<span class="reforma-game_life"></span>
+						<span class="reforma-game_life is-burn"></span>
 					</div>
-					<div class="reforma-game_score">0</div>
+					<div class="reforma-game_score"></div>
 				</div>
 				<div class="reforma_deck">
-					<div class="reforma_card">
-						<div class="reforma-deck_tag"><span class="reforma-deck_economy"></span>Экономика</div>
+					<div class="reforma-deck_card">
+						<!-- <div class="reforma_card"> </div> -->
+						<div class="reforma-deck_actions">
+							<div class="reforma-deck_action js-act-add"><span class="reforma-deck_icon-add"></span></div>
+							<div class="reforma-deck_action js-act-skip"><span class="reforma-deck_icon-skip"></span></div>
+							<div class="reforma-deck_action js-act-remove"><span class="reforma-deck_icon-discard"></span></div>
+						</div>
+					</div>
+				</div>
+				<a href="#" class="reforma_btn-main btn js-reforma-start">Отправиться на войну</a>
+			</div>
+			<div class="reforma-game_info reforma-game_info-message is-hide">
+				<div class="reforma-game_info-message-wrap">
+					<div class="reforma-game_info-message-pic"></div>
+					<div class="reforma-game_info-message-title">
+						<div class="reforma-game_info-message-title-text">Победа!</div>
+						<div class="reforma-game_info-message-score">100 очков</div>
+					</div>
+					<div class="reforma-game_info-message-content">
+						<div class="reforma-game_info-message-text">Швед разбит, Россия прочно закрепилась на Балтике, прорублено окно в Европу. Наше вымуштрованное войско, вооруженное по последнему слову военной техники и снабженное всем необходимым, отныне является одним из сильнейших в Европе и мире.</div>
+						<a href="#" class="reforma-game_info-message-link js-popup-info-link">Подробное описание</a>
+					</div>
+				</div>
+				<div class="reforma-game_info-end">
+					<div class="reforma-game_info-message-social"><img src="build/img/social.png"></div>
+					<a href="#" class="reforma_btn-main btn js-reforma-start">Начать с начала</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="reforma-overlay js-overlay is-hide">
+		<div class="reforma-popup js-popup victory is-hide">
+			<div class="reforma-popup_close js-popup-close"></div>
+			<div class="reforma-popup_content">
+				<div class="reforma-popup_top-icon"></div>
+				<div class="reforma-popup_title">Победа!</div>
+				<div class="reforma-popup_wrap">
+					<div class="reforma-popup_par-extra">Но ваши решения чреваты осложнениями в будущем.</div>
+					<div class="reforma-popup_par">
+						<p>Только-только возникающих частных мануфактур не хватит, чтобы удовлетворить постоянно растущий спрос государства на промышленные товары не только военного, но и гражданского назначения. Хочешь не хочешь, придется докупать за рубежом. Или думать о государственных мануфактурах, как Петр I и сделал.</p>
+						<p>Поддержать российских промышленников – решение хорошее, но их слишком мало, чтобы реформа возымела серьезный эффект. Стоило бы подумать о реформе городского управления; именно в городах больше всего предприимчивых людей при деньгах, которым нужно дать возможность использовать свои капиталы.</p>
+					</div>
+					<div class="reforma-popup_par-extra">Словом, вы заварили такую кашу, что ее придется расхлебывать не один десяток лет.</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="reforma-popup js-popup lost-life is-hide">
+			<div class="reforma-popup_close js-popup-close"></div>
+			<div class="reforma-popup_content">
+				<div class="reforma-popup_top-icon"></div>
+				<div class="reforma-popup_title">Конфуз вышел, государь!</div>
+				<div class="reforma-popup_wrap">
+					<div class="reforma-popup_par">
+						<p>Только-только возникающих частных мануфактур не хватит, чтобы удовлетворить постоянно растущий спрос государства на промышленные товары не только военного, но и гражданского назначения. Хочешь не хочешь, придется докупать за рубежом. Или думать о государственных мануфактурах, как Петр I и сделал.</p>
+					</div>
+					<div class="reforma-popup_par is-info">Но у вас есть еще один шанс!</div>
+				</div>
+				<div class="reforma-popup_btn-wrap"><a href="#" class="btn is-invert js-popup-close">Продолжить</a></div>
+			</div>
+		</div>
+
+		<div class="reforma-popup js-popup started-work is-hide">
+			<div class="reforma-popup_close js-popup-close"></div>
+			<div class="reforma-popup_content">
+				<div class="reforma-popup_top-icon"></div>
+				<div class="reforma-popup_title">Заработали новые реформы</div>
+				<div class="reforma-popup_wrap">
+					<div class="reforma-popup_par-extra">Частные мануфактуры</div>
+					<div class="reforma-popup_par">
+						<p>Только-только возникающих частных мануфактур не хватит, чтобы удовлетворить постоянно растущий спрос государства на промышленные товары не только военного, но и гражданского назначения. Хочешь не хочешь, придется докупать за рубежом. Или думать о государственных мануфактурах, как Петр I и сделал.</p>
+					</div>
+				</div>
+				<div class="reforma-popup_wrap">
+					<div class="reforma-popup_par-extra">Подоходный налог</div>
+					<div class="reforma-popup_par">
+						<p>Поддержать российских промышленников – решение хорошее, но их слишком мало, чтобы реформа возымела серьезный эффект. Стоило бы подумать о реформе городского управления; именно в городах больше всего предприимчивых людей при деньгах, которым нужно дать возможность использовать свои капиталы.</p>
+					</div>
+				</div>
+				<div class="reforma-popup_btn-wrap"><a href="#" class="btn is-invert js-popup-close">Продолжить</a></div>
+			</div>
+		</div>
+
+		<div class="reforma-popup js-popup conflict is-hide">
+			<!-- <div class="reforma-popup_close js-popup-close"></div> -->
+			<div class="reforma-popup_content">
+				<div class="reforma-popup_top-icon"></div>
+				<div class="reforma-popup_title">Нужно выбрать одну реформу</div>
+				<div class="reforma-popup_subtitle">Призывать в армию можно разными способами. Но от увеличения числа этих способов количество людей призывного возраста в стране не увеличится. Можно забрать человека в армию два раза, но придет он все равно один.</div>
+				<div class="reforma-popup_card-content">
+					<div class="reforma_card reforma-deck_card">
+						<div class="reforma-card_tag"><span class="reforma-deck_economy"></span>Экономика</div>
 						<div class="reforma_card-content">
 							<div class="reforma_card-title">Всеобщая воинская обязанность</div>
 							<div class="reforma_card-text">Переложить снабжение армии боеприпасами, обмундированием, провизией и фуражом на ее собственные плечи (военные будут самостоятельно реквизировать необходимое у местного населения или закупать все у маркитантов за счет жалования)</div>
 						</div>
-						<div class="reforma-deck_actions">
-							<div class="reforma-deck_action"><span class="reforma-deck_icon-add"></span></div>
-							<div class="reforma-deck_action"><span class="reforma-deck_icon-skip"></span></div>
-							<div class="reforma-deck_action"><span class="reforma-deck_icon-discard"></span></div>
+					</div>
+					<div class="reforma_card reforma-deck_card">
+						<div class="reforma-card_tag"><span class="reforma-deck_economy"></span>Экономика</div>
+						<div class="reforma_card-content">
+							<div class="reforma_card-title">Всеобщая воинская обязанность</div>
+							<div class="reforma_card-text">Переложить снабжение армии боеприпасами, обмундированием, провизией и фуражом на ее собственные плечи (военные будут самостоятельно реквизировать необходимое у местного населения или закупать все у маркитантов за счет жалования)</div>
 						</div>
 					</div>
 				</div>
-				<a href="#" class="reforma_btn-main">Отправиться на войну</a>
+			</div>
+		</div>
+
+		<div class="reforma-popup js-popup card-info is-hide">
+			<div class="reforma-popup_close js-popup-close"></div>
+			<div class="reforma-popup_content">
+				<div class="reforma-popup_content-card">
+					<div class="js-popup_content-card"></div>
+					<div class="reforma-popup_comment">Реформа пока не работает</div>
+				</div>
+				<div class="reforma-popup_card-content">
+					<div class="reforma-popup_comment">Связанные реформы</div>
+					<div class="reforma-popup_card-wrap">
+						<!-- <div class="reforma_card reforma-deck_card on-desk">
+							<div class="reforma-card_tag"><span class="reforma-deck_economy"></span>Экономика</div>
+							<div class="reforma_card-content">
+								<div class="reforma_card-title">Всеобщая воинская обязанность</div>
+								<div class="reforma_card-text">Переложить снабжение армии боеприпасами, обмундированием, провизией и фуражом на ее собственные плечи (военные будут самостоятельно реквизировать необходимое у местного населения или закупать все у маркитантов за счет жалования)</div>
+							</div>
+						</div>
+						<div class="reforma_card reforma-deck_card on-desk">
+							<div class="reforma-card_tag"><span class="reforma-deck_economy"></span>Экономика</div>
+							<div class="reforma_card-content">
+								<div class="reforma_card-title">Всеобщая воинская обязанность</div>
+								<div class="reforma_card-text">Переложить снабжение армии боеприпасами, обмундированием, провизией и фуражом на ее собственные плечи (военные будут самостоятельно реквизировать необходимое у местного населения или закупать все у маркитантов за счет жалования)</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
