@@ -51,6 +51,8 @@ gulp.task('scripts', function () {
     return gulp.src('assets/script/*.js')
             .pipe(plumber({errorHandler: onError}))
             .pipe(concat('scripts.js'))
+            .pipe(size())
+            .pipe(gulp.dest('build/js/'))
             .pipe(uglify())
             .pipe(size())
             .pipe(rename({suffix: '.min'}))
