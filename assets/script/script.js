@@ -25,7 +25,39 @@ var data = {
 				"content": "Все известные попытки введения пропорционального подоходного налога в условиях сословного общества закончились плачевно. В России они, по счастью, вообще не предпринимались вплоть до Первой мировой войны. Что же касается времен Петра I, служилое сословие по традиции рассматривалось как выплачивающее «налог кровью». Церковь, с некоторыми нюансами, была свободна от налогов еще с татаро-монгольских времен. Возложить дополнительное налоговое бремя на богатых купцов означало удушить оживляющуюся внешнюю торговлю и формирующуюся национальную промышленность. Иными словами, введение подоходного налога – слишком решительный шаг в условиях первой четверти XVIII века, который мог закончиться, чем угодно: бунтом, дворянским заговором, но только не победой в Северной войне."
 			}
 		}
-	]
+	],
+	"messages": {
+		"contras": [
+			{
+				"id": "101102103",
+				"content": "Пополнять казну, конечно, можно разными способами, но налоговая система должна базироваться на какой-то одной подати.",
+			}
+		],
+		"cardactivated": [
+			{
+				"id": "1",
+				"cardId": "303",
+				"comment": "Заработала В3",
+				"content": "Теперь у нас есть и рекруты, годные к воинской службе, и устав, согласно которому эти рекруты будут служить, и офицеры, способные обучить новобранцев военному делу и руководить ими в бою. Наша армия определенно обрела плоть."
+			}
+		],
+		"finalWin": [
+			{
+				"id": "1",
+				"comment": "Вводное слово",
+				"title": "Виктория, государь!",
+				"content":"Швед разбит, Россия прочно закрепилась на Балтике, прорублено окно в Европу. Наше вымуштрованное войско, вооруженное по последнему слову военной техники и снабженное всем необходимым, отныне является одним из сильнейших в Европе и мире."
+			}
+		],
+		"finalFail": [
+			{
+				"id": "1",
+				"comment": "Вводное слово",
+				"title": "Конфуз вышел, государь!",
+				"content": "Как разбить шведа, когда "
+			}
+		]
+	}
 }
 
 function shuffle(array) {
@@ -60,42 +92,7 @@ var Reforma = function() {
 
 		_this.reset();
 
-		shuffle(deck);
-		createCard();
-
-		console.log('deck1',deck[1].title)
-		setPoints();
-
 		actions();
-
-		// card actions
-	    var addCardLink = $('.js-act-add');
-	    var skipCardLink = $('.js-act-skip');
-	    var removeCardLink = $('.js-act-remove');
-
-	    addCardLink.on('click', function() {
-	    	var actId = activeCard.attr('id');
-	    	activeCard.removeClass('is-active');
-	    	playDeck.splice( 0, 1 );
-	    	putOnTable(actId);
-
-	    	setActiveCard();
-	    });
-
-	    skipCardLink.on('click', function() {
-	    	playDeck.push( playDeck.splice( 0, 1 )[0] );
-	    	setActiveCard();
-	    });
-
-	    removeCardLink.on('click', function() {
-	    	playDeck.splice( 0, 1 );
-	    	setActiveCard();
-
-	    	if(playDeck.length == 0) {
-	    		activeCard.removeClass('is-active');
-	    		endGame();
-	    	}
-	    });
 	};
 
 	_this.reset = function() {
@@ -113,6 +110,8 @@ var Reforma = function() {
 		}
 
 		$('.reforma-game_life').removeClass('is-burn');
+
+		$('.js-popup_content-card').empty();
 
 		var infoBlock = $('.reforma-game_info-message');
 		var gameBlock = $('.reforma-game_info-action');
@@ -165,11 +164,12 @@ var Reforma = function() {
 	};
 
 	var setPoints = function() {
+		console.log('setPoints',points);
 		var score = $('.reforma-game_score');
 		score.text(points);
 
 		if(points == 100) {
-			endGame(victory);
+			endGame('finish');
 		}
 	};
 
@@ -186,12 +186,16 @@ var Reforma = function() {
 
 		if(lifes == 0) {
 			lifeBar.eq(0).addClass('is-burn');
-			endGame(victory);
+			endGame('finish');
 		}
 	};
 
 	var putOnTable = function(card) {
-		//console.log(card)
+
+		activeCard.removeClass('is-active');
+    	playDeck.splice( 0, 1 );
+
+		console.log('putOnTable',card)
 		var colEconomics = $('.reforma-game_col.is-economy').find('.reforma-game_content');
 		var colSocial = $('.reforma-game_col.is-social').find('.reforma-game_content');
 		var colWar = $('.reforma-game_col.is-war').find('.reforma-game_content');
@@ -200,8 +204,6 @@ var Reforma = function() {
 			$('.reforma-desk_game').removeClass('is-hide');
 			$('.reforma-desk_base').addClass('is-hide');
 		}
-
-		checkPlayedCard(card);
 
 		if($('#'+card).hasClass('economics')) {
 			colEconomics.prepend($('#'+card));
@@ -216,22 +218,53 @@ var Reforma = function() {
 		playedCards.push(card);
 
     	if(playDeck.length == 0) {
+    		$('.reforma_deck').addClass('is-hide');
     		endGame();
     	}
 
 	};
 
 	var checkPlayedCard = function(card) {
-		console.log('card-active',card)
+
+
+		if (playedCards.length == 0) {
+			console.log('first or last?',card)
+			putOnTable(card);
+		}
+
 		if (card == '101') {
 			playedCards.forEach(function(item, i, playedCards) {
 				switch(item) {
 					case '102':
-						popup('conflict');
-					//console.log($(popupType))
+						popup('conflict',card,'102');
+						//console.log('conflict')
+						break;
 					case '103':
-						popup('started-work');
+						putOnTable(card);
+						popup('started-work',card,'103');
+						break;
 					//console.log($(popupType))
+					/*default:
+						console.log(card)
+						putOnTable(card);*/
+				}
+			});
+		}
+
+		if (card == '102') {
+			playedCards.forEach(function(item, i, playedCards) {
+				switch(item) {
+					case '101':
+						popup('conflict',card,'101');
+						break;
+					case '103':
+						putOnTable(card);
+						popup('lost-life',card);
+						looseLife();
+						break;
+					/*default:
+						console.log(card)
+						putOnTable(card);*/
 				}
 			});
 		}
@@ -242,10 +275,17 @@ var Reforma = function() {
 					/*case '102':
 						popup('conflict');*/
 					case '101':
-						popup('started-work');
+						putOnTable(card);
+						popup('started-work',card,'101');
+						break;
 					case '102':
-						popup('lost-life');
+						putOnTable(card);
+						popup('lost-life',card);
 						looseLife();
+						break;
+					/*default:
+						console.log(card)
+						putOnTable(card);*/
 				}
 			});
 		}
@@ -259,35 +299,72 @@ var Reforma = function() {
 		});
 
 
+		// card actions
+	    var addCardLink = $('.js-act-add');
+	    var skipCardLink = $('.js-act-skip');
+	    var removeCardLink = $('.js-act-remove');
+
+	    addCardLink.on('click', function() {
+	    	var actId = activeCard.attr('id');
+
+	    	checkPlayedCard(actId);
+
+	    	setActiveCard();
+	    });
+
+	    skipCardLink.on('click', function() {
+	    	playDeck.push( playDeck.splice( 0, 1 )[0] );
+	    	setActiveCard();
+	    });
+
+	    removeCardLink.on('click', function() {
+	    	playDeck.splice( 0, 1 );
+	    	setActiveCard();
+
+	    	if(playDeck.length == 0) {
+	    		activeCard.removeClass('is-active');
+	    		endGame();
+	    	}
+	    });
 	};
 
-	var endGame = function(popupType) {
+	var endGame = function(finish) {
 		if(points >= 100) {
 			totalInfo('victory');
 		}
 		if(points < 100) {
 			totalInfo('loose');
 		}
-		totalInfo(popupType);
-		console.log('end',endGame)
+		totalInfo(popupType); //remove
 	};
 
-	var totalInfo = function(popupType) {
+	var totalInfo = function(finish) {
 		var infoBlock = $('.reforma-game_info-message');
 		var gameBlock = $('.reforma-game_info-action');
 
-		infoBlock.removeClass('is-hide').addClass(popupType);
+		infoBlock.removeClass('is-hide').addClass(finish);
 		gameBlock.addClass('is-hide');
 
+		$('.reforma-game_info-message-score').text(points);
+		//$('.reforma-game_info-message-text').text(finalText);
+
+		if(finish == victory) {
+			$('.reforma-game_info-message-title-text').text('Победа!');
+
+		}
+
+
 		$('.js-popup-info-link').on('click', function() {
-			popup('victory');
+			popup('finish',finish);
 		});
 	};
 
-	var popup = function(popupType,data) {
+	var popup = function(popupType,card,nextCard) {
 		var overlay = $('.js-overlay');
 		var popup = $('.js-popup');
 		var close = $('.js-popup-close');
+		var popupCard = $('.js-popup_content-card');
+		var popupInfoText = $('.js-popup-text');
 
 		popup.addClass('is-hide');
 
@@ -298,9 +375,7 @@ var Reforma = function() {
 			overlay.addClass('is-hide');
 			$('.'+popupType).addClass('is-hide');
 
-			if(popupType == 'card-info') {
-				popupCard.empty();
-			}
+			popupCard.empty();
 		});
 
 		$(document).on('keydown', function (e) {
@@ -308,16 +383,54 @@ var Reforma = function() {
 				overlay.addClass('is-hide');
 				$('.'+popupType).addClass('is-hide');
 
-				if(popupType == 'card-info') {
-					popupCard.empty();
-				}
+				popupCard.empty();
 			}
 		});
 
 		if(popupType == 'card-info') {
-			var popupCard = $('.js-popup_content-card');
-			console.log('this',data)
-			$(data).clone().removeClass('on-desk').attr('id', '').prependTo(popupCard);
+			console.log('this',card)
+			$(card).clone().removeClass('on-desk').attr('id', '').prependTo(popupCard);
+		}
+
+		if(popupType == 'conflict') {
+			console.log('conflict',card, nextCard)
+			popupInfoText.text(data.messages.contras[0].content);
+			$('#'+card).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
+			$('#'+nextCard).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
+
+			$('.'+popupType).find('.reforma_card').on('click', function() {
+
+				var cardId = $(this).attr('id');
+				var removalCardId = $(this).siblings('.reforma_card').attr('id');
+
+				cardInd = playedCards.indexOf(removalCardId);
+				if (cardInd > -1) {
+				    playedCards.splice(cardInd, 1);
+				}
+				putOnTable(cardId);
+				$('#'+removalCardId).remove();
+	    		setActiveCard();
+
+				overlay.addClass('is-hide');
+				$('.'+popupType).addClass('is-hide');
+				popupCard.empty();
+				console.log('conflictClick',$(this))
+			});
+		}
+
+		if(popupType == 'started-work') {
+			var newReforma = '<div class="reforma-popup_wrap">'+
+							 '    <div class="reforma-popup_par-extra">'+deck[0].title+'</div>'+ // active card title
+							 '	  <div class="reforma-popup_par">'+data.messages.cardactivated[0].content+'</div>'+
+							 '</div>';
+			popupCard.prepend(newReforma);
+		}
+
+		if(popupType == 'lost-life') {
+			var cardInfo = '<div class="reforma-popup_wrap">'+
+							 '	  <div class="reforma-popup_par">'+card+'</div>'+
+							 '</div>';
+			popupCard.prepend(cardInfo);
 		}
 	};
 
