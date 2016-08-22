@@ -1,31 +1,52 @@
 var data = {
 	"deck":
-	[
+	{
+		"101":
 		{
-			"id": "101",
 			"type": "economics",
 			"title": "Подушная подать",
 			"content": "Обложить налогом мужчин всех сословий, кроме дворянства и духовенства",
+			"relation": {
+				"needs": "102",
+				"contras": "103",
+				"union": "102&103",
+				"option": "102",
+				"vasya": "103"
+			},
+			"messages": {
+				"needs" : "messageID",
+				"vasya" : "Ja Vasya!"
+			},
 			"failMessage": false
 		},
+		"102":
 		{
-			"id": "102",
 			"type": "economics",
 			"title": "Подворная подать",
 			"content": "Собирать налог не с отдельных представителей податных сословий, а с семьи как хозяйствующего субъекта",
+			"relation": {
+				"needs": "101",
+				"union": "101&103",
+				"option": "103"
+			},
 			"failMessage": false
 		},
+		"103":
 		{
-			"id": "103",
 			"type": "economics",
 			"title": "Пропорциональный подоходный налог",
 			"content": "Обложить налогом представителей всех сословий без исключения пропорционально их доходам: чем больше доход, тем выше налог",
+			"relation": {
+				"contras": "101",
+				"union": "102&101",
+				"option": "101"
+			},
 			"failMessage": {
 				"title": "Конфуз вышел, государь!",
 				"content": "Все известные попытки введения пропорционального подоходного налога в условиях сословного общества закончились плачевно. В России они, по счастью, вообще не предпринимались вплоть до Первой мировой войны. Что же касается времен Петра I, служилое сословие по традиции рассматривалось как выплачивающее «налог кровью». Церковь, с некоторыми нюансами, была свободна от налогов еще с татаро-монгольских времен. Возложить дополнительное налоговое бремя на богатых купцов означало удушить оживляющуюся внешнюю торговлю и формирующуюся национальную промышленность. Иными словами, введение подоходного налога – слишком решительный шаг в условиях первой четверти XVIII века, который мог закончиться, чем угодно: бунтом, дворянским заговором, но только не победой в Северной войне."
 			}
 		}
-	],
+	},
 	"messages": {
 		"contras": [
 			{
@@ -79,6 +100,7 @@ function shuffle(array) {
   return array;
 }
 
+
 var Reforma = function() {
 	var _this = this;
 	var deck = data.deck;
@@ -121,39 +143,40 @@ var Reforma = function() {
 
 		$('.reforma_card').remove();
 
-		shuffle(deck);
 		createCard();
+		shuffle(playDeck);
+	    setActiveCard();
+	    setPoints();
 	};
 
 	var createCard = function() {
 		var cards = $('.reforma-deck_card');
 
-	    for(var i=0; i<deck.length; i++) {
-	    	var cardTagName = '';
+		for(var key in deck) {
+			var cardTagName = '';
 
-		    if(deck[i].type == 'economics') {
+			var item = deck[key];
+		    if(item.type == 'economics') {
 		    	cardTagName += 'Экономика'
-		    } else if(deck[i].type == 'social') {
+		    } else if(item.type == 'social') {
 		    	cardTagName += 'Социальная сфера'
-		    } else if(deck[i].type == 'war') {
+		    } else if(item.type == 'war') {
 		    	cardTagName += 'Военное дело'
 		    }
 
 			var card = $(
-		    '  <div class="reforma_card '+ deck[i].type +'" id="'+ deck[i].id +'">' +
-		    '    <div class="reforma-card_tag"><span class="reforma-card_icon"></span>'+ cardTagName +'</div>' +
-		    '    <div class="reforma_card-content">' +
-		    '		<div class="reforma_card-title">'+ deck[i].title +'</div>' +
-		    '		<div class="reforma_card-text">'+ deck[i].content +'</div>' +
-		    '  	 </div>' +
-		    '  </div>'
-		    );
+			    '  <div class="reforma_card '+ item.type +'" id="'+ key +'">' +
+			    '    <div class="reforma-card_tag"><span class="reforma-card_icon"></span>'+ cardTagName +'</div>' +
+			    '    <div class="reforma_card-content">' +
+			    '		<div class="reforma_card-title">'+ item.title +'</div>' +
+			    '		<div class="reforma_card-text">'+ item.content +'</div>' +
+			    '  	 </div>' +
+			    '  </div>'
+			    );
 
-			playDeck.push(deck[i].id);
+			playDeck.push(key);
 	    	cards.prepend(card);
-	    }
-
-	    setActiveCard();
+		}
 	};
 
 	var setActiveCard = function() {
@@ -217,85 +240,153 @@ var Reforma = function() {
 
 		playedCards.push(card);
 
-    	if(playDeck.length == 0) {
+
+    	/*if(playDeck.length == 0) {
     		$('.reforma_deck').addClass('is-hide');
     		endGame();
-    	}
+    	}*/
 
 	};
 
 	var checkPlayedCard = function(card) {
 
-
 		if (playedCards.length == 0) {
 			console.log('first or last?',card)
 			putOnTable(card);
-		}
+		} else {
+			var relations = deck[card].relation;
 
-		if (card == '101') {
-			playedCards.forEach(function(item, i, playedCards) {
-				switch(item) {
-					case '102':
-						popup('conflict',card,'102');
-						//console.log('conflict')
-						break;
-					case '103':
-						putOnTable(card);
-						popup('started-work',card,'103');
-						break;
-					//console.log($(popupType))
-					/*default:
-						console.log(card)
-						putOnTable(card);*/
-				}
-			});
-		}
+			var isPopupOpened = false;
+			if (relations != undefined) {
+				for(key in relations) {
+					var isTrue = checkRelation(relations[key]);
+					var ids = getIds(relations[key]);
+					console.log(isTrue,ids)
+					if (isTrue) {
+						console.log('relations',key)
+						switch (key) {
+							/*case 'union':
+								popup("started-work", card, filterIds(ids));
+								break;*/
 
-		if (card == '102') {
-			playedCards.forEach(function(item, i, playedCards) {
-				switch(item) {
-					case '101':
-						popup('conflict',card,'101');
-						break;
-					case '103':
-						putOnTable(card);
-						popup('lost-life',card);
-						looseLife();
-						break;
-					/*default:
-						console.log(card)
-						putOnTable(card);*/
-				}
-			});
-		}
+							case 'needs':
+								popup("started-work", card, filterIds(ids));
+								points += filterIds(ids).length;
+								setPoints();
+								isPopupOpened = true;
+								break;
 
-		if (card == '103') {
-			playedCards.forEach(function(item, i, playedCards) {
-				switch(item) {
-					/*case '102':
-						popup('conflict');*/
-					case '101':
-						putOnTable(card);
-						popup('started-work',card,'101');
-						break;
-					case '102':
-						putOnTable(card);
-						popup('lost-life',card);
-						looseLife();
-						break;
-					/*default:
-						console.log(card)
-						putOnTable(card);*/
+							case 'contras':
+								popup("conflict", card, filterIds(ids));
+								isPopupOpened = true;
+								break;
+
+							case 'option':
+								/*popup("started-work", card, filterIds(ids));*/
+								points += 1;
+								setPoints();
+								//putOnTable(card);
+								break;
+
+							default:
+								break;
+						}
+					}
 				}
-			});
+
+				var message = deck[card].messages;
+				if (message != undefined) {
+					console.log('message',message);
+				}
+			}
+
+			if(!isPopupOpened) {
+				putOnTable(card);
+			}
 		}
+	};
+
+	var getIds = function(dataStr) {
+		var ids = [];
+		var regexp = /(x|\&|\|)/g;
+
+		dataStr.replace(regexp,',$1').split(/,/g).forEach(function(piece) {
+            if (!piece.length) {
+                return;
+            }
+
+            if (piece[0].match(regexp)) {
+                id = piece.substr(1);
+            } else { // If there's just numbers
+                id = piece;
+            }
+            ids.push(id);
+        });
+
+        return ids;
+	}
+
+	var checkRelation = function(dataStr) {
+
+		if(!dataStr.length == 0) {
+			var result = false;
+
+			var regexp = /(x|\&|\|)/g;
+
+			dataStr.replace(regexp,',$1').split(/,/g).forEach(function(piece) {
+				console.log(dataStr)
+	            var op = '|',
+                	id;
+
+	            if (!piece.length) {
+	                return;
+	            }
+
+	            // If the first symbol contains an operation
+	            if (piece[0].match(regexp)) {
+	                op = piece[0];
+	                id = piece.substr(1);
+	            } else { // If there's just numbers
+	                id = piece;
+	            }
+
+				if (op == "x") {
+					var tmp = hasId(id);
+					result = result ? !tmp : tmp;
+					//console.log('result1',result,op,id)
+				}
+				if (op == "&") {
+					result &= hasId(id);
+					//console.log('result2',result,op,id)
+				}
+				if (op == "|") {
+					result |= hasId(id);
+					//console.log('result3',result,op,id)
+				}
+	        });
+			console.log('result-main',result)
+			return result;
+		}
+		return false;
+	};
+
+	var filterIds = function(ids) {
+		return ids.filter(function(i) {return hasId(i);})
+	};
+
+	var hasId = function(id) {
+		var found = playedCards.filter(function(i) {
+			return i == id;
+		});
+		return found.length > 0;
 	};
 
 	var actions = function() {
 		var playCards = $('.reforma_card');
 
 		playCards.on('click', function() {
-			popup('card-info',this);
+			var playCardsId = $(this).attr('id');
+			popup('card-info',playCardsId);
 		});
 
 
@@ -348,10 +439,10 @@ var Reforma = function() {
 		$('.reforma-game_info-message-score').text(points);
 		//$('.reforma-game_info-message-text').text(finalText);
 
-		if(finish == victory) {
-			$('.reforma-game_info-message-title-text').text('Победа!');
+//		if(finish == victory) {
+//			$('.reforma-game_info-message-title-text').text('Победа!');
 
-		}
+//		}
 
 
 		$('.js-popup-info-link').on('click', function() {
@@ -359,14 +450,14 @@ var Reforma = function() {
 		});
 	};
 
-	var popup = function(popupType,card,nextCard) {
+	var popup = function(popupType,card,ids) {
 		var overlay = $('.js-overlay');
-		var popup = $('.js-popup');
+		var popupContent = $('.js-popup');
 		var close = $('.js-popup-close');
 		var popupCard = $('.js-popup_content-card');
 		var popupInfoText = $('.js-popup-text');
 
-		popup.addClass('is-hide');
+		popupContent.addClass('is-hide');
 
 		overlay.removeClass('is-hide');
 		$('.'+popupType).removeClass('is-hide');
@@ -377,6 +468,9 @@ var Reforma = function() {
 
 			popupCard.empty();
 		});
+		//if (ids == undefined) { ids = []; }
+		ids = ids || [];
+		console.log('popupData', card,ids)
 
 		$(document).on('keydown', function (e) {
 			if(e.which == 27) {
@@ -389,14 +483,16 @@ var Reforma = function() {
 
 		if(popupType == 'card-info') {
 			console.log('this',card)
-			$(card).clone().removeClass('on-desk').attr('id', '').prependTo(popupCard);
+			$('#'+card).clone().removeClass('on-desk').attr('id', '').prependTo(popupCard);
 		}
 
 		if(popupType == 'conflict') {
-			console.log('conflict',card, nextCard)
 			popupInfoText.text(data.messages.contras[0].content);
 			$('#'+card).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
-			$('#'+nextCard).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
+
+			ids.forEach(function(i) {
+				$('#'+i).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
+			});
 
 			$('.'+popupType).find('.reforma_card').on('click', function() {
 
@@ -419,11 +515,21 @@ var Reforma = function() {
 		}
 
 		if(popupType == 'started-work') {
-			var newReforma = '<div class="reforma-popup_wrap">'+
-							 '    <div class="reforma-popup_par-extra">'+deck[0].title+'</div>'+ // active card title
-							 '	  <div class="reforma-popup_par">'+data.messages.cardactivated[0].content+'</div>'+
-							 '</div>';
-			popupCard.prepend(newReforma);
+			var newCard = '<div class="reforma-popup_wrap">'+
+								 '    <div class="reforma-popup_par-extra">'+deck[card].title+'</div>'+ // active card title
+								 '	  <div class="reforma-popup_par">'+data.messages.cardactivated[0].content+'</div>'+
+								 '</div>';
+				popupCard.prepend(newCard);
+
+			ids.forEach(function(i) {
+				var newReforma = '<div class="reforma-popup_wrap">'+
+								 '    <div class="reforma-popup_par-extra">'+deck[i].title+'</div>'+ // active card title
+								 '	  <div class="reforma-popup_par">'+data.messages.cardactivated[0].content+'</div>'+
+								 '</div>';
+				popupCard.prepend(newReforma);
+
+			});
+			putOnTable(card);
 		}
 
 		if(popupType == 'lost-life') {
