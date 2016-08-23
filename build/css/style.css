@@ -435,63 +435,65 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 }
 
 .reforma-desk_icon-add {
-	background: url('../img/i-add-grey.png') center center no-repeat;
-	width: 21px;
-	height: 16px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%2349e62f%22%3E%3Cpath%20d%3D%22M23%205.32l-1.44-1.59-11.76%2013-6.64-7.35-1.44%201.59%206.65%207.35%201.43%201.59L23%205.32z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 24px;
+	height: 24px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239B9B9B'%3E%3Cpath d='M23 5.32l-1.44-1.59-11.76 13-6.64-7.35-1.44 1.59 6.65 7.35 1.43 1.59L23 5.32z'/%3E%3C/svg%3E");
 }
 
 .reforma-desk_icon-skip {
-	background: url('../img/i-skip.png') center center no-repeat;
-	width: 22px;
-	height: 21px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%239b9b9b%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M21%2C8.63l.44-6.14L19.26%2C4.4A10.23%2C10.23%2C0%2C0%2C0%2C12.5%2C2a10%2C10%2C0%2C1%2C0%2C8.64%2C15L19.4%2C16A8%2C8%2C0%2C1%2C1%2C12.5%2C4a8.29%2C8.29%2C0%2C0%2C1%2C5.24%2C1.69L14.89%2C8.18Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 24px;
+	height: 24px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .reforma-desk_icon-discard {
-	background: url('../img/i-discard-grey.png') center center no-repeat;
-	width: 18px;
-	height: 18px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23c22a11%22%3E%3Cpolygon%20points%3D%2220.95%2019.35%2013.41%2011.81%2020.57%204.65%2019.16%203.24%2012%2010.4%204.84%203.24%203.43%204.65%2010.59%2011.81%203.05%2019.35%204.47%2020.76%2012%2013.23%2019.53%2020.76%2020.95%2019.35%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 24px;
+	height: 24px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239B9B9B'%3E%3Cpolygon points='20.95 19.35 13.41 11.81 20.57 4.65 19.16 3.24 12 10.4 4.84 3.24 3.43 4.65 10.59 11.81 3.05 19.35 4.47 20.76 12 13.23 19.53 20.76 20.95 19.35'/%3E%3C/svg%3E");
 }
 
 .reforma-deck_icon-add {
-	background: url('../img/i-add.png') center center no-repeat;
-	width: 21px;
-	height: 16px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%2349e62f%22%3E%3Cpath%20d%3D%22M23%205.32l-1.44-1.59-11.76%2013-6.64-7.35-1.44%201.59%206.65%207.35%201.43%201.59L23%205.32z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 24px;
+	height: 24px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .reforma-deck_icon-skip {
-	background: url('../img/i-skip.png') center center no-repeat;
-	width: 22px;
-	height: 21px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%239b9b9b%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M21%2C8.63l.44-6.14L19.26%2C4.4A10.23%2C10.23%2C0%2C0%2C0%2C12.5%2C2a10%2C10%2C0%2C1%2C0%2C8.64%2C15L19.4%2C16A8%2C8%2C0%2C1%2C1%2C12.5%2C4a8.29%2C8.29%2C0%2C0%2C1%2C5.24%2C1.69L14.89%2C8.18Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 24px;
+	height: 24px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .reforma-deck_icon-discard {
-	background: url('../img/i-discard.png') center center no-repeat;
-	width: 18px;
-	height: 18px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23c22a11%22%3E%3Cpolygon%20points%3D%2220.95%2019.35%2013.41%2011.81%2020.57%204.65%2019.16%203.24%2012%2010.4%204.84%203.24%203.43%204.65%2010.59%2011.81%203.05%2019.35%204.47%2020.76%2012%2013.23%2019.53%2020.76%2020.95%2019.35%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 24px;
+	height: 24px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .reforma-game_life {
-	background: url('../img/i-life.png') center center no-repeat;
-	width: 22px;
-	height: 20px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2021%2018.75%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23c22a11%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M16.28.17a7%2C7%2C0%2C0%2C0-5.67%2C1.25A7.46%2C7.46%2C0%2C0%2C0%2C4.72.17%2C6.26%2C6.26%2C0%2C0%2C0%2C0%2C6.85c.2%2C4.64%2C8.2%2C10.36%2C10.49%2C11.9C12.79%2C17.22%2C20.8%2C11.49%2C21%2C6.85A6.26%2C6.26%2C0%2C0%2C0%2C16.28.17ZM10.5%2C16.32c-4.2-3-8.39-7-8.5-9.55A4.26%2C4.26%2C0%2C0%2C1%2C5.17%2C2.12%2C4.3%2C4.3%2C0%2C0%2C1%2C6.2%2C2%2C5.53%2C5.53%2C0%2C0%2C1%2C9.41%2C3l1.2.9%2C1.2-.9a5.16%2C5.16%2C0%2C0%2C1%2C3-1%2C4.09%2C4.09%2C0%2C0%2C1%2C1%2C.11A4.27%2C4.27%2C0%2C0%2C1%2C19%2C6.77C18.89%2C9.3%2C14.7%2C13.33%2C10.5%2C16.32Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 21px;
+	height: 18px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
@@ -499,9 +501,9 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 }
 
 .reforma-game_life.is-burn {
-  background: url('../img/i-life-grey.png') center center no-repeat;
+  background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2021%2018.75%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%234c4c4c%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M14.85%2C0h-.77a7.2%2C7.2%2C0%2C0%2C0-3%2C1.07L11.6%2C2a6.14%2C6.14%2C0%2C0%2C1%2C3.25-1V0ZM6.21%2C0H5.78l-.32%2C0%2C.11%2C1a5.72%2C5.72%2C0%2C0%2C1%2C.64%2C0A6.82%2C6.82%2C0%2C0%2C1%2C9%2C1.61L9.36.7C9.14.6%2C8.92.52%2C8.7.44h0l0%2C0h-1A7.69%2C7.69%2C0%2C0%2C0%2C6.41%2C0h-.2ZM3.54.59a5.81%2C5.81%2C0%2C0%2C0-1.39.9h0l0%2C0h0l0%2C0H1.27v0h0l0%2C0h0l0%2C0h0a6.25%2C6.25%2C0%2C0%2C0-.44.74l.89.45A4.9%2C4.9%2C0%2C0%2C1%2C4%2C1.5L3.54.59ZM.12%2C5.23A7.66%2C7.66%2C0%2C0%2C0%2C0%2C6.59H0v0H0a6.08%2C6.08%2C0%2C0%2C0%2C.61%2C2l.9-.43A4.88%2C4.88%2C0%2C0%2C1%2C1%2C6.83%2C6.75%2C6.75%2C0%2C0%2C1%2C1.11%2C5.4l-1-.17Zm2.37%2C5-.81.58a22.57%2C22.57%2C0%2C0%2C0%2C2.65%2C3L5%2C13.11a21.52%2C21.52%2C0%2C0%2C1-2.53-2.86Zm4%2C4.17-.65.76.78.66h0l0%2C0h0c.76.62%2C1.49%2C1.18%2C2.13%2C1.65h.05l.08.06.59-.81c-1.09-.8-2.13-1.62-3.07-2.43Zm6.72%2C1.16C11.8%2C16.67%2C10.6%2C17.5%2C10%2C17.9l.56.83%2C1-.67h.08c.63-.45%2C1.38-1%2C2.18-1.64l-.62-.78Zm4.26-4a29.92%2C29.92%2C0%2C0%2C1-2.76%2C2.71l.66.75a31%2C31%2C0%2C0%2C0%2C2.85-2.8l-.75-.66ZM20%2C7a6.88%2C6.88%2C0%2C0%2C1-1.38%2C3.15l.82.58h.08A7.73%2C7.73%2C0%2C0%2C0%2C21%2C7.08L20%2C7ZM19%2C1.63l-.68.73a5.35%2C5.35%2C0%2C0%2C1%2C1.56%2C2.93l1-.19-.06-.27h0v0H20.7v0h0v0h0v0h0l0%2C0h0a6.6%2C6.6%2C0%2C0%2C0-.3-.74h0v0h0v0H20v0h0v0h0l0%2C0h0A6%2C6%2C0%2C0%2C0%2C19%2C1.63ZM14.85%2C0V1a5.14%2C5.14%2C0%2C0%2C1%2C1.22.14%2C5.08%2C5.08%2C0%2C0%2C1%2C.88.29l.4-.92L17.18.46h-.1A6.46%2C6.46%2C0%2C0%2C0%2C14.85%2C0Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
   width: 21px;
-  height: 20px;
+  height: 18px;
   background-size: 100% 100%;
   display: inline-block;
   vertical-align: middle;
@@ -512,57 +514,73 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 }
 
 .economics .reforma-card_icon {
-  background: url('../img/i-economy.png') center center no-repeat;
-  width: 19px;
-  height: 19px;
+  background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2029%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%232d2d2d%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M19.5%2C1.89c-3.14%2C0-5.62%2C1.24-6.3%2C3l.07%2C4.77L13%2C9.54a7%2C7%2C0%2C1%2C0%2C2%2C11.27%2C9.06%2C9.06%2C0%2C0%2C0%2C4.51%2C1.07c3.71%2C0%2C6.5-1.72%2C6.5-4v-12C26%2C3.61%2C23.21%2C1.89%2C19.5%2C1.89Zm0%2C1c3%2C0%2C5.5%2C1.34%2C5.5%2C3a2%2C2%2C0%2C0%2C1-.58%2C1.34%2C3.29%2C3.29%2C0%2C0%2C1-.38.36%2C4.34%2C4.34%2C0%2C0%2C1-.45.31%2C8.06%2C8.06%2C0%2C0%2C1-4.09%2C1%2C8.06%2C8.06%2C0%2C0%2C1-4.09-1A4.35%2C4.35%2C0%2C0%2C1%2C15%2C7.58a3.29%2C3.29%2C0%2C0%2C1-.38-.36A2%2C2%2C0%2C0%2C1%2C14%2C5.89C14%2C4.23%2C16.46%2C2.89%2C19.5%2C2.89Zm-2.9%2C10.6a10.35%2C10.35%2C0%2C0%2C0%2C2.9.4%2C8.65%2C8.65%2C0%2C0%2C0%2C4.92-1.34%2C1.83%2C1.83%2C0%2C0%2C1%2C0%2C2.67%2C3.29%2C3.29%2C0%2C0%2C1-.38.36%2C4.34%2C4.34%2C0%2C0%2C1-.45.31%2C8.06%2C8.06%2C0%2C0%2C1-4.09%2C1A9.34%2C9.34%2C0%2C0%2C1%2C17%2C16.55c0-.22%2C0-.45%2C0-.68A7%2C7%2C0%2C0%2C0%2C16.6%2C13.49Zm7.82-2.27a3.29%2C3.29%2C0%2C0%2C1-.38.36%2C4.34%2C4.34%2C0%2C0%2C1-.45.31%2C8.06%2C8.06%2C0%2C0%2C1-4.09%2C1A8.59%2C8.59%2C0%2C0%2C1%2C16%2C12.18%2C7%2C7%2C0%2C0%2C0%2C14%2C10.13a1.6%2C1.6%2C0%2C0%2C1%2C0-.24%2C2%2C2%2C0%2C0%2C1%2C.58-1.34A8.65%2C8.65%2C0%2C0%2C0%2C19.5%2C9.89a8.65%2C8.65%2C0%2C0%2C0%2C4.92-1.34A2%2C2%2C0%2C0%2C1%2C25%2C9.89%2C2%2C2%2C0%2C0%2C1%2C24.42%2C11.22ZM10%2C21.89a6%2C6%2C0%2C1%2C1%2C6-6A6%2C6%2C0%2C0%2C1%2C10%2C21.89Zm9.49-1A8.33%2C8.33%2C0%2C0%2C1%2C15.65%2C20a7%2C7%2C0%2C0%2C0%2C1.16-2.48%2C10.51%2C10.51%2C0%2C0%2C0%2C2.68.34%2C8.65%2C8.65%2C0%2C0%2C0%2C4.92-1.34A2%2C2%2C0%2C0%2C1%2C25%2C17.89C25%2C19.54%2C22.54%2C20.89%2C19.5%2C20.89Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+  width: 29px;
+  height: 25px;
   background-size: 100% 100%;
   display: inline-block;
   vertical-align: middle;
 }
 
 .social .reforma-card_icon {
-  background: url('../img/i-economy.png') center center no-repeat;
-  width: 19px;
-  height: 19px;
+  background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2029%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%232d2d2d%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M18.46%2C7.57c0-.1%2C0-.2%2C0-.31a3.23%2C3.23%2C0%2C0%2C1%2C3-3.38%2C3.23%2C3.23%2C0%2C0%2C1%2C3%2C3.38%2C3.23%2C3.23%2C0%2C0%2C1-3%2C3.38%2C2.94%2C2.94%2C0%2C0%2C1-2.4-1.32%2C5.66%2C5.66%2C0%2C0%2C1%2C.09.94c0%2C.18%2C0%2C.36-.05.54a3.82%2C3.82%2C0%2C0%2C0%2C2.36.84%2C4.23%2C4.23%2C0%2C0%2C0%2C4-4.38%2C4.23%2C4.23%2C0%2C0%2C0-4-4.38%2C4.14%2C4.14%2C0%2C0%2C0-4%2C3.46A5.21%2C5.21%2C0%2C0%2C1%2C18.46%2C7.57Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M9.5%2C9.32a2.94%2C2.94%2C0%2C0%2C1-2.4%2C1.32A3.23%2C3.23%2C0%2C0%2C1%2C4%2C7.26a3.23%2C3.23%2C0%2C0%2C1%2C3-3.38%2C3.23%2C3.23%2C0%2C0%2C1%2C3%2C3.38c0%2C.1%2C0%2C.2%2C0%2C.31A5.21%2C5.21%2C0%2C0%2C1%2C11%2C6.35a4.14%2C4.14%2C0%2C0%2C0-4-3.46A4.23%2C4.23%2C0%2C0%2C0%2C3%2C7.26a4.23%2C4.23%2C0%2C0%2C0%2C4%2C4.38%2C3.82%2C3.82%2C0%2C0%2C0%2C2.36-.84c0-.18-.05-.35-.05-.54A5.66%2C5.66%2C0%2C0%2C1%2C9.5%2C9.32Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M21.48%2C11.89a17.94%2C17.94%2C0%2C0%2C0-2.62.15c-.06.17-.12.34-.19.51a4.75%2C4.75%2C0%2C0%2C1-.31.62%2C14.48%2C14.48%2C0%2C0%2C1%2C3.12-.27c3.37%2C0%2C6.1.49%2C6.1%2C3.81%2C0%2C2.06-.8%2C2.53-2.07%2C2.53-1.07%2C0-2.48-.34-4-.34h-.34C20.78%2C16%2C18.49%2C15.22%2C16.42%2C15a4.38%2C4.38%2C0%2C0%2C1-4.3%2C0c-2.1.21-4.51%2C1-4.88%2C3.93H7.1c-1.36%2C0-2.62.18-3.63.18C2%2C19.07%2C1%2C18.67%2C1%2C16.7c0-3.32%2C2.73-3.81%2C6.1-3.81a14.47%2C14.47%2C0%2C0%2C1%2C3.12.27h0a4.75%2C4.75%2C0%2C0%2C1-.31-.62c-.07-.16-.14-.33-.19-.51a17.94%2C17.94%2C0%2C0%2C0-2.62-.15c-2.3%2C0-7.1%2C0-7.1%2C4.81%2C0%2C3.37%2C2.61%2C3.37%2C3.46%2C3.37.51%2C0%2C1.05%2C0%2C1.63-.08s1.31-.1%2C2-.1h.1c.07%2C1.12.76%2C3.25%2C5.12%2C3.25a14.8%2C14.8%2C0%2C0%2C0%2C2-.13%2C14%2C14%2C0%2C0%2C0%2C1.89.13c4.26%2C0%2C4.95-2.13%2C5-3.25h.29a17.82%2C17.82%2C0%2C0%2C1%2C2.25.19%2C14.72%2C14.72%2C0%2C0%2C0%2C1.78.15c2.06%2C0%2C3.07-1.15%2C3.07-3.53C28.57%2C11.89%2C23.78%2C11.89%2C21.48%2C11.89ZM16.17%2C22.14A12.59%2C12.59%2C0%2C0%2C1%2C14.28%2C22a13.35%2C13.35%2C0%2C0%2C1-2%2C.15c-1.78%2C0-4.13-.39-4.13-2.45%2C0-3.32%2C2.69-3.81%2C6-3.81s6%2C.49%2C6%2C3.81C20.19%2C21.75%2C17.9%2C22.14%2C16.17%2C22.14Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M18.3%2C10a4.54%2C4.54%2C0%2C0%2C0-.85-2.37%2C3.82%2C3.82%2C0%2C0%2C0-6.34%2C0A4.54%2C4.54%2C0%2C0%2C0%2C10.27%2C10c0%2C.11%2C0%2C.21%2C0%2C.31a4.23%2C4.23%2C0%2C0%2C0%2C4%2C4.38%2C4.23%2C4.23%2C0%2C0%2C0%2C4-4.38C18.33%2C10.16%2C18.31%2C10.06%2C18.3%2C10Zm-4%2C3.69a3.23%2C3.23%2C0%2C0%2C1-3-3.38%2C3.23%2C3.23%2C0%2C0%2C1%2C3-3.38%2C3.23%2C3.23%2C0%2C0%2C1%2C3%2C3.38A3.23%2C3.23%2C0%2C0%2C1%2C14.29%2C13.64Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+  width: 29px;
+  height: 25px;
   background-size: 100% 100%;
   display: inline-block;
-  vertical-align: middle;/* TODO: replace to social */
+  vertical-align: middle;
 }
 
 .war .reforma-card_icon {
-  background: url('../img/i-economy.png') center center no-repeat;
-  width: 19px;
-  height: 19px;
+  background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2029%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%232d2d2d%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M18.24%2C12.76l5-3.87.22-.17L26.06.4%2C17.71%2C3%2C7%2C16.82l.62.62L9%2C18.86l.63.63.7-.54%2C3.86-3h0L15%2C15.3h0l2.46-1.92h0l.79-.62Zm-1-.48-.39.31-2.65%2C2.07-.41.32-.41.32L9.71%2C18.15%2C8.29%2C16.74l2.63-3.36.31-.39.31-.39%2C2.65-3.4.32-.41.32-.41%2C3.52-4.51%2C6.22-2-2%2C6.22-5%2C3.87Z%22%2F%3E%3Cpolygon%20class%3D%22cls-1%22%20points%3D%229.96%2011.36%205.79%208.1%203.82%201.89%2010.03%203.86%2012.92%207.56%2013.55%206.75%2010.82%203.25%2010.63%203%2010.34%202.91%204.12%200.93%202.28%200.35%202.87%202.19%204.84%208.4%204.93%208.7%205.17%208.89%209.34%2012.14%209.96%2011.36%22%2F%3E%3Cpolygon%20class%3D%22cls-1%22%20points%3D%2218.87%2013.56%2018.08%2014.18%2020.08%2016.74%2018.67%2018.15%2015.83%2015.94%2015.01%2016.57%2018.05%2018.94%2018.75%2019.48%2019.37%2018.86%2020.79%2017.44%2021.41%2016.82%2020.87%2016.12%2018.87%2013.56%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M23.13%2C17.93l1.41-1.41-.71-.71h0l-1.41%2C1.41L19.6%2C20.05l-1.41%2C1.41.71.71%2C1.41-1.41L24.55%2C25l2.83-2.83Zm-.71.71L26%2C22.17l-1.41%2C1.41L21%2C20.05Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M5.95%2C17.22%2C4.54%2C15.81l-.71.71%2C1.41%2C1.41L1%2C22.17%2C3.83%2C25l4.24-4.24%2C1.41%2C1.41.71-.71L8.78%2C20.05ZM2.41%2C22.17l3.54-3.54%2C1.41%2C1.41L3.83%2C23.59Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+  width: 29px;
+  height: 25px;
   background-size: 100% 100%;
   display: inline-block;
-  vertical-align: middle;/* TODO: replace to war */
+  vertical-align: middle;
 }
 
 .reforma-game_i-economy {
-	background: url('../img/i-economy-white.png') center center no-repeat;
-	width: 19px;
-	height: 19px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2029%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23fff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M19.5%2C1.89c-3.14%2C0-5.62%2C1.24-6.3%2C3l.07%2C4.77L13%2C9.54a7%2C7%2C0%2C1%2C0%2C2%2C11.27%2C9.06%2C9.06%2C0%2C0%2C0%2C4.51%2C1.07c3.71%2C0%2C6.5-1.72%2C6.5-4v-12C26%2C3.61%2C23.21%2C1.89%2C19.5%2C1.89Zm0%2C1c3%2C0%2C5.5%2C1.34%2C5.5%2C3a2%2C2%2C0%2C0%2C1-.58%2C1.34%2C3.29%2C3.29%2C0%2C0%2C1-.38.36%2C4.34%2C4.34%2C0%2C0%2C1-.45.31%2C8.06%2C8.06%2C0%2C0%2C1-4.09%2C1%2C8.06%2C8.06%2C0%2C0%2C1-4.09-1A4.35%2C4.35%2C0%2C0%2C1%2C15%2C7.58a3.29%2C3.29%2C0%2C0%2C1-.38-.36A2%2C2%2C0%2C0%2C1%2C14%2C5.89C14%2C4.23%2C16.46%2C2.89%2C19.5%2C2.89Zm-2.9%2C10.6a10.35%2C10.35%2C0%2C0%2C0%2C2.9.4%2C8.65%2C8.65%2C0%2C0%2C0%2C4.92-1.34%2C1.83%2C1.83%2C0%2C0%2C1%2C0%2C2.67%2C3.29%2C3.29%2C0%2C0%2C1-.38.36%2C4.34%2C4.34%2C0%2C0%2C1-.45.31%2C8.06%2C8.06%2C0%2C0%2C1-4.09%2C1A9.34%2C9.34%2C0%2C0%2C1%2C17%2C16.55c0-.22%2C0-.45%2C0-.68A7%2C7%2C0%2C0%2C0%2C16.6%2C13.49Zm7.82-2.27a3.29%2C3.29%2C0%2C0%2C1-.38.36%2C4.34%2C4.34%2C0%2C0%2C1-.45.31%2C8.06%2C8.06%2C0%2C0%2C1-4.09%2C1A8.59%2C8.59%2C0%2C0%2C1%2C16%2C12.18%2C7%2C7%2C0%2C0%2C0%2C14%2C10.13a1.6%2C1.6%2C0%2C0%2C1%2C0-.24%2C2%2C2%2C0%2C0%2C1%2C.58-1.34A8.65%2C8.65%2C0%2C0%2C0%2C19.5%2C9.89a8.65%2C8.65%2C0%2C0%2C0%2C4.92-1.34A2%2C2%2C0%2C0%2C1%2C25%2C9.89%2C2%2C2%2C0%2C0%2C1%2C24.42%2C11.22ZM10%2C21.89a6%2C6%2C0%2C1%2C1%2C6-6A6%2C6%2C0%2C0%2C1%2C10%2C21.89Zm9.49-1A8.33%2C8.33%2C0%2C0%2C1%2C15.65%2C20a7%2C7%2C0%2C0%2C0%2C1.16-2.48%2C10.51%2C10.51%2C0%2C0%2C0%2C2.68.34%2C8.65%2C8.65%2C0%2C0%2C0%2C4.92-1.34A2%2C2%2C0%2C0%2C1%2C25%2C17.89C25%2C19.54%2C22.54%2C20.89%2C19.5%2C20.89Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 29px;
+	height: 25px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .reforma-game_i-social {
-	background: url('../img/i-social-white.png') center center no-repeat;
-	width: 22px;
-	height: 21px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2029%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23fff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M18.46%2C7.57c0-.1%2C0-.2%2C0-.31a3.23%2C3.23%2C0%2C0%2C1%2C3-3.38%2C3.23%2C3.23%2C0%2C0%2C1%2C3%2C3.38%2C3.23%2C3.23%2C0%2C0%2C1-3%2C3.38%2C2.94%2C2.94%2C0%2C0%2C1-2.4-1.32%2C5.66%2C5.66%2C0%2C0%2C1%2C.09.94c0%2C.18%2C0%2C.36-.05.54a3.82%2C3.82%2C0%2C0%2C0%2C2.36.84%2C4.23%2C4.23%2C0%2C0%2C0%2C4-4.38%2C4.23%2C4.23%2C0%2C0%2C0-4-4.38%2C4.14%2C4.14%2C0%2C0%2C0-4%2C3.46A5.21%2C5.21%2C0%2C0%2C1%2C18.46%2C7.57Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M9.5%2C9.32a2.94%2C2.94%2C0%2C0%2C1-2.4%2C1.32A3.23%2C3.23%2C0%2C0%2C1%2C4%2C7.26a3.23%2C3.23%2C0%2C0%2C1%2C3-3.38%2C3.23%2C3.23%2C0%2C0%2C1%2C3%2C3.38c0%2C.1%2C0%2C.2%2C0%2C.31A5.21%2C5.21%2C0%2C0%2C1%2C11%2C6.35a4.14%2C4.14%2C0%2C0%2C0-4-3.46A4.23%2C4.23%2C0%2C0%2C0%2C3%2C7.26a4.23%2C4.23%2C0%2C0%2C0%2C4%2C4.38%2C3.82%2C3.82%2C0%2C0%2C0%2C2.36-.84c0-.18-.05-.35-.05-.54A5.66%2C5.66%2C0%2C0%2C1%2C9.5%2C9.32Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M21.48%2C11.89a17.94%2C17.94%2C0%2C0%2C0-2.62.15c-.06.17-.12.34-.19.51a4.75%2C4.75%2C0%2C0%2C1-.31.62%2C14.48%2C14.48%2C0%2C0%2C1%2C3.12-.27c3.37%2C0%2C6.1.49%2C6.1%2C3.81%2C0%2C2.06-.8%2C2.53-2.07%2C2.53-1.07%2C0-2.48-.34-4-.34h-.34C20.78%2C16%2C18.49%2C15.22%2C16.42%2C15a4.38%2C4.38%2C0%2C0%2C1-4.3%2C0c-2.1.21-4.51%2C1-4.88%2C3.93H7.1c-1.36%2C0-2.62.18-3.63.18C2%2C19.07%2C1%2C18.67%2C1%2C16.7c0-3.32%2C2.73-3.81%2C6.1-3.81a14.47%2C14.47%2C0%2C0%2C1%2C3.12.27h0a4.75%2C4.75%2C0%2C0%2C1-.31-.62c-.07-.16-.14-.33-.19-.51a17.94%2C17.94%2C0%2C0%2C0-2.62-.15c-2.3%2C0-7.1%2C0-7.1%2C4.81%2C0%2C3.37%2C2.61%2C3.37%2C3.46%2C3.37.51%2C0%2C1.05%2C0%2C1.63-.08s1.31-.1%2C2-.1h.1c.07%2C1.12.76%2C3.25%2C5.12%2C3.25a14.8%2C14.8%2C0%2C0%2C0%2C2-.13%2C14%2C14%2C0%2C0%2C0%2C1.89.13c4.26%2C0%2C4.95-2.13%2C5-3.25h.29a17.82%2C17.82%2C0%2C0%2C1%2C2.25.19%2C14.72%2C14.72%2C0%2C0%2C0%2C1.78.15c2.06%2C0%2C3.07-1.15%2C3.07-3.53C28.57%2C11.89%2C23.78%2C11.89%2C21.48%2C11.89ZM16.17%2C22.14A12.59%2C12.59%2C0%2C0%2C1%2C14.28%2C22a13.35%2C13.35%2C0%2C0%2C1-2%2C.15c-1.78%2C0-4.13-.39-4.13-2.45%2C0-3.32%2C2.69-3.81%2C6-3.81s6%2C.49%2C6%2C3.81C20.19%2C21.75%2C17.9%2C22.14%2C16.17%2C22.14Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M18.3%2C10a4.54%2C4.54%2C0%2C0%2C0-.85-2.37%2C3.82%2C3.82%2C0%2C0%2C0-6.34%2C0A4.54%2C4.54%2C0%2C0%2C0%2C10.27%2C10c0%2C.11%2C0%2C.21%2C0%2C.31a4.23%2C4.23%2C0%2C0%2C0%2C4%2C4.38%2C4.23%2C4.23%2C0%2C0%2C0%2C4-4.38C18.33%2C10.16%2C18.31%2C10.06%2C18.3%2C10Zm-4%2C3.69a3.23%2C3.23%2C0%2C0%2C1-3-3.38%2C3.23%2C3.23%2C0%2C0%2C1%2C3-3.38%2C3.23%2C3.23%2C0%2C0%2C1%2C3%2C3.38A3.23%2C3.23%2C0%2C0%2C1%2C14.29%2C13.64Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 29px;
+	height: 25px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .reforma-game_i-war {
-	background: url('../img/i-war-white.png') center center no-repeat;
-	width: 19px;
-	height: 19px;
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2029%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23fff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EArtboard%201%3C%2Ftitle%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M18.24%2C12.76l5-3.87.22-.17L26.06.4%2C17.71%2C3%2C7%2C16.82l.62.62L9%2C18.86l.63.63.7-.54%2C3.86-3h0L15%2C15.3h0l2.46-1.92h0l.79-.62Zm-1-.48-.39.31-2.65%2C2.07-.41.32-.41.32L9.71%2C18.15%2C8.29%2C16.74l2.63-3.36.31-.39.31-.39%2C2.65-3.4.32-.41.32-.41%2C3.52-4.51%2C6.22-2-2%2C6.22-5%2C3.87Z%22%2F%3E%3Cpolygon%20class%3D%22cls-1%22%20points%3D%229.96%2011.36%205.79%208.1%203.82%201.89%2010.03%203.86%2012.92%207.56%2013.55%206.75%2010.82%203.25%2010.63%203%2010.34%202.91%204.12%200.93%202.28%200.35%202.87%202.19%204.84%208.4%204.93%208.7%205.17%208.89%209.34%2012.14%209.96%2011.36%22%2F%3E%3Cpolygon%20class%3D%22cls-1%22%20points%3D%2218.87%2013.56%2018.08%2014.18%2020.08%2016.74%2018.67%2018.15%2015.83%2015.94%2015.01%2016.57%2018.05%2018.94%2018.75%2019.48%2019.37%2018.86%2020.79%2017.44%2021.41%2016.82%2020.87%2016.12%2018.87%2013.56%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M23.13%2C17.93l1.41-1.41-.71-.71h0l-1.41%2C1.41L19.6%2C20.05l-1.41%2C1.41.71.71%2C1.41-1.41L24.55%2C25l2.83-2.83Zm-.71.71L26%2C22.17l-1.41%2C1.41L21%2C20.05Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M5.95%2C17.22%2C4.54%2C15.81l-.71.71%2C1.41%2C1.41L1%2C22.17%2C3.83%2C25l4.24-4.24%2C1.41%2C1.41.71-.71L8.78%2C20.05ZM2.41%2C22.17l3.54-3.54%2C1.41%2C1.41L3.83%2C23.59Z%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 29px;
+	height: 25px;
 	background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.reforma-popup_close {
+	background: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23c22a11%22%3E%3Cpolygon%20points%3D%2220.95%2019.35%2013.41%2011.81%2020.57%204.65%2019.16%203.24%2012%2010.4%204.84%203.24%203.43%204.65%2010.59%2011.81%203.05%2019.35%204.47%2020.76%2012%2013.23%2019.53%2020.76%2020.95%2019.35%22%2F%3E%3C%2Fsvg%3E') center center no-repeat;
+	width: 24px;
+	height: 24px;
+	background-size: 100% 100%;
+	display: inline-block;
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239B9B9B'%3E%3Cpolygon points='20.95 19.35 13.41 11.81 20.57 4.65 19.16 3.24 12 10.4 4.84 3.24 3.43 4.65 10.59 11.81 3.05 19.35 4.47 20.76 12 13.23 19.53 20.76 20.95 19.35'/%3E%3C/svg%3E");
+}
+
+.reforma-popup_close:hover, .reforma-popup_close:focus {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23222'%3E%3Cpolygon points='20.95 19.35 13.41 11.81 20.57 4.65 19.16 3.24 12 10.4 4.84 3.24 3.43 4.65 10.59 11.81 3.05 19.35 4.47 20.76 12 13.23 19.53 20.76 20.95 19.35'/%3E%3C/svg%3E");
 }
 img {
 	-webkit-user-select: none;
@@ -941,16 +959,9 @@ img {
 	position: absolute;
 	right: 20px;
 	top: 22px;
-	width: 15px;
-	height: 15px;
-	background: url('../img/i-cross.png') 0 0 no-repeat;
 	-webkit-transition: background-image 300ms ease;
 	transition: background-image 300ms ease;
 	cursor: pointer;
-}
-
-.reforma-popup_close:hover, .reforma-popup_close:focus {
-  background-image: url('../img/i-cross-hov.png');
 }
 
 .reforma-popup_content {
@@ -1060,7 +1071,7 @@ img {
 
 .reforma-popup_btn-wrap {
 	text-align: center;
-	margin-top: 25px;
+	margin: 25px 0 35px;
 }
 
 .reforma-popup_card-content {

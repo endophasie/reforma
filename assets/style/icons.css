@@ -1,13 +1,14 @@
 @define-mixin icon $name {
-    background: url('../img/$(name).png') center center no-repeat;
-    size: size('../img/$name.png');
+    background: inline('../img/$(name).svg') center center no-repeat;
+    size: size('../img/$name.svg');
     background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .reforma-desk_icon-add {
-	@mixin icon i-add-grey;
+	@mixin icon i-add;
+	background-image: svg-load('../img/i-add.svg', fill: #9B9B9B);
 }
 
 .reforma-desk_icon-skip {
@@ -15,7 +16,8 @@
 }
 
 .reforma-desk_icon-discard {
-	@mixin icon i-discard-grey;
+	@mixin icon i-discard;
+	background-image: svg-load('../img/i-discard.svg', fill: #9B9B9B);
 }
 
 .reforma-deck_icon-add {
@@ -43,26 +45,36 @@
 	margin-right: 10px;
 
 	.economics & {
-		@mixin icon i-economy;
+		@mixin icon i-economy-white;
 	}
 
 	.social & {
-		@mixin icon i-economy;  /* TODO: replace to social */
+		@mixin icon i-social-white;
 	}
 
 	.war & {
-		@mixin icon i-economy; /* TODO: replace to war */
+		@mixin icon i-war-white;
 	}
 }
 
 .reforma-game_i-economy {
-	@mixin icon i-economy-white;
+	@mixin icon i-economy;
 }
 
 .reforma-game_i-social {
-	@mixin icon i-social-white;
+	@mixin icon i-social;
 }
 
 .reforma-game_i-war {
-	@mixin icon i-war-white;
+	@mixin icon i-war;
+}
+
+.reforma-popup_close {
+	@mixin icon i-discard;
+	size: 20px;
+	background-image: svg-load('../img/i-discard.svg', fill: #9B9B9B);
+
+	&:hover {
+		background-image: svg-load('../img/i-discard.svg', fill: #222);
+	}
 }

@@ -19,6 +19,7 @@ gulp.task('styles', function () {
             require('postcss-nested'),
             require('postcss-focus'),
             require('postcss-assets'),
+            require('postcss-inline-svg'),
             require('postcss-color-alpha'),
             require('postcss-color-function'),
             require('postcss-calc'),

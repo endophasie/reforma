@@ -34,14 +34,8 @@
 	position: absolute;
 	right: 20px;
 	top: 22px;
-	size: size('../img/i-cross.png');
-	background: url('../img/i-cross.png') 0 0 no-repeat;
 	transition: background-image 300ms ease;
 	cursor: pointer;
-
-	&:hover {
-		background-image: url('../img/i-cross-hov.png');
-	}
 }
 
 .reforma-popup_content {
@@ -149,7 +143,7 @@
 
 .reforma-popup_btn-wrap {
 	text-align: center;
-	margin-top: 25px;
+	margin: 25px 0 35px;
 }
 
 .reforma-popup_card-content {
