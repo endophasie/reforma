@@ -8,14 +8,15 @@ var data = {
 			"content": "Обложить налогом мужчин всех сословий, кроме дворянства и духовенства",
 			"relation": {
 				"needs": "102",
-				"contras": "103",
+				"conflict": "103",
 				"union": "102&103",
-				"option": "102",
-				"vasya": "103"
+				"option": "102"
 			},
 			"messages": {
-				"needs" : "messageID",
-				"vasya" : "Ja Vasya!"
+				"needs" : "Теперь у нас есть и рекруты, годные к воинской службе, и устав, согласно которому эти рекруты будут служить, и офицеры, способные обучить новобранцев военному делу и руководить ими в бою. Наша армия определенно обрела плоть.",
+				"conflict": "conflictconflictconflictconflictconflictconflict",
+				"union": "unionunionunionunionunionunion",
+				"option": "optionoptionoption"
 			},
 			"failMessage": false
 		},
@@ -29,6 +30,12 @@ var data = {
 				"union": "101&103",
 				"option": "103"
 			},
+			"messages": {
+				"needs" : "needs2Теперь у нас есть и рекруты, годные к воинской службе, и устав, согласно которому эти рекруты будут служить, и офицеры, способные обучить новобранцев военному делу и руководить ими в бою. Наша армия определенно обрела плоть.",
+				"conflict": "conflict2222222conflictconflictconflictconflictconflict",
+				"union": "union222222unionunionunionunionunion",
+				"option": "option222222optionoption"
+			},
 			"failMessage": false
 		},
 		"103":
@@ -37,9 +44,15 @@ var data = {
 			"title": "Пропорциональный подоходный налог",
 			"content": "Обложить налогом представителей всех сословий без исключения пропорционально их доходам: чем больше доход, тем выше налог",
 			"relation": {
-				"contras": "101",
+				"conflict": "101",
 				"union": "102&101",
 				"option": "101"
+			},
+			"messages": {
+				"needs" : "needs3Теперь у нас есть и рекруты, годные к воинской службе, и устав, согласно которому эти рекруты будут служить, и офицеры, способные обучить новобранцев военному делу и руководить ими в бою. Наша армия определенно обрела плоть.",
+				"conflict": "conflic33333333tconflictconflictconflictconflictconflict",
+				"union": "union333333unionunionunionunionunion",
+				"option": "option33333optionoption"
 			},
 			"failMessage": {
 				"title": "Конфуз вышел, государь!",
@@ -48,7 +61,7 @@ var data = {
 		}
 	},
 	"messages": {
-		"contras": [
+		"conflict": [
 			{
 				"id": "101102103",
 				"content": "Пополнять казну, конечно, можно разными способами, но налоговая система должна базироваться на какой-то одной подати.",
@@ -191,12 +204,12 @@ var Reforma = function() {
 		var score = $('.reforma-game_score');
 		score.text(points);
 
-		if(points == 100) {
-			endGame('finish');
+		if(points >= 100) {
+			totalInfo('total-victory');
 		}
 	};
 
-	var looseLife = function() {
+	var looseLife = function(card) {
 		var lifeBar = $('.reforma-game_life');
 
 		lifes -= 1;
@@ -205,11 +218,12 @@ var Reforma = function() {
 
 		if(lifes == 1) {
 			lifeBar.eq(1).addClass('is-burn');
+			popupLostLife(card);
 		}
 
 		if(lifes == 0) {
 			lifeBar.eq(0).addClass('is-burn');
-			endGame('finish');
+			totalInfo('total-defeat');
 		}
 	};
 
@@ -217,6 +231,10 @@ var Reforma = function() {
 
 		activeCard.removeClass('is-active');
     	playDeck.splice( 0, 1 );
+
+		if(deck[card].failMessage) {
+			looseLife(card);
+		}
 
 		console.log('putOnTable',card)
 		var colEconomics = $('.reforma-game_col.is-economy').find('.reforma-game_content');
@@ -240,11 +258,10 @@ var Reforma = function() {
 
 		playedCards.push(card);
 
-
-    	/*if(playDeck.length == 0) {
-    		$('.reforma_deck').addClass('is-hide');
+    	if(playDeck.length == 0) {
+    		//$('.reforma_deck').addClass('is-hide');
     		endGame();
-    	}*/
+    	}
 
 	};
 
@@ -255,13 +272,15 @@ var Reforma = function() {
 			putOnTable(card);
 		} else {
 			var relations = deck[card].relation;
+			var messages = deck[card].messages;
 
 			var isPopupOpened = false;
 			if (relations != undefined) {
 				for(key in relations) {
 					var isTrue = checkRelation(relations[key]);
 					var ids = getIds(relations[key]);
-					console.log(isTrue,ids)
+					var message = messages[key];
+
 					if (isTrue) {
 						console.log('relations',key)
 						switch (key) {
@@ -270,19 +289,21 @@ var Reforma = function() {
 								break;*/
 
 							case 'needs':
-								popup("started-work", card, filterIds(ids));
+								popupCardActivate(card, filterIds(ids),message);
+
+								$('#'+card).addClass('is-act');
 								points += filterIds(ids).length;
 								setPoints();
 								isPopupOpened = true;
 								break;
 
-							case 'contras':
-								popup("conflict", card, filterIds(ids));
+							case 'conflict':
+								popupConflict(card, filterIds(ids),message);
 								isPopupOpened = true;
 								break;
 
 							case 'option':
-								/*popup("started-work", card, filterIds(ids));*/
+								/*popupCardActivate(card, filterIds(ids));*/
 								points += 1;
 								setPoints();
 								//putOnTable(card);
@@ -292,11 +313,6 @@ var Reforma = function() {
 								break;
 						}
 					}
-				}
-
-				var message = deck[card].messages;
-				if (message != undefined) {
-					console.log('message',message);
 				}
 			}
 
@@ -385,8 +401,19 @@ var Reforma = function() {
 		var playCards = $('.reforma_card');
 
 		playCards.on('click', function() {
-			var playCardsId = $(this).attr('id');
-			popup('card-info',playCardsId);
+			var playCardId = $(this).attr('id');
+			console.log('infoPopupData',playCardId)
+
+			if($(this).hasClass('is-act')) {
+				var ids = getIds(deck[playCardId].relation['needs']);
+				var unionCards = filterIds(ids);
+				var isActive = true;
+
+				popupInfo(playCardId, unionCards, isActive);
+				console.log('infoPopupData',playCardId, unionCards, isActive)
+			} else {
+				popupInfo(playCardId);
+			}
 		});
 
 
@@ -419,43 +446,34 @@ var Reforma = function() {
 	    });
 	};
 
-	var endGame = function(finish) {
-		if(points >= 100) {
-			totalInfo('victory');
+	var endGame = function() {
+		if(points >= 2) {
+			totalInfo('total-victory');
 		}
-		if(points < 100) {
-			totalInfo('loose');
+		if(points < 1) {
+			totalInfo('total-loose');
 		}
-		totalInfo(popupType); //remove
 	};
 
 	var totalInfo = function(finish) {
 		var infoBlock = $('.reforma-game_info-message');
 		var gameBlock = $('.reforma-game_info-action');
 
-		infoBlock.removeClass('is-hide').addClass(finish);
+		$('.'+finish).removeClass('is-hide');
 		gameBlock.addClass('is-hide');
 
-		$('.reforma-game_info-message-score').text(points);
-		//$('.reforma-game_info-message-text').text(finalText);
-
-//		if(finish == victory) {
-//			$('.reforma-game_info-message-title-text').text('Победа!');
-
-//		}
-
+		$('.js-total-score').text(points);
 
 		$('.js-popup-info-link').on('click', function() {
-			popup('finish',finish);
+			popupFinish(finish);
 		});
 	};
 
-	var popup = function(popupType,card,ids) {
+	var popup = function(popupType) {
 		var overlay = $('.js-overlay');
 		var popupContent = $('.js-popup');
 		var close = $('.js-popup-close');
 		var popupCard = $('.js-popup_content-card');
-		var popupInfoText = $('.js-popup-text');
 
 		popupContent.addClass('is-hide');
 
@@ -463,86 +481,159 @@ var Reforma = function() {
 		$('.'+popupType).removeClass('is-hide');
 
 		close.on('click', function() {
-			overlay.addClass('is-hide');
-			$('.'+popupType).addClass('is-hide');
-
-			popupCard.empty();
+			popupHide(popupType);
 		});
-		//if (ids == undefined) { ids = []; }
-		ids = ids || [];
-		console.log('popupData', card,ids)
 
 		$(document).on('keydown', function (e) {
 			if(e.which == 27) {
-				overlay.addClass('is-hide');
-				$('.'+popupType).addClass('is-hide');
-
-				popupCard.empty();
+				popupHide(popupType);
 			}
 		});
-
-		if(popupType == 'card-info') {
-			console.log('this',card)
-			$('#'+card).clone().removeClass('on-desk').attr('id', '').prependTo(popupCard);
-		}
-
-		if(popupType == 'conflict') {
-			popupInfoText.text(data.messages.contras[0].content);
-			$('#'+card).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
-
-			ids.forEach(function(i) {
-				$('#'+i).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
-			});
-
-			$('.'+popupType).find('.reforma_card').on('click', function() {
-
-				var cardId = $(this).attr('id');
-				var removalCardId = $(this).siblings('.reforma_card').attr('id');
-
-				cardInd = playedCards.indexOf(removalCardId);
-				if (cardInd > -1) {
-				    playedCards.splice(cardInd, 1);
-				}
-				putOnTable(cardId);
-				$('#'+removalCardId).remove();
-	    		setActiveCard();
-
-				overlay.addClass('is-hide');
-				$('.'+popupType).addClass('is-hide');
-				popupCard.empty();
-				console.log('conflictClick',$(this))
-			});
-		}
-
-		if(popupType == 'started-work') {
-			var newCard = '<div class="reforma-popup_wrap">'+
-								 '    <div class="reforma-popup_par-extra">'+deck[card].title+'</div>'+ // active card title
-								 '	  <div class="reforma-popup_par">'+data.messages.cardactivated[0].content+'</div>'+
-								 '</div>';
-				popupCard.prepend(newCard);
-
-			ids.forEach(function(i) {
-				var newReforma = '<div class="reforma-popup_wrap">'+
-								 '    <div class="reforma-popup_par-extra">'+deck[i].title+'</div>'+ // active card title
-								 '	  <div class="reforma-popup_par">'+data.messages.cardactivated[0].content+'</div>'+
-								 '</div>';
-				popupCard.prepend(newReforma);
-
-			});
-			putOnTable(card);
-		}
-
-		if(popupType == 'lost-life') {
-			var cardInfo = '<div class="reforma-popup_wrap">'+
-							 '	  <div class="reforma-popup_par">'+card+'</div>'+
-							 '</div>';
-			popupCard.prepend(cardInfo);
-		}
 	};
 
-	var contentVictory = function() {
+	var popupHide = function(popupType) {
+		var overlay = $('.js-overlay');
+		var popupContent = $('.'+popupType) || $('.js-popup');
+		var popupCard = $('.js-popup_content-card');
+		var unionCardContent = $('.reforma-popup_card-wrap');
 
-	}
+		overlay.addClass('is-hide');
+		popupContent.addClass('is-hide'); // for special popup use popupType
+		popupCard.empty();
+		unionCardContent.empty();
+	};
+
+	var popupInfo = function(card,ids,isActive) {
+		var popupCard = $('.card-info').find('.js-popup_content-card');
+		var popupContent = $('.card-info.js-popup');
+		var unionCardContent = $('.card-info').find('.reforma-popup_card-wrap');
+
+		popup('card-info',isActive);
+		ids = ids || [];
+
+		$('#'+card).clone().removeClass('on-desk').attr('id', '').prependTo(popupCard);
+
+		ids.forEach(function(i) {
+			$('#'+i).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(unionCardContent);
+		});
+
+		console.log('actPopup', isActive)
+
+		if(isActive) {
+			popupContent.addClass('card-active');
+		} else {
+			popupContent.removeClass('card-active');
+		}
+
+		unionCardContent.find('.reforma_card').on('click', function() {
+			popupCard.empty();
+
+			var playCardId = $(this).attr('id');
+
+			if($(this).hasClass('is-act')) {
+				var ids = getIds(deck[playCardId].relation['needs']);
+				var unionCards = filterIds(ids);
+				var isActive = true;
+
+				popupInfo(playCardId, unionCards, isActive);
+			} else {
+				popupInfo(playCardId);
+			}
+		});
+	};
+
+	var popupConflict = function(card,ids,message) {
+		var popupCard = $('.conflict').find('.js-popup_content-card');
+		var popupInfoText = $('.conflict').find('.js-popup-text');
+
+		popup('conflict');
+		ids = ids || [];
+
+		popupInfoText.text(message);
+		$('#'+card).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
+
+		ids.forEach(function(i) {
+			$('#'+i).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
+		});
+
+		$('.conflict').find('.reforma_card').on('click', function() {
+
+			var cardId = $(this).attr('id');
+			var removalCardId = $(this).siblings('.reforma_card').attr('id');
+			var cardInd = playedCards.indexOf(removalCardId);
+
+			if (cardInd > -1) {
+			    playedCards.splice(cardInd, 1);
+			}
+			/*if(!checkPlayedCard(cardId)) {
+
+			}*/
+			$('#'+removalCardId).remove();
+    		setActiveCard();
+    		popupHide('conflict');
+			checkPlayedCard(cardId);
+		});
+	};
+
+	var popupCardActivate = function(card,ids,message) {
+		var popupCard = $('.started-work').find('.js-popup_content-card');
+		var newCard = '<div class="reforma-popup_wrap">'+
+					  '    <div class="reforma-popup_par-extra">'+deck[card].title+'</div>'+ // active card title
+					  '	  <div class="reforma-popup_par">'+deck[card].content+'</div>'+
+					  '</div>';
+
+		popup('started-work');
+		ids = ids || [];
+
+		popupCard.prepend(newCard);
+
+		ids.forEach(function(i) {
+			var newReforma = '<div class="reforma-popup_wrap">'+
+							 '    <div class="reforma-popup_par-extra">'+deck[i].title+'</div>'+ // active card title
+							 '	  <div class="reforma-popup_par">'+message+'</div>'+
+							 '</div>';
+
+			popupCard.prepend(newReforma);
+		});
+
+		putOnTable(card);
+	};
+
+	var popupLostLife = function(card) {
+		var popupCard = $('.lost-life').find('.js-popup_content-card');
+		var cardInfo =  '<div class="reforma-popup_wrap">'+
+						'	  <div class="reforma-popup_par">'+deck[card].failMessage.content+'</div>'+
+						'</div>';
+
+		popup('lost-life');
+		popupCard.prepend(cardInfo);
+
+		//putOnTable(card);
+	};
+
+	var popupFinish = function(finish) {
+		var popupContent = $('.finish.js-popup');
+		/*var cardInfo =  '<div class="reforma-popup_wrap">'+
+						'	  <div class="reforma-popup_par">'+deck[card].failMessage.content+'</div>'+
+						'</div>';*/
+		var popupTitle = $('.finish .reforma-popup_title');
+		var popupTitleText;
+1
+		popup('finish');
+
+		if(finish == 'total-loose') {
+			popupTitleText = 'Вы проиграли';
+		} else if(finish == 'total-defeat') {
+			popupTitleText = 'У вас бунт, государь';
+		} else {
+			popupTitleText = 'Виктория, государь!';
+		}
+
+		popupContent.addClass(finish);
+		popupTitle.text(popupTitleText);
+
+		//popupCard.prepend(cardInfo);
+	};
 };
 
 $(document).ready(function() {

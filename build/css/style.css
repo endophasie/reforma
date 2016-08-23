@@ -733,6 +733,7 @@ img {
 .reforma_card-title {
 	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
 	margin-bottom: 15px;
+    overflow-wrap: break-word;
 }
 
 .on-desk .reforma_card-title {
@@ -1121,10 +1122,24 @@ img {
   padding: 10px;
   width: 49%;
   border: 0;
+  cursor: pointer;
 }
 
 .reforma-popup_card-wrap .reforma_card:nth-child(even) {
   margin-right: 0;
+}
+
+.reforma-popup_card-wrap .reforma_card .reforma-card_tag {
+  display: none;
+}
+
+.reforma-popup_card-wrap .reforma_card .reforma_card-title {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.reforma-popup_card-wrap .reforma_card .reforma_card-text {
+  display: none;
 }
 
 .reforma-popup_comment {

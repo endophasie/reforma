@@ -202,9 +202,23 @@
 		padding: 10px;
 		width: 49%;
 		border: 0;
+		cursor: pointer;
 
 		&:nth-child(even) {
 			margin-right: 0;
+		}
+
+		.reforma-card_tag {
+			display: none;
+		}
+
+		.reforma_card-title {
+			font-size: 15px;
+			margin-bottom: 0;
+		}
+
+		.reforma_card-text {
+			display: none;
 		}
 	}
 }
