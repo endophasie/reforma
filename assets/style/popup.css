@@ -49,9 +49,6 @@
 .reforma-popup_top-icon {
 	text-align: center;
 	margin: 0 auto 15px;
-	height: height('../img/i-popup-victory.png');
-	min-width: width('../img/i-popup-victory.png');
-	background: url('../img/i-popup-victory.png') center 0 no-repeat;
 
 	&:before,
 	&:after {
@@ -63,6 +60,36 @@
 
 	&:before {
 		margin-right: 52px;
+	}
+
+	.total-victory & {
+		background: inline('../img/i-popup-victory.svg') center center no-repeat;
+	    height: height('../img/i-popup-victory.svg');
+	    min-width: width('../img/i-popup-victory.svg');
+	    background-size: 100% 100%;
+	}
+
+	.total-loose &,
+	.total-defeat &,
+	.lost-life & {
+		background: inline('../img/i-popup-lost-life.svg') center center no-repeat;
+	    height: height('../img/i-popup-lost-life.svg');
+	    min-width: width('../img/i-popup-lost-life.svg');
+	    background-size: 100% 100%;
+	}
+
+	.conflict & {
+		background: inline('../img/i-popup-choose.svg') center center no-repeat;
+	    height: height('../img/i-popup-choose.svg');
+	    min-width: width('../img/i-popup-choose.svg');
+	    background-size: 100% 100%;
+	}
+
+	.started-work & {
+		background: inline('../img/i-popup-started.svg') center center no-repeat;
+	    height: height('../img/i-popup-started.svg');
+	    min-width: width('../img/i-popup-started.svg');
+	    background-size: 100% 100%;
 	}
 }
 

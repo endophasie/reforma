@@ -5,18 +5,15 @@ var data = {
 		{
 			"type": "economics",
 			"title": "Подушная подать",
-			"content": "Обложить налогом мужчин всех сословий, кроме дворянства и духовенства",
+			"content": "Обложить одинаковым налогом мужчин всех сословий, кроме дворян и церковников",
 			"relation": {
-				"needs": "102",
-				"conflict": "103",
-				"union": "102&103",
-				"option": "102"
+				"conflict": "102|103"
 			},
 			"messages": {
-				"needs" : "Теперь у нас есть и рекруты, годные к воинской службе, и устав, согласно которому эти рекруты будут служить, и офицеры, способные обучить новобранцев военному делу и руководить ими в бою. Наша армия определенно обрела плоть.",
-				"conflict": "conflictconflictconflictconflictconflictconflict",
-				"union": "unionunionunionunionunionunion",
-				"option": "optionoptionoption"
+				"conflict": {
+					"102": "Пополнять казну, конечно, можно разными способами, но если заставить людей платить и с души, и с двора, они разорятся.",
+					"103": "Налог может быть одинаковым для всех, а может зависеть от дохода, но он не может быть и таким, и другим одновременно; можно обязать платить всех, можно выключить из налогообложения отдельные категории населения, но сделать и то и другое одновременно опять же никак нельзя."
+				}
 			},
 			"failMessage": false
 		},
@@ -24,17 +21,15 @@ var data = {
 		{
 			"type": "economics",
 			"title": "Подворная подать",
-			"content": "Собирать налог не с отдельных представителей податных сословий, а с семьи как хозяйствующего субъекта",
+			"content": "Собирать налог не с отдельных представителей податных сословий, а с двора — то есть с крестьянского хозяйства, которое могло объединять несколько семей",
 			"relation": {
-				"needs": "101",
-				"union": "101&103",
-				"option": "103"
+				"conflict": "101|103"
 			},
 			"messages": {
-				"needs" : "needs2Теперь у нас есть и рекруты, годные к воинской службе, и устав, согласно которому эти рекруты будут служить, и офицеры, способные обучить новобранцев военному делу и руководить ими в бою. Наша армия определенно обрела плоть.",
-				"conflict": "conflict2222222conflictconflictconflictconflictconflict",
-				"union": "union222222unionunionunionunionunion",
-				"option": "option222222optionoption"
+				"conflict": {
+					"101": "Пополнять казну, конечно, можно разными способами, но если заставить людей платить и с души, и с двора, они разорятся.",
+					"103": "Пополнять казну, конечно, можно разными способами, но если заставить людей платить и с души, и с двора, они разорятся."
+				}
 			},
 			"failMessage": false
 		},
@@ -42,17 +37,15 @@ var data = {
 		{
 			"type": "economics",
 			"title": "Пропорциональный подоходный налог",
-			"content": "Обложить налогом представителей всех сословий без исключения пропорционально их доходам: чем больше доход, тем выше налог",
+			"content": "Обложить налогом представителей всех социальных групп без исключения пропорционально их доходам: чем больше доход, тем выше налог",
 			"relation": {
-				"conflict": "101",
-				"union": "102&101",
-				"option": "101"
+				"conflict": "101|102"
 			},
 			"messages": {
-				"needs" : "needs3Теперь у нас есть и рекруты, годные к воинской службе, и устав, согласно которому эти рекруты будут служить, и офицеры, способные обучить новобранцев военному делу и руководить ими в бою. Наша армия определенно обрела плоть.",
-				"conflict": "conflic33333333tconflictconflictconflictconflictconflict",
-				"union": "union333333unionunionunionunionunion",
-				"option": "option33333optionoption"
+				"conflict": {
+					"102": "Пополнять казну, конечно, можно разными способами, но если заставить людей платить и с души, и с двора, они разорятся.",
+					"101": "Налог может быть одинаковым для всех, а может зависеть от дохода, но он не может быть и таким, и другим одновременно; можно обязать платить всех, можно выключить из налогообложения отдельные категории населения, но сделать и то и другое одновременно опять же никак нельзя."
+				}
 			},
 			"failMessage": {
 				"title": "Конфуз вышел, государь!",
@@ -279,10 +272,25 @@ var Reforma = function() {
 				for(key in relations) {
 					var isTrue = checkRelation(relations[key]);
 					var ids = getIds(relations[key]);
-					var message = messages[key];
+					var messagesKey = messages[key];
+					var message = [];
 
 					if (isTrue) {
-						console.log('relations',key)
+
+						for(j in messagesKey) {
+							filterIds(ids).forEach(function(i) {
+								if(i == j) {
+									message.push(i);
+								} else {
+									console.log('wtf')
+								}
+							});
+						}
+
+						console.log('ids',ids)
+						console.log('message',message)
+
+
 						switch (key) {
 							/*case 'union':
 								popup("started-work", card, filterIds(ids));
@@ -549,7 +557,7 @@ var Reforma = function() {
 		popup('conflict');
 		ids = ids || [];
 
-		popupInfoText.text(message);
+		popupInfoText.text(deck[card].messages.conflict[message]);
 		$('#'+card).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
 
 		ids.forEach(function(i) {
@@ -569,16 +577,16 @@ var Reforma = function() {
 
 			}*/
 			$('#'+removalCardId).remove();
-    		setActiveCard();
     		popupHide('conflict');
 			checkPlayedCard(cardId);
+    		setActiveCard();
 		});
 	};
 
 	var popupCardActivate = function(card,ids,message) {
 		var popupCard = $('.started-work').find('.js-popup_content-card');
 		var newCard = '<div class="reforma-popup_wrap">'+
-					  '    <div class="reforma-popup_par-extra">'+deck[card].title+'</div>'+ // active card title
+					  '    <div class="reforma-popup_par-extra">'+deck[card].title+'</div>'+
 					  '	  <div class="reforma-popup_par">'+deck[card].content+'</div>'+
 					  '</div>';
 
@@ -589,8 +597,8 @@ var Reforma = function() {
 
 		ids.forEach(function(i) {
 			var newReforma = '<div class="reforma-popup_wrap">'+
-							 '    <div class="reforma-popup_par-extra">'+deck[i].title+'</div>'+ // active card title
-							 '	  <div class="reforma-popup_par">'+message+'</div>'+
+							 '    <div class="reforma-popup_par-extra">'+deck[i].title+'</div>'+
+							 '	  <div class="reforma-popup_par">'+deck[i].messages.needs[message]+'</div>'+
 							 '</div>';
 
 			popupCard.prepend(newReforma);
@@ -618,7 +626,7 @@ var Reforma = function() {
 						'</div>';*/
 		var popupTitle = $('.finish .reforma-popup_title');
 		var popupTitleText;
-1
+
 		popup('finish');
 
 		if(finish == 'total-loose') {

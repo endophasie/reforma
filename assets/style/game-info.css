@@ -59,9 +59,22 @@
 }
 
 .reforma-game_info-message-pic {
-	size: size('../img/i-victory.png');
-	background: url('../img/i-victory.png') 0 0 no-repeat;
 	margin: 0 auto 20px;
+
+	.total-victory & {
+		size: size('../img/i-total-victory.svg');
+		background: url('../img/i-total-victory.svg') 0 0 no-repeat;
+	}
+
+	.total-loose & {
+		size: size('../img/i-total-loose.svg');
+		background: url('../img/i-total-loose.svg') 0 0 no-repeat;
+	}
+
+	.total-defeat & {
+		size: size('../img/i-total-defeat.svg');
+		background: url('../img/i-total-defeat.svg') 0 0 no-repeat;
+	}
 }
 
 .reforma-game_info-message-title-text {
