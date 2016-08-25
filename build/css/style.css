@@ -761,12 +761,12 @@ img {
 }
 
 .reforma_card-content {
+	overflow-wrap: break-word;
 }
 
 .reforma_card-title {
 	font: 700 20px/22px Formular, Helvetica, Arial, sans-serif;
 	margin-bottom: 15px;
-    overflow-wrap: break-word;
 }
 
 .on-desk .reforma_card-title {

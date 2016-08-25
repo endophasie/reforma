@@ -1,91 +1,23 @@
-var data = {
-	"deck":
-	{
-		"101":
-		{
-			"type": "economics",
-			"title": "Подушная подать",
-			"content": "Обложить одинаковым налогом мужчин всех сословий, кроме дворян и церковников",
-			"relation": {
-				"conflict": "102|103"
-			},
-			"messages": {
-				"conflict": {
-					"102": "Пополнять казну, конечно, можно разными способами, но если заставить людей платить и с души, и с двора, они разорятся.",
-					"103": "Налог может быть одинаковым для всех, а может зависеть от дохода, но он не может быть и таким, и другим одновременно; можно обязать платить всех, можно выключить из налогообложения отдельные категории населения, но сделать и то и другое одновременно опять же никак нельзя."
-				}
-			},
-			"failMessage": false
-		},
-		"102":
-		{
-			"type": "economics",
-			"title": "Подворная подать",
-			"content": "Собирать налог не с отдельных представителей податных сословий, а с двора — то есть с крестьянского хозяйства, которое могло объединять несколько семей",
-			"relation": {
-				"conflict": "101|103"
-			},
-			"messages": {
-				"conflict": {
-					"101": "Пополнять казну, конечно, можно разными способами, но если заставить людей платить и с души, и с двора, они разорятся.",
-					"103": "Пополнять казну, конечно, можно разными способами, но если заставить людей платить и с души, и с двора, они разорятся."
-				}
-			},
-			"failMessage": false
-		},
-		"103":
-		{
-			"type": "economics",
-			"title": "Пропорциональный подоходный налог",
-			"content": "Обложить налогом представителей всех социальных групп без исключения пропорционально их доходам: чем больше доход, тем выше налог",
-			"relation": {
-				"conflict": "101|102"
-			},
-			"messages": {
-				"conflict": {
-					"102": "Пополнять казну, конечно, можно разными способами, но если заставить людей платить и с души, и с двора, они разорятся.",
-					"101": "Налог может быть одинаковым для всех, а может зависеть от дохода, но он не может быть и таким, и другим одновременно; можно обязать платить всех, можно выключить из налогообложения отдельные категории населения, но сделать и то и другое одновременно опять же никак нельзя."
-				}
-			},
-			"failMessage": {
-				"title": "Конфуз вышел, государь!",
-				"content": "Все известные попытки введения пропорционального подоходного налога в условиях сословного общества закончились плачевно. В России они, по счастью, вообще не предпринимались вплоть до Первой мировой войны. Что же касается времен Петра I, служилое сословие по традиции рассматривалось как выплачивающее «налог кровью». Церковь, с некоторыми нюансами, была свободна от налогов еще с татаро-монгольских времен. Возложить дополнительное налоговое бремя на богатых купцов означало удушить оживляющуюся внешнюю торговлю и формирующуюся национальную промышленность. Иными словами, введение подоходного налога – слишком решительный шаг в условиях первой четверти XVIII века, который мог закончиться, чем угодно: бунтом, дворянским заговором, но только не победой в Северной войне."
-			}
-		}
-	},
-	"messages": {
-		"conflict": [
-			{
-				"id": "101102103",
-				"content": "Пополнять казну, конечно, можно разными способами, но налоговая система должна базироваться на какой-то одной подати.",
-			}
-		],
-		"cardactivated": [
-			{
-				"id": "1",
-				"cardId": "303",
-				"comment": "Заработала В3",
-				"content": "Теперь у нас есть и рекруты, годные к воинской службе, и устав, согласно которому эти рекруты будут служить, и офицеры, способные обучить новобранцев военному делу и руководить ими в бою. Наша армия определенно обрела плоть."
-			}
-		],
-		"finalWin": [
-			{
-				"id": "1",
-				"comment": "Вводное слово",
-				"title": "Виктория, государь!",
-				"content":"Швед разбит, Россия прочно закрепилась на Балтике, прорублено окно в Европу. Наше вымуштрованное войско, вооруженное по последнему слову военной техники и снабженное всем необходимым, отныне является одним из сильнейших в Европе и мире."
-			}
-		],
-		"finalFail": [
-			{
-				"id": "1",
-				"comment": "Вводное слово",
-				"title": "Конфуз вышел, государь!",
-				"content": "Как разбить шведа, когда "
-			}
-		]
-	}
+var data = null;
+
+function ajax() {
+    return $.getJSON('data.json');
 }
+
+ajax().done(function(result) {
+    data = result;
+
+    var $start = $('.js-reforma-start');
+
+	var reforma = new Reforma();
+	reforma.init();
+
+	$start.on('click', function(e) {
+		e.preventDefault();
+		reforma.reset();
+	});
+
+});
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -193,7 +125,6 @@ var Reforma = function() {
 	};
 
 	var setPoints = function() {
-		console.log('setPoints',points);
 		var score = $('.reforma-game_score');
 		score.text(points);
 
@@ -206,8 +137,6 @@ var Reforma = function() {
 		var lifeBar = $('.reforma-game_life');
 
 		lifes -= 1;
-		console.log('qwe',lifes)
-
 
 		if(lifes == 1) {
 			lifeBar.eq(1).addClass('is-burn');
@@ -216,6 +145,7 @@ var Reforma = function() {
 
 		if(lifes == 0) {
 			lifeBar.eq(0).addClass('is-burn');
+			popupLostLife(card); //check if last life
 			totalInfo('total-defeat');
 		}
 	};
@@ -281,8 +211,6 @@ var Reforma = function() {
 							filterIds(ids).forEach(function(i) {
 								if(i == j) {
 									message.push(i);
-								} else {
-									console.log('wtf')
 								}
 							});
 						}
@@ -377,18 +305,14 @@ var Reforma = function() {
 				if (op == "x") {
 					var tmp = hasId(id);
 					result = result ? !tmp : tmp;
-					//console.log('result1',result,op,id)
 				}
 				if (op == "&") {
 					result &= hasId(id);
-					//console.log('result2',result,op,id)
 				}
 				if (op == "|") {
 					result |= hasId(id);
-					//console.log('result3',result,op,id)
 				}
 	        });
-			console.log('result-main',result)
 			return result;
 		}
 		return false;
@@ -557,7 +481,11 @@ var Reforma = function() {
 		popup('conflict');
 		ids = ids || [];
 
-		popupInfoText.text(deck[card].messages.conflict[message]);
+		message.forEach(function(i) {
+			var val = deck[card].messages.conflict[i];
+			popupInfoText.text(data.content[val]);
+		});
+
 		$('#'+card).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
 
 		ids.forEach(function(i) {
@@ -584,6 +512,7 @@ var Reforma = function() {
 	};
 
 	var popupCardActivate = function(card,ids,message) {
+		var needsMess;
 		var popupCard = $('.started-work').find('.js-popup_content-card');
 		var newCard = '<div class="reforma-popup_wrap">'+
 					  '    <div class="reforma-popup_par-extra">'+deck[card].title+'</div>'+
@@ -593,12 +522,15 @@ var Reforma = function() {
 		popup('started-work');
 		ids = ids || [];
 
-		popupCard.prepend(newCard);
+		message.forEach(function(i) {
+			var val = deck[card].messages.needs[i];
+			needsMess = data.content[val];
+		});
 
 		ids.forEach(function(i) {
 			var newReforma = '<div class="reforma-popup_wrap">'+
 							 '    <div class="reforma-popup_par-extra">'+deck[i].title+'</div>'+
-							 '	  <div class="reforma-popup_par">'+deck[i].messages.needs[message]+'</div>'+
+							 '	  <div class="reforma-popup_par">'+ needsMess +'</div>'+
 							 '</div>';
 
 			popupCard.prepend(newReforma);
@@ -615,8 +547,6 @@ var Reforma = function() {
 
 		popup('lost-life');
 		popupCard.prepend(cardInfo);
-
-		//putOnTable(card);
 	};
 
 	var popupFinish = function(finish) {
@@ -643,15 +573,3 @@ var Reforma = function() {
 		//popupCard.prepend(cardInfo);
 	};
 };
-
-$(document).ready(function() {
-	var $start = $('.js-reforma-start');
-
-	var reforma = new Reforma();
-	reforma.init();
-
-	$start.on('click', function(e) {
-		e.preventDefault();
-		reforma.reset();
-	});
-});
