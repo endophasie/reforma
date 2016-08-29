@@ -46,18 +46,27 @@
 		line-height: 17px;
 		margin-bottom: 0;
 		opacity: .7;
+		transition: opacity 300ms ease;
+
+		&:hover {
+			opacity: 1;
+		}
 	}
 
 	.is-act &,
 	.card-active & {
 		opacity: 1;
+		transition: opacity 300ms ease;
+
+		&:hover {
+			opacity: .6;
+		}
 	}
 }
 
 .reforma_card-text {
 	color: #4c4c4c;
 	font: 400 14px/20px 'LavaPro Regita', Georgia, serif;
-	padding-bottom: 30px;
 
 	.on-desk & {
 		display: none;

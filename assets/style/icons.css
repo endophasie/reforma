@@ -34,7 +34,6 @@
 
 .reforma-game_life {
 	@mixin icon i-life;
-	cursor: pointer;
 
 	&.is-burn {
 		@mixin icon i-life-grey;

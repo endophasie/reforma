@@ -117,6 +117,25 @@ var Reforma = function() {
 			playDeck.push(key);
 	    	cards.prepend(card);
 		}
+
+		var playCards = $('.reforma_card');
+
+		playCards.on('click', function() {
+			console.log('playCards',$(this))
+			if($(this).hasClass('on-desk')) {
+				var playCardId = $(this).attr('id');
+
+				if($(this).hasClass('is-act')) {
+					var ids = getIds(deck[playCardId].relation['needs']);
+					var unionCards = filterIds(ids);
+					var isActive = true;
+
+					popupInfo(playCardId, unionCards, isActive);
+				} else {
+					popupInfo(playCardId);
+				}
+			}
+		});
 	};
 
 	var setActiveCard = function() {
@@ -130,7 +149,7 @@ var Reforma = function() {
 		var score = $('.reforma-game_score');
 		score.text(points);
 
-		if(points >= 100) {
+		if(points >= 10) {
 			totalInfo('total-victory');
 		}
 	};
@@ -166,7 +185,6 @@ var Reforma = function() {
 
 		if(playedCards.length > 0) {
 			for(var i = 0; i<playedCards.length - 1; i++) {
-				//console.log('rel needs',deck[i].relation.needs)
 				checkPlayedCard(playedCards[i], true);
 			}
 		}
@@ -343,24 +361,6 @@ var Reforma = function() {
 	};
 
 	var actions = function() {
-		var playCards = $('.reforma_card');
-
-		playCards.on('click', function() {
-			console.log('playCards',$(this))
-			if($(this).hasClass('on-desk')) {
-				var playCardId = $(this).attr('id');
-
-				if($(this).hasClass('is-act')) {
-					var ids = getIds(deck[playCardId].relation['needs']);
-					var unionCards = filterIds(ids);
-					var isActive = true;
-
-					popupInfo(playCardId, unionCards, isActive);
-				} else {
-					popupInfo(playCardId);
-				}
-			}
-		});
 
 		// card actions
 	    var addCardLink = $('.js-act-add');
@@ -396,7 +396,7 @@ var Reforma = function() {
 	var checkPlayDeck = function() {
 		var cards = $('.reforma-deck_card');
 
-		if(playDeck.length == 7) {
+		if(playDeck.length == 2) {
     		cards.addClass('is-ending');
     	} else if(playDeck.length == 1) {
     		cards.addClass('is-end').removeClass('is-ending');
@@ -404,7 +404,7 @@ var Reforma = function() {
     		activeCard.removeClass('is-active');
     		endGame();
     	}
-	}
+	};
 
 	var endGame = function() {
 		if(points >= 2) {
@@ -582,11 +582,9 @@ var Reforma = function() {
 
 	var popupFinish = function(finish) {
 		var popupContent = $('.finish.js-popup');
-		/*var cardInfo =  '<div class="reforma-popup_wrap">'+
-						'	  <div class="reforma-popup_par">'+deck[card].failMessage.content+'</div>'+
-						'</div>';*/
-		var popupTitle = $('.finish .reforma-popup_title');
 		var popupTitleText;
+		var popupTitle = $('.finish .reforma-popup_title');
+		var popupTextContainer = popupContent.find('.reforma-popup_wrap');
 
 		popup('finish');
 
@@ -600,6 +598,248 @@ var Reforma = function() {
 
 		popupContent.addClass(finish);
 		popupTitle.text(popupTitleText);
+
+		function addText(cardsMessage,container) {
+			console.log(container)
+			if('cardInfo') {
+				container = '<div class="reforma-popup_par">'+ cardsMessage +'</div>';
+				console.log('simple')
+			} else if('cardInfoExtra') {
+				container = '<div class="reforma-popup_par-extra">'+ cardsMessage +'</div>';
+				console.log('bold')
+			}
+
+			popupTextContainer.append(container);
+		}
+
+		if(finish == 'total-victory') {
+			if(playedCards.indexOf('303') > 0 && playedCards.indexOf('312') > 0 && playedCards.indexOf('310') > 0 && playedCards.indexOf('311') > 0) {
+				cardsMessage = data.messages.finalWin[0].content;
+				addText(cardsMessage,'cardInfo');
+			} else {
+				cardsMessage = data.messages.finalWin[1].content;
+				addText(cardsMessage,'cardInfoExtra');
+
+				if (playedCards.indexOf('107') < 0){
+					cardsMessage = data.messages.finalWin[2].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('108') > 0 && playedCards.indexOf('210') < 0){
+					cardsMessage = data.messages.finalWin[3].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('106') < 0 || playedCards.indexOf('109') > 0){
+					cardsMessage = data.messages.finalWin[4].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('111') > 0 && playedCards.indexOf('210') < 0 && playedCards.indexOf('211') < 0){
+					cardsMessage = data.messages.finalWin[5].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('311') > 0 && playedCards.indexOf('310') < 0){
+					cardsMessage = data.messages.finalWin[6].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('311') > 0 && playedCards.indexOf('310') > 0){
+					cardsMessage = data.messages.finalWin[7].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('211') > 0){
+					cardsMessage = data.messages.finalWin[8].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('209') > 0){
+					cardsMessage = data.messages.finalWin[9].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('110') < 0 || playedCards.indexOf('111') < 0){
+					cardsMessage = data.messages.finalWin[10].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('110') < 0 && playedCards.indexOf('111') > 0) {
+					cardsMessage = data.messages.finalWin[11].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('111') < 0 && playedCards.indexOf('110') > 0){
+					cardsMessage = data.messages.finalWin[12].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('304') > 0){
+					cardsMessage = data.messages.finalWin[13].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('302') < 0){
+					cardsMessage = data.messages.finalWin[14].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('208') < 0){
+					cardsMessage = data.messages.finalWin[15].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('104') > 0 && playedCards.indexOf('107') < 0){
+					cardsMessage = data.messages.finalWin[16].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				cardsMessage = data.messages.finalWin[17].content;
+				addText(cardsMessage,'cardInfoExtra');
+			}
+		} else if(finish == 'total-loose') {
+			cardsMessage = data.messages.finalFail[0].content;
+			addText(cardsMessage,'cardInfo');
+
+			if(playedCards.indexOf('303') < 0) {
+				cardsMessage = data.messages.finalFail[1].content;
+				addText(cardsMessage,'cardInfo');
+			} else if (playedCards.indexOf('312') < 0) {
+				cardsMessage = data.messages.finalFail[3].content;
+				addText(cardsMessage,'cardInfo');
+			} else if (playedCards.indexOf('310') < 0 && playedCards.indexOf('311') < 0) {
+				cardsMessage = data.messages.finalFail[2].content;
+				addText(cardsMessage,'cardInfo');
+			}
+
+			if (playedCards.indexOf('303') > 0 && !$('#303').hasClass('is-act')) {
+				if (playedCards.indexOf('306') > 0) {
+					cardsMessage = data.messages.finalFail[4].content;
+					addText(cardsMessage,'cardInfo');
+				}
+				if (playedCards.indexOf('307') < 0 && playedCards.indexOf('306') < 0) {
+					cardsMessage = data.messages.finalFail[5].content;
+					addText(cardsMessage,'cardInfo');
+				}
+			}
+
+			if (playedCards.indexOf('312') > 0 && !$('#312').hasClass('is-act')) {
+				if (playedCards.indexOf('101') < 0) {
+					cardsMessage = data.messages.finalFail[6].content;
+					addText(cardsMessage,'cardInfo');
+
+					if (playedCards.indexOf('101') < 0 && playedCards.indexOf('102') < 0) {
+						cardsMessage = data.messages.finalFail[7].content;
+						addText(cardsMessage,'cardInfo');
+					}
+
+					if (playedCards.indexOf('101') < 0 && playedCards.indexOf('102') > 0) {
+						cardsMessage = data.messages.finalFail[8].content;
+						addText(cardsMessage,'cardInfo');
+					}
+				}
+			}
+
+			if (playedCards.indexOf('202') > 0 && !$('#202').hasClass('is-act')) {
+				if (playedCards.indexOf('107') < 0 && playedCards.indexOf('106') < 0 && playedCards.indexOf('311') < 0) {
+					cardsMessage = data.messages.finalFail[9].content;
+					addText(cardsMessage,'cardInfo');
+				}
+				if ( ($('#106').hasClass('is-act') ? !$('#107').hasClass('is-act') : $('#107').hasClass('is-act') ) && playedCards.indexOf('202') < 0) {
+					cardsMessage = data.messages.finalFail[10].content;
+					addText(cardsMessage,'cardInfo');
+				}
+				if ($('#106').hasClass('is-act') && playedCards.indexOf('107') < 0) {
+					cardsMessage = data.messages.finalFail[11].content;
+					addText(cardsMessage,'cardInfo');
+				}
+				if (playedCards.indexOf('106') > 0 && playedCards.indexOf('210') < 0) {
+					cardsMessage = data.messages.finalFail[12].content;
+					addText(cardsMessage,'cardInfo');
+				}
+				if (playedCards.indexOf('107') > 0 && playedCards.indexOf('106') < 0 && playedCards.indexOf('101') < 0 && playedCards.indexOf('110') < 0 && (playedCards.indexOf('111') < 0 || !$('#107').hasClass('is-act')) ) {
+					cardsMessage = data.messages.finalFail[13].content;
+					addText(cardsMessage,'cardInfo');
+
+					if (playedCards.indexOf('102') > 0 && playedCards.indexOf('312') < 0) {
+						cardsMessage = data.messages.finalFail[14].content;
+						addText(cardsMessage,'cardInfo');
+					}
+
+					cardsMessage = data.messages.finalFail[15].content;
+					addText(cardsMessage,'cardInfo');
+				}
+
+				if (playedCards.indexOf('111') > 0 && playedCards.indexOf('101') < 0 && playedCards.indexOf('110') < 0) {
+					cardsMessage = data.messages.finalFail[16].content;
+					addText(cardsMessage,'cardInfo');
+				}
+			}
+
+			if (playedCards.indexOf('311') > 0 && !$('#311').hasClass('is-act') && playedCards.indexOf('310') < 0) {
+				if (playedCards.indexOf('105') < 0) {
+					cardsMessage = data.messages.finalFail[17].content;
+					addText(cardsMessage,'cardInfo');
+				}
+			}
+
+			if (playedCards.indexOf('310') > 0 && !$('#310').hasClass('is-act') && $('#202').hasClass('is-act') && playedCards.indexOf('311') < 0) {
+				if (playedCards.indexOf('112') < 0) {
+					cardsMessage = data.messages.finalFail[18].content;
+					addText(cardsMessage,'cardInfo');
+				}
+			}
+
+			if (playedCards.indexOf('313') > 0) {
+				cardsMessage = data.messages.finalFail[19].content;
+				addText(cardsMessage,'cardInfo');
+			}
+
+			if (playedCards.indexOf('303') > 0 && playedCards.indexOf('307') > 0 && playedCards.indexOf('304') < 0 && playedCards.indexOf('314') < 0) {
+				cardsMessage = data.messages.finalFail[20].content;
+				addText(cardsMessage,'cardInfo');
+			}
+
+			if (playedCards.indexOf('303') > 0 && playedCards.indexOf('307') > 0 && playedCards.indexOf('301') < 0) {
+				cardsMessage = data.messages.finalFail[21].content;
+				addText(cardsMessage,'cardInfo');
+			}
+
+			if (playedCards.indexOf('314') > 0 && !$('#314').hasClass('is-act')) {
+				cardsMessage = data.messages.finalFail[22].content;
+				addText(cardsMessage,'cardInfo');
+
+				if (playedCards.indexOf('305') < 0 && playedCards.indexOf('304') < 0) {
+					cardsMessage = data.messages.finalFail[23].content;
+					addText(cardsMessage,'cardInfo');
+				}
+				if (playedCards.indexOf('302') < 0) {
+					cardsMessage = data.messages.finalFail[24].content;
+					addText(cardsMessage,'cardInfo');
+
+					if (playedCards.indexOf('302') < 0 && playedCards.indexOf('304') > 0) {
+						cardsMessage = data.messages.finalFail[25].content;
+						addText(cardsMessage,'cardInfo');
+					}
+					if (playedCards.indexOf('302') < 0 && playedCards.indexOf('305') > 0) {
+						cardsMessage = data.messages.finalFail[26].content;
+						addText(cardsMessage,'cardInfo');
+					}
+
+					cardsMessage = data.messages.finalFail[27].content;
+					addText(cardsMessage,'cardInfo');
+				}
+				if (playedCards.indexOf('204') < 0) {
+					cardsMessage = data.messages.finalFail[28].content;
+					addText(cardsMessage,'cardInfo');
+				}
+				if (playedCards.indexOf('206') < 0) {
+					cardsMessage = data.messages.finalFail[29].content;
+					addText(cardsMessage,'cardInfo');
+				}
+			}
+		}
 
 		//popupCard.prepend(cardInfo);
 	};
