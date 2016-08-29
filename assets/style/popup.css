@@ -43,6 +43,7 @@
 	color: #272727;
     overflow-y: auto;
     max-height: 90vh;
+	max-width: 600px;
     box-sizing: border-box;
 }
 
@@ -159,6 +160,10 @@
 			margin-bottom: 0;
 		}
 	}
+
+	&.is-hide {
+		display: none;
+	}
 }
 
 .reforma-popup_par-extra {
@@ -185,6 +190,12 @@
 		.reforma_card {
 			width: 48%;
 			cursor: pointer;
+			top: 0;
+			transition: top 300ms ease;
+
+			&:hover {
+				top: -10px;
+			}
 		}
 
 		&:after {

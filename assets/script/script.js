@@ -81,6 +81,8 @@ var Reforma = function() {
 
 		$('.reforma_card').remove();
 
+		$('.reforma-deck_card').removeClass('is-end is-ending');
+
 		createCard();
 		shuffle(playDeck);
 	    setActiveCard();
@@ -119,7 +121,7 @@ var Reforma = function() {
 
 	var setActiveCard = function() {
 	    activeCard = $('#'+playDeck[0]);
-	    activeCard.addClass('is-active').siblings('.reforma_card').removeClass('is-active');
+	    activeCard.addClass('is-active').siblings('.reforma_card').removeClass('is-active zoomOutLeft zoomOutRight');
 
 	    //return activeCard.attr('id');
 	};
@@ -137,6 +139,8 @@ var Reforma = function() {
 		var lifeBar = $('.reforma-game_life');
 
 		lifes -= 1;
+		playDeck.splice( 0, 1 );
+		setActiveCard();
 
 		if(lifes == 1) {
 			lifeBar.eq(1).addClass('is-burn');
@@ -144,8 +148,9 @@ var Reforma = function() {
 		}
 
 		if(lifes == 0) {
+			var isLast = true;
 			lifeBar.eq(0).addClass('is-burn');
-			popupLostLife(card); //check if last life
+			popupLostLife(card, isLast);
 			totalInfo('total-defeat');
 		}
 	};
@@ -155,8 +160,15 @@ var Reforma = function() {
 		activeCard.removeClass('is-active');
     	playDeck.splice( 0, 1 );
 
-		if(deck[card].failMessage) {
-			looseLife(card);
+    	if (!hasId(card)) {
+			playedCards.push(card);
+    	}
+
+		if(playedCards.length > 0) {
+			for(var i = 0; i<playedCards.length - 1; i++) {
+				//console.log('rel needs',deck[i].relation.needs)
+				checkPlayedCard(playedCards[i], true);
+			}
 		}
 
 		console.log('putOnTable',card)
@@ -179,8 +191,6 @@ var Reforma = function() {
 
 		$('#'+card).addClass('on-desk');
 
-		playedCards.push(card);
-
     	if(playDeck.length == 0) {
     		//$('.reforma_deck').addClass('is-hide');
     		endGame();
@@ -188,10 +198,9 @@ var Reforma = function() {
 
 	};
 
-	var checkPlayedCard = function(card) {
+	var checkPlayedCard = function(card, needsOnly) {
 
 		if (playedCards.length == 0) {
-			console.log('first or last?',card)
 			putOnTable(card);
 		} else {
 			var relations = deck[card].relation;
@@ -200,6 +209,9 @@ var Reforma = function() {
 			var isPopupOpened = false;
 			if (relations != undefined) {
 				for(key in relations) {
+					if(needsOnly && key != "needs"){
+						continue;
+					}
 					var isTrue = checkRelation(relations[key]);
 					var ids = getIds(relations[key]);
 					var messagesKey = messages[key];
@@ -215,34 +227,30 @@ var Reforma = function() {
 							});
 						}
 
-						console.log('ids',ids)
-						console.log('message',message)
-
-
 						switch (key) {
-							/*case 'union':
-								popup("started-work", card, filterIds(ids));
-								break;*/
-
 							case 'needs':
-								popupCardActivate(card, filterIds(ids),message);
+									console.log('card needs',card, deck[card].relation.needs,$('#'+card).hasClass('is-act'))
+								if(!$('#'+card).hasClass('is-act')) {
+									popupCardActivate(card, filterIds(ids),message);
+									$('#'+card).addClass('is-act');
+									points += filterIds(ids).length;
+									setPoints();
+								} else if(ids.filter(function(i) {return i == card}).length > 0) {
+									points++;
+									setPoints();
+								}
 
-								$('#'+card).addClass('is-act');
-								points += filterIds(ids).length;
-								setPoints();
-								isPopupOpened = true;
 								break;
 
 							case 'conflict':
+								console.log('card conflict',card, deck[card].relation.conflict)
 								popupConflict(card, filterIds(ids),message);
 								isPopupOpened = true;
 								break;
 
 							case 'option':
-								/*popupCardActivate(card, filterIds(ids));*/
 								points += 1;
 								setPoints();
-								//putOnTable(card);
 								break;
 
 							default:
@@ -252,8 +260,12 @@ var Reforma = function() {
 				}
 			}
 
-			if(!isPopupOpened) {
+			if(!isPopupOpened && !hasId(card) && !deck[card].failMessage) {
 				putOnTable(card);
+			}
+
+			if(deck[card].failMessage) {
+				looseLife(card);
 			}
 		}
 	};
@@ -285,8 +297,9 @@ var Reforma = function() {
 
 			var regexp = /(x|\&|\|)/g;
 
+				console.log('1', dataStr, playedCards)
 			dataStr.replace(regexp,',$1').split(/,/g).forEach(function(piece) {
-				console.log(dataStr)
+				console.log('2',dataStr)
 	            var op = '|',
                 	id;
 
@@ -333,21 +346,21 @@ var Reforma = function() {
 		var playCards = $('.reforma_card');
 
 		playCards.on('click', function() {
-			var playCardId = $(this).attr('id');
-			console.log('infoPopupData',playCardId)
+			console.log('playCards',$(this))
+			if($(this).hasClass('on-desk')) {
+				var playCardId = $(this).attr('id');
 
-			if($(this).hasClass('is-act')) {
-				var ids = getIds(deck[playCardId].relation['needs']);
-				var unionCards = filterIds(ids);
-				var isActive = true;
+				if($(this).hasClass('is-act')) {
+					var ids = getIds(deck[playCardId].relation['needs']);
+					var unionCards = filterIds(ids);
+					var isActive = true;
 
-				popupInfo(playCardId, unionCards, isActive);
-				console.log('infoPopupData',playCardId, unionCards, isActive)
-			} else {
-				popupInfo(playCardId);
+					popupInfo(playCardId, unionCards, isActive);
+				} else {
+					popupInfo(playCardId);
+				}
 			}
 		});
-
 
 		// card actions
 	    var addCardLink = $('.js-act-add');
@@ -355,28 +368,43 @@ var Reforma = function() {
 	    var removeCardLink = $('.js-act-remove');
 
 	    addCardLink.on('click', function() {
+	    	checkPlayDeck();
 	    	var actId = activeCard.attr('id');
-
 	    	checkPlayedCard(actId);
-
 	    	setActiveCard();
 	    });
 
 	    skipCardLink.on('click', function() {
-	    	playDeck.push( playDeck.splice( 0, 1 )[0] );
-	    	setActiveCard();
+	    	$('.reforma_card.is-active').addClass('zoomOutLeft');
+	    	setTimeout(function() {
+		    	playDeck.push( playDeck.splice( 0, 1 )[0] );
+		    	setActiveCard();
+		    	checkPlayDeck();
+	    	},1000);
 	    });
 
 	    removeCardLink.on('click', function() {
-	    	playDeck.splice( 0, 1 );
-	    	setActiveCard();
-
-	    	if(playDeck.length == 0) {
-	    		activeCard.removeClass('is-active');
-	    		endGame();
-	    	}
+	    	$('.reforma_card.is-active').addClass('zoomOutRight');
+	    	setTimeout(function() {
+		    	playDeck.splice( 0, 1 );
+		    	setActiveCard();
+		    	checkPlayDeck();
+	    	},700);
 	    });
 	};
+
+	var checkPlayDeck = function() {
+		var cards = $('.reforma-deck_card');
+
+		if(playDeck.length == 7) {
+    		cards.addClass('is-ending');
+    	} else if(playDeck.length == 1) {
+    		cards.addClass('is-end').removeClass('is-ending');
+    	} else if(playDeck.length == 0) {
+    		activeCard.removeClass('is-active');
+    		endGame();
+    	}
+	}
 
 	var endGame = function() {
 		if(points >= 2) {
@@ -449,8 +477,6 @@ var Reforma = function() {
 			$('#'+i).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(unionCardContent);
 		});
 
-		console.log('actPopup', isActive)
-
 		if(isActive) {
 			popupContent.addClass('card-active');
 		} else {
@@ -479,7 +505,6 @@ var Reforma = function() {
 		var popupInfoText = $('.conflict').find('.js-popup-text');
 
 		popup('conflict');
-		ids = ids || [];
 
 		message.forEach(function(i) {
 			var val = deck[card].messages.conflict[i];
@@ -488,9 +513,9 @@ var Reforma = function() {
 
 		$('#'+card).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
 
-		ids.forEach(function(i) {
-			$('#'+i).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
-		});
+		if(ids[0]) {
+			$('#'+ids[0]).clone().removeClass('on-desk').addClass('reforma-deck_card').prependTo(popupCard);
+		}
 
 		$('.conflict').find('.reforma_card').on('click', function() {
 
@@ -506,26 +531,28 @@ var Reforma = function() {
 			}*/
 			$('#'+removalCardId).remove();
     		popupHide('conflict');
-			checkPlayedCard(cardId);
+			//checkPlayedCard(cardId);
+			putOnTable(cardId);
     		setActiveCard();
 		});
 	};
 
 	var popupCardActivate = function(card,ids,message) {
 		var needsMess;
-		var popupCard = $('.started-work').find('.js-popup_content-card');
-		var newCard = '<div class="reforma-popup_wrap">'+
-					  '    <div class="reforma-popup_par-extra">'+deck[card].title+'</div>'+
-					  '	  <div class="reforma-popup_par">'+deck[card].content+'</div>'+
-					  '</div>';
-
-		popup('started-work');
-		ids = ids || [];
 
 		message.forEach(function(i) {
 			var val = deck[card].messages.needs[i];
 			needsMess = data.content[val];
 		});
+		var popupCard = $('.started-work').find('.js-popup_content-card');
+		var newCard = '<div class="reforma-popup_wrap">'+
+					  '    <div class="reforma-popup_par-extra">'+deck[card].title+'</div>'+
+					  '	  <div class="reforma-popup_par">'+needsMess+'</div>'+
+					  '</div>';
+
+		popup('started-work');
+		popupCard.prepend(newCard);
+		ids = ids || [];
 
 		ids.forEach(function(i) {
 			var newReforma = '<div class="reforma-popup_wrap">'+
@@ -533,13 +560,11 @@ var Reforma = function() {
 							 '	  <div class="reforma-popup_par">'+ needsMess +'</div>'+
 							 '</div>';
 
-			popupCard.prepend(newReforma);
-		});
 
-		putOnTable(card);
+		});
 	};
 
-	var popupLostLife = function(card) {
+	var popupLostLife = function(card, isLast) {
 		var popupCard = $('.lost-life').find('.js-popup_content-card');
 		var cardInfo =  '<div class="reforma-popup_wrap">'+
 						'	  <div class="reforma-popup_par">'+deck[card].failMessage.content+'</div>'+
@@ -547,6 +572,12 @@ var Reforma = function() {
 
 		popup('lost-life');
 		popupCard.prepend(cardInfo);
+
+		if(isLast) {
+			popupCard.next('.reforma-popup_par.is-info').addClass('is-hide');
+		} else {
+			popupCard.next('.reforma-popup_par.is-info').removeClass('is-hide');
+		}
 	};
 
 	var popupFinish = function(finish) {

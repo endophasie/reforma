@@ -1,6 +1,6 @@
 .reforma-desk {
 	flex: 1;
-	size: 100%;
+	width: 100%;
 }
 
 .reforma-desk_base {
@@ -75,6 +75,7 @@
 	text-align: center;
 	border-top: 1px solid #e5e5e5;
 	margin-top: 15px;
+    padding-top: 10px;
 
 	.on-desk & {
 		display: none;
@@ -86,6 +87,11 @@
 	line-height: 40px;
 	border-right: 1px solid #e5e5e5;
 	cursor: pointer;
+	transition: opacity 300ms ease;
+
+    &:hover {
+    	opacity: .6;
+    }
 
 	&:last-child {
 		border: 0;

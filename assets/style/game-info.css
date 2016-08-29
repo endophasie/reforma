@@ -1,5 +1,5 @@
 .reforma-game {
-	size: 340px 100%;
+	width: 340px;
 	background-color: #222;   /* в макете определяется как #272727 */
 }
 
@@ -39,11 +39,30 @@
 .reforma-deck_card {
 	background-color: #fff;
 	border-radius: 3px;
-	padding: 30px;
+	padding: 30px 30px 20px;
 	color: #272727;
 	box-shadow: 0 1px 1px #757575;
-	/*height: 100%;*/
 	box-sizing: border-box;
+	position: relative;
+
+	.reforma_deck &:after {
+		content: '';
+		position: absolute;
+		bottom: -11px;
+		left: 0;
+		background: url('../img/card-deck.png') 0 0 no-repeat;
+		size: 100% height('../img/card-deck.png');
+	}
+
+	.reforma_deck &.is-ending:after {
+		height: 8px;
+		bottom: -7px;
+		border-radius: 0 0 3px 3px;
+	}
+
+	.reforma_deck &.is-end:after {
+		display: none;
+	}
 
 	.reforma_card {
 		display: none;

@@ -1,7 +1,6 @@
 @define-mixin icon $name {
     background: inline('../img/$(name).svg') center center no-repeat;
     size: size('../img/$name.svg');
-    min-width: width('../img/$name.svg');
     background-size: 100% 100%;
 	display: inline-block;
 	vertical-align: middle;

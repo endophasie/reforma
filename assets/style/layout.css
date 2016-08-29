@@ -4,7 +4,8 @@ img {
 }
 
 .reforma {
-	size: 100%;
+	width: 100%;
+	min-height: 100vh;
 	background: #333 url('../img/bg-main.png') 0 0 repeat;
 	display: flex;
 	/*min-width: 1024px;
@@ -12,3 +13,39 @@ img {
 	margin: 0 auto;*/
 }
 
+@keyframes zoomOutRight {
+	40% {
+		opacity: 1;
+		transform: translate3d(-42px, 0, 0) scale3d(.475, .475, .475) ;
+	}
+
+	to {
+		opacity: 0;
+		transform: translate3d(2000px, 0, 0) scale(.1);
+		transform-origin: right center;
+	}
+}
+
+.zoomOutRight {
+	animation-name: zoomOutRight;
+	animation-duration: 1s;
+	animation-fill-mode: both;
+}
+
+@keyframes zoomOutLeft {
+	40% {
+		opacity: 1;
+		transform: scale3d(.475, .475, .475) translate3d(42px, 0, 0);
+	}
+
+	to {
+		opacity: 0;
+		transform: scale(.1) translate3d(-2000px, 0, 0);
+	}
+}
+
+.zoomOutLeft {
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	animation-name: zoomOutLeft;
+}

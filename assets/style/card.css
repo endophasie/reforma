@@ -12,6 +12,7 @@
 		padding: 20px 30px 19px 18px;
 		margin-bottom: 20px;
 		border-right: 8px solid #E6E6E6;
+		cursor: pointer;
 	}
 
 	&.is-act {
