@@ -71,6 +71,24 @@
 			display: block;
 		}
 	}
+
+	&.is-hide {
+		display: none;
+
+		& + .reforma-deck_end {
+			display: block;
+		}
+	}
+}
+
+.reforma-deck_end {
+	display: none;
+	color: #fff;
+    text-align: center;
+    font-size: 17px;
+    height: 100%;
+    padding-top: 100px;
+    box-sizing: border-box;
 }
 
 .reforma-game_info-message {

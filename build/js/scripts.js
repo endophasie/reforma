@@ -156,10 +156,6 @@ var Reforma = function() {
 	var setPoints = function() {
 		var score = $('.reforma-game_score');
 		score.text(points);
-
-		if(points >= 10) {
-			totalInfo('total-victory');
-		}
 	};
 
 	var looseLife = function(card) {
@@ -183,9 +179,7 @@ var Reforma = function() {
 	};
 
 	var putOnTable = function(card) {
-
 		activeCard.removeClass('is-active');
-    	playDeck.splice( 0, 1 );
 
     	if (!hasId(card)) {
 			playedCards.push(card);
@@ -220,12 +214,6 @@ var Reforma = function() {
 		}
 
 		$('#'+card).addClass('on-desk');
-
-    	if(playDeck.length == 0) {
-    		//$('.reforma_deck').addClass('is-hide');
-    		endGame();
-    	}
-
 	};
 
 	var checkPlayedCard = function(card, needsOnly) {
@@ -377,6 +365,7 @@ var Reforma = function() {
 	    var removeCardLink = $('.js-act-remove');
 
 	    addCardLink.on('click', function() {
+    		playDeck.splice( 0, 1 );
 	    	checkPlayDeck();
 	    	var actId = activeCard.attr('id');
 	    	checkPlayedCard(actId);
@@ -388,7 +377,6 @@ var Reforma = function() {
 	    	setTimeout(function() {
 		    	playDeck.push( playDeck.splice( 0, 1 )[0] );
 		    	setActiveCard();
-		    	checkPlayDeck();
 	    	},1000);
 	    });
 
@@ -411,17 +399,8 @@ var Reforma = function() {
     		cards.addClass('is-end').removeClass('is-ending');
     	} else if(playDeck.length == 0) {
     		activeCard.removeClass('is-active');
-    		endGame();
+    		cards.addClass('is-hide');
     	}
-	};
-
-	var endGame = function() {
-		if(points >= 2) {
-			totalInfo('total-victory');
-		}
-		if(points < 1) {
-			totalInfo('total-loose');
-		}
 	};
 
 	var totalInfo = function(finish) {
@@ -431,7 +410,14 @@ var Reforma = function() {
 		$('.'+finish).removeClass('is-hide');
 		gameBlock.addClass('is-hide');
 
-		$('.js-total-score').text(points);
+		if(points == 1 || points == 21 || points == 31) {
+			$('.js-total-score').text(points + ' очко');
+		} else if(points >= 2 && points <= 4) {
+			$('.js-total-score').text(points + ' очка');
+		} else {
+			$('.js-total-score').text(points + ' очков');
+		}
+
 
 		$('.js-popup-info-link').on('click', function() {
 			popupFinish(finish);
@@ -615,7 +601,7 @@ var Reforma = function() {
 		}
 
 		if(finish == 'total-victory') {
-			if(playedCards.indexOf('303') > 0 && playedCards.indexOf('312') > 0 && playedCards.indexOf('310') > 0 && playedCards.indexOf('311') > 0) {
+			if(playedCards.indexOf('303') > 0 && playedCards.indexOf('312') > 0 && (playedCards.indexOf('310') > 0 || playedCards.indexOf('311') > 0)) {
 				cardsMessage = data.messages.finalWin[0].content;
 				addText(cardsMessage,'cardInfo');
 			} else {

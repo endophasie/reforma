@@ -959,6 +959,24 @@ img {
   display: block;
 }
 
+.reforma-deck_card.is-hide {
+  display: none;
+}
+
+.reforma-deck_card.is-hide + .reforma-deck_end {
+  display: block;
+}
+
+.reforma-deck_end {
+	display: none;
+	color: #fff;
+    text-align: center;
+    font-size: 17px;
+    height: 100%;
+    padding-top: 100px;
+    box-sizing: border-box;
+}
+
 .reforma-game_info-message {
 	text-align: center;
 }
@@ -1200,8 +1218,7 @@ img {
 }
 
 .reforma-popup_wrap {
-	margin-bottom: 10px;
-	padding: 0 45px 45px;
+	padding: 0 45px 30px;
 }
 
 .reforma-popup_par {
@@ -1304,7 +1321,6 @@ img {
   margin: 0 8px 8px 0;
   padding: 10px;
   width: 180px;
-  height: 100%;
   border: 0;
   cursor: pointer;
 }
