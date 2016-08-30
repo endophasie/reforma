@@ -1,5 +1,5 @@
 .reforma-overlay {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 99;
@@ -223,7 +223,7 @@
 		display: none;
 	}
 
-	.card-active & {
+	.card-active-cards & {
 		border-radius: 0 0 4px 4px;
 		display: block;
 	}
@@ -236,7 +236,7 @@
 	.reforma_card {
 		margin: 0 8px 8px 0;
 		padding: 10px;
-		width: 49%;
+		size: 180px 100%;
 		border: 0;
 		cursor: pointer;
 
@@ -250,6 +250,7 @@
 
 		.reforma_card-title {
 			font-size: 15px;
+			line-height: 19px;
 			margin-bottom: 0;
 		}
 
@@ -269,12 +270,17 @@
 	}
 
 	.reforma-popup_content-card & {
-		padding: 30px 0;
+		padding: 30px 0 0;
+		margin-bottom: 0;
 	}
 }
 
 .reforma-popup_content-card {
-	padding: 0 30px;
+	padding: 0 30px 45px;
+
+	.card-active-cards & {
+		padding-bottom: 30px;
+	}
 }
 
 
