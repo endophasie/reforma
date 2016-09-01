@@ -48,6 +48,18 @@ var Reforma = function() {
 	var playedCards = [];
 	var activeCard = '';
 
+	var changes = {
+		"active": [],
+		"disactive": [],
+		"removed": '',
+
+		"clear": function(){
+			this.active.length = 0;
+			this.disactive.length = 0;
+			this.removed = '';
+		}
+	};
+
 	_this.init = function() {
 
 		_this.reset();
@@ -56,7 +68,7 @@ var Reforma = function() {
 	};
 
 	_this.reset = function() {
-		console.log('reset', 1)
+		log('reset', 1)
 		points = 0;
 		lifes = 2;
 		playDeck = [];
@@ -81,7 +93,7 @@ var Reforma = function() {
 
 		$('.reforma_card').remove();
 
-		$('.reforma-deck_card').removeClass('is-end is-ending');
+		$('.reforma-deck_card').removeClass('is-end is-ending is-hide');
 
 		createCard();
 		shuffle(playDeck);
@@ -124,11 +136,11 @@ var Reforma = function() {
 	};
 
 	var showCardInfo = function() {
-		console.log($(this))
+		log($(this))
 		if($(this).hasClass('on-desk') || $(this).closest('.reforma-popup_card-content')) {
 			var playCardId = $(this).attr('id');
 
-			if($(this).hasClass('is-act') && deck[playCardId].relation['needs'] == undefined) {
+			if($(this).hasClass('is-act') && (deck[playCardId].relation == undefined || deck[playCardId].relation['needs'] == undefined)) {
 				var isActive = true;
 
 				popupInfo(playCardId, isActive);
@@ -136,7 +148,7 @@ var Reforma = function() {
 			} else if ($(this).hasClass('is-act') && deck[playCardId].relation['needs'] != undefined) {
 				var isActive = true;
 				var ids = getIds(deck[playCardId].relation['needs']);
-				var unionCards = filterIds(ids);
+				var unionCards = filterIds(ids,true);
 
 				popupInfo(playCardId, isActive, unionCards);
 
@@ -162,7 +174,7 @@ var Reforma = function() {
 		var lifeBar = $('.reforma-game_life');
 
 		lifes -= 1;
-		playDeck.splice( 0, 1 );
+		checkTable();
 		setActiveCard();
 
 		if(lifes == 1) {
@@ -178,24 +190,40 @@ var Reforma = function() {
 		}
 	};
 
+	var log = function (type, text){
+		var types = [
+			//'needs',
+			//'option',
+			//'filter',
+			//'putOnTable',
+			//'points'
+			//'points_dis'
+		];
+
+		if (types.filter(function(i){return i == type;}).length > 0) {
+			console.log(type + ': ', text);
+		}
+
+	}
+
 	var putOnTable = function(card) {
 		activeCard.removeClass('is-active');
+
+		if(deck[card].failMessage) {
+			looseLife(card);
+			return false;
+		}
+		log('putOnTable',card);
 
     	if (!hasId(card)) {
 			playedCards.push(card);
     	}
 
-		if(playedCards.length > 0) {
-			for(var i = 0; i<playedCards.length - 1; i++) {
-				checkPlayedCard(playedCards[i], true);
-			}
-		}
-
-		if(deck[card].relation != undefined && deck[card].relation['needs'] == undefined && !$('#'+card).hasClass('is-act')) {
+		if( (deck[card].relation == undefined || deck[card].relation['needs'] == undefined) && !$('#'+card).hasClass('is-act')) {
 			$('#'+card).addClass('is-act');
 		}
 
-		console.log('putOnTable',card)
+
 		var colEconomics = $('.reforma-game_col.is-economy').find('.reforma-game_content');
 		var colSocial = $('.reforma-game_col.is-social').find('.reforma-game_content');
 		var colWar = $('.reforma-game_col.is-war').find('.reforma-game_content');
@@ -214,23 +242,42 @@ var Reforma = function() {
 		}
 
 		$('#'+card).addClass('on-desk');
+
+		checkTable();
 	};
 
-	var checkPlayedCard = function(card, needsOnly) {
+	var checkTable = function() {
+		if(playedCards.length > 1) {
+			/*$('.on-desk').removeClass('is-act');
+			points = 0;*/
+			var isContinue = true;
+			while (isContinue) {
+				for(var i = 0; i < playedCards.length - 1; i++) {
+					isContinue = checkPlayedCard(playedCards[i]);
+					if (isContinue) {break;}
+				}
+			}
+			points += calculatePoints();
+			setPoints();
+
+		}
+	}
+
+	var checkPlayedCard = function(card) {
 
 		if (playedCards.length == 0) {
 			putOnTable(card);
 		} else {
 			var relations = deck[card].relation;
 			var messages = deck[card].messages;
-
 			var isPopupOpened = false;
+			var wasActive = $('#'+card).hasClass('is-act');
+
+			var isChanged = false;
+
 			if (relations != undefined) {
 				for(key in relations) {
-					if(needsOnly && key != 'needs'){
-						continue;
-					}
-					var isTrue = checkRelation(relations[key]);
+					var isTrue = checkRelation(relations[key], key != 'conflict');
 					var ids = getIds(relations[key]);
 					var messagesKey = messages[key];
 					var message = [];
@@ -247,48 +294,58 @@ var Reforma = function() {
 
 						switch (key) {
 							case 'needs':
-									console.log('card needs',card, deck[card].relation.needs,$('#'+card).hasClass('is-act'))
-								if(!$('#'+card).hasClass('is-act')) {
-									popupCardActivate(card, filterIds(ids),message);
+								log('needs',card+ deck[card].relation.needs+wasActive);
+								if(!wasActive) {
+									popupCardActivate(card, filterIds(ids,true),message);
 									$('#'+card).addClass('is-act');
-									points += filterIds(ids).length;
-									setPoints();
-								} else if(ids.filter(function(i) {return i == card}).length > 0) {
+
+									log('needs', changes.active +' '+ points + $('#'+card));
+									changes.active.push(card);
+									isChanged = true;
+								} /*else if(ids.filter(function(i) {return i == card}).length > 0) {
 									points++;
-									setPoints();
-								}
+								}*/
 
 								break;
 
 							case 'conflict':
-								console.log('card conflict',card, deck[card].relation.conflict)
+								log('conflict',card, deck[card].relation.conflict);
 								popupConflict(card, filterIds(ids),message);
 								isPopupOpened = true;
 								break;
 
 							case 'option':
-								points += 1;
-								setPoints();
+
 								break;
 
 							default:
 								break;
 						}
+					} else {
+						if (wasActive) {
+
+							if(key == 'needs') {
+								log('needs', card);
+								$('#'+card).removeClass('is-act');
+								changes.disactive.push(card);
+								isChanged = true;
+							}
+
+						}
 					}
 				}
 			}
 
-			if(!isPopupOpened && !hasId(card) && !deck[card].failMessage) {
+			if(!isPopupOpened && !hasId(card)) {
 				putOnTable(card);
 			}
-
-			if(deck[card].failMessage) {
-				looseLife(card);
-			}
+			return isChanged;
 		}
 	};
 
 	var getIds = function(dataStr) {
+		if (dataStr == '') { return [];}
+
 		var ids = [];
 		var regexp = /(x|\&|\|)/g;
 
@@ -308,7 +365,7 @@ var Reforma = function() {
         return ids;
 	}
 
-	var checkRelation = function(dataStr) {
+	var checkRelation = function(dataStr, checkAct) {
 
 		if(!dataStr.length == 0) {
 			var result = false;
@@ -330,15 +387,29 @@ var Reforma = function() {
 	                id = piece;
 	            }
 
-				if (op == "x") {
-					var tmp = hasId(id);
-					result = result ? !tmp : tmp;
-				}
-				if (op == "&") {
-					result &= hasId(id);
-				}
-				if (op == "|") {
-					result |= hasId(id);
+	            if(checkAct) {
+
+					if (op == "x") {
+						var tmp = hasIdAct(id);
+						result = result ? !tmp : tmp;
+					}
+					if (op == "&") {
+						result &= hasIdAct(id);
+					}
+					if (op == "|") {
+						result |= hasIdAct(id);
+					}
+				} else {
+					if (op == "x") {
+						var tmp = hasId(id);
+						result = result ? !tmp : tmp;
+					}
+					if (op == "&") {
+						result &= hasId(id);
+					}
+					if (op == "|") {
+						result |= hasId(id);
+					}
 				}
 	        });
 			return result;
@@ -346,8 +417,13 @@ var Reforma = function() {
 		return false;
 	};
 
-	var filterIds = function(ids) {
-		return ids.filter(function(i) {return hasId(i);})
+	var filterIds = function(ids, checkAct) {
+		if (checkAct) {
+			log('filter', ids.filter(function(i) {log('filter', i + ' is active = ' + hasIdAct(i)); return hasIdAct(i);}))
+			return ids.filter(function(i) {return hasIdAct(i);})
+		} else {
+			return ids.filter(function(i) {return hasId(i);})
+		}
 	};
 
 	var hasId = function(id) {
@@ -357,12 +433,106 @@ var Reforma = function() {
 		return found.length > 0;
 	};
 
+	var hasIdAct = function(id) {
+		var found = playedCards.filter(function(i) {
+			return (i == id && $('#'+i).hasClass('is-act'));
+		});
+		return found.length > 0;
+	};
+
+	var calculatePoints = function() {
+		var pointsDiff = 0;
+		var activeCards = filterIds(playedCards, true);
+
+
+			log('points', 'calculating points');
+			log('points', activeCards);
+			log('points', changes.active);
+
+		for(var i in changes.active) {
+			var activatedId = changes.active[i];
+			var activated = deck[activatedId];
+			log('points', 'count points for ' + activated + ' card, id = ' + activatedId);
+			log('points_', activated);
+
+			var pointsStr = activated.relation.needs + (activated.relation.option ? '|' + activated.relation.option : '');
+			//log('points', 'count points for ' + activated + ' card, id = ' + activatedId);
+			log('points_', pointsStr);
+			log('points', getIds(pointsStr));
+
+			pointsDiff += filterIds(getIds(pointsStr), true).length;
+			log('points', pointsDiff);
+
+			for(var j in activeCards) {
+				if (activeCards.indexOf(activatedId) > j) {
+					var activatedOld = deck[activeCards[j]];
+					var cardRelNeeds = (activatedOld.relation && activatedOld.relation.needs) ? activatedOld.relation.needs : '';
+					var cardRelOption = (activatedOld.relation && activatedOld.relation.option) ? activatedOld.relation.option : '';
+
+						log('points_', cardRelNeeds);
+					if (getIds(cardRelNeeds).indexOf(activatedId) >= 0) {
+						pointsDiff ++;
+						log('points', 'needs link ' + activeCards[j]);
+					}
+					if (getIds(cardRelOption).indexOf(activatedId) >= 0) {
+						pointsDiff ++;
+						log('points', 'option link ' + pointsDiff);
+					}
+				}
+
+			}
+		}
+
+		var earlyActivated = activeCards.filter(function(i){return changes.active.indexOf(i) < 0;});
+		earlyActivated = earlyActivated.concat(changes.disactive);
+		console.log('earlyActivated', earlyActivated, changes.disactive)
+		log('points_dis', 'result ' + pointsDiff);
+
+		for(var i in changes.disactive) {
+			var disactivatedId = changes.disactive[i];
+			var disactivated = deck[disactivatedId];
+			log('points_dis', 'decrement points for card = ' + disactivatedId);
+			log('points_dis', disactivated);
+
+			var cardRelNeeds = (disactivated.relation && disactivated.relation.needs) ? disactivated.relation.needs : '';
+			var cardRelOption = (disactivated.relation && disactivated.relation.option) ? disactivated.relation.option : '';
+
+			var needs = getIds(cardRelNeeds);
+
+			var getActIds = earlyActivated.filter(function(j) {
+				return needs.indexOf(j) >= 0;
+			});
+			log('points_dis', getActIds);
+
+			pointsDiff -= getActIds.length;
+
+			var options = getIds(cardRelOption);
+
+			getActIds = earlyActivated.filter(function(j) {
+				return options.indexOf(j) >= 0;
+			});
+
+			log('points_dis', getActIds);
+
+			pointsDiff -= getActIds.length;
+
+			log('points_dis', pointsDiff);
+		}
+
+		changes.clear();
+
+					log('points_dis', 'result ' + pointsDiff);
+					//log('points', changes);
+		return pointsDiff;
+	};
+
 	var actions = function() {
 
 		// card actions
 	    var addCardLink = $('.js-act-add');
 	    var skipCardLink = $('.js-act-skip');
 	    var removeCardLink = $('.js-act-remove');
+	    var endGame = $('.js-reforma-end');
 
 	    addCardLink.on('click', function() {
     		playDeck.splice( 0, 1 );
@@ -388,6 +558,10 @@ var Reforma = function() {
 		    	checkPlayDeck();
 	    	},700);
 	    });
+
+	    endGame.on('click', function() {
+	    	totalInfo();
+    	});
 	};
 
 	var checkPlayDeck = function() {
@@ -403,9 +577,35 @@ var Reforma = function() {
     	}
 	};
 
+	var checkVictory = function() {
+		var finish;
+		var victoryCard = '310x311&312'; //&303
+		var victoryCardIds = getIds(victoryCard);
+
+		var checkAct = filterIds(victoryCardIds).filter(function(i) {
+			if( $('#'+i).hasClass('is-act') ) {
+				return i;
+			}
+		});
+
+		if(checkRelation(victoryCard) && checkAct) {
+			finish = 'total-victory';
+		} else {
+			finish = 'total-loose';
+		}
+
+		log('check',checkAct)
+
+		return finish;
+	};
+
 	var totalInfo = function(finish) {
 		var infoBlock = $('.reforma-game_info-message');
 		var gameBlock = $('.reforma-game_info-action');
+
+		if(finish == undefined) {
+			finish = checkVictory();
+		}
 
 		$('.'+finish).removeClass('is-hide');
 		gameBlock.addClass('is-hide');
@@ -417,7 +617,6 @@ var Reforma = function() {
 		} else {
 			$('.js-total-score').text(points + ' очков');
 		}
-
 
 		$('.js-popup-info-link').on('click', function() {
 			popupFinish(finish);
@@ -464,6 +663,8 @@ var Reforma = function() {
 		var unionCardContent = $('.card-info').find('.reforma-popup_card-wrap');
 
 		popupCard.empty();
+		unionCardContent.empty();
+
 		popup('card-info',isActive);
 		ids = ids || [];
 
@@ -513,11 +714,13 @@ var Reforma = function() {
 
 			if (cardInd > -1) {
 			    playedCards.splice(cardInd, 1);
+			    changes.removed = cardInd;
 			}
 			/*if(!checkPlayedCard(cardId)) {
 
 			}*/
 			$('#'+removalCardId).remove();
+			changes.disactive.push(removalCardId);
     		popupHide('conflict');
 			//checkPlayedCard(cardId);
 			putOnTable(cardId);
@@ -539,7 +742,7 @@ var Reforma = function() {
 					  '</div>';
 
 		popup('started-work');
-		popupCard.prepend(newCard);
+		popupCard.append(newCard);
 		ids = ids || [];
 
 		ids.forEach(function(i) {
@@ -588,13 +791,13 @@ var Reforma = function() {
 		popupTitle.text(popupTitleText);
 
 		function addText(cardsMessage,container) {
-			console.log(container)
+			log(container)
 			if('cardInfo') {
 				container = '<div class="reforma-popup_par">'+ cardsMessage +'</div>';
-				console.log('simple')
+				log('simple')
 			} else if('cardInfoExtra') {
 				container = '<div class="reforma-popup_par-extra">'+ cardsMessage +'</div>';
-				console.log('bold')
+				log('bold')
 			}
 
 			popupTextContainer.append(container);
