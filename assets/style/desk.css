@@ -12,6 +12,7 @@
 
 .reforma-desk_content {
 	width: 70%;
+	max-width: 650px;
 	color: #999;
 	font: 400 17px/23px Formular, Helvetica, Arial, sans-serif;
 }
@@ -36,8 +37,9 @@
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+	max-width: 1300px;
 	padding-top: 17px;
-	/*margin: 0 25px;*/
+	margin: 0 auto;
 }
 
 .reforma-game_col {
@@ -65,36 +67,6 @@
 
 	&:after {
 		right: 0;
-	}
-}
-
-.reforma-deck_actions {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	text-align: center;
-	border-top: 1px solid #e5e5e5;
-	margin-top: 15px;
-    padding-top: 10px;
-
-	.on-desk & {
-		display: none;
-	}
-}
-
-.reforma-deck_action {
-	size: 33.3333% 40px;
-	line-height: 40px;
-	border-right: 1px solid #e5e5e5;
-	cursor: pointer;
-	transition: opacity 300ms ease;
-
-    &:hover {
-    	opacity: .6;
-    }
-
-	&:last-child {
-		border: 0;
 	}
 }
 

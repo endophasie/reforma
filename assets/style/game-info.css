@@ -37,13 +37,12 @@
 }
 
 .reforma-deck_card {
-	background-color: #fff;
-	border-radius: 3px;
-	padding: 30px 30px 20px;
-	color: #272727;
-	box-shadow: 0 1px 1px #757575;
 	box-sizing: border-box;
 	position: relative;
+	z-index: 1;
+	background-color: #fff;
+	border-radius: 3px;
+	padding-bottom: 20px;
 
 	.reforma_deck &:after {
 		content: '';
@@ -78,6 +77,36 @@
 		& + .reforma-deck_end {
 			display: block;
 		}
+	}
+}
+
+.reforma-deck_actions {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	border-top: 1px solid #e5e5e5;
+	margin: 0 30px;
+    padding-top: 13px;
+
+	.on-desk & {
+		display: none;
+	}
+}
+
+.reforma-deck_action {
+	size: 33.3333% 40px;
+	line-height: 40px;
+	border-right: 1px solid #e5e5e5;
+	cursor: pointer;
+	transition: opacity 300ms ease;
+
+    &:hover {
+    	opacity: .6;
+    }
+
+	&:last-child {
+		border: 0;
 	}
 }
 

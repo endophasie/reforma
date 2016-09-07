@@ -1,11 +1,8 @@
-
 .reforma_card {
 	background-color: #fff;
 	border-radius: 3px;
+	padding: 30px 30px 15px;
 	color: #272727;
-	/*box-shadow: 0 1px 1px #757575;
-	padding: 30px;
-	height: 100%;*/
 	box-sizing: border-box;
 
 	&.on-desk {
@@ -20,7 +17,7 @@
 	}
 
 	.reforma-deck_card & {
-		min-height: 300px;
+		height: 310px;
 	}
 }
 

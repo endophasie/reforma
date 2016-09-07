@@ -136,7 +136,6 @@ var Reforma = function() {
 	};
 
 	var showCardInfo = function() {
-		log($(this))
 		if($(this).hasClass('on-desk') || $(this).closest('.reforma-popup_card-content')) {
 			var playCardId = $(this).attr('id');
 
@@ -160,8 +159,7 @@ var Reforma = function() {
 
 	var setActiveCard = function() {
 	    activeCard = $('#'+playDeck[0]);
-	    activeCard.addClass('is-active').siblings('.reforma_card').removeClass('is-active zoomOutLeft zoomOutRight');
-
+	    activeCard.addClass('is-active').siblings('.reforma_card').removeClass('is-active');
 	    //return activeCard.attr('id');
 	};
 
@@ -543,20 +541,24 @@ var Reforma = function() {
 	    });
 
 	    skipCardLink.on('click', function() {
-	    	$('.reforma_card.is-active').addClass('zoomOutLeft');
-	    	setTimeout(function() {
-		    	playDeck.push( playDeck.splice( 0, 1 )[0] );
-		    	setActiveCard();
-	    	},1000);
+	    	var actId = activeCard.attr('id');
+	    	$('#'+actId).addClass('zoomOutLeft');
+
+	    	playDeck.push( playDeck.splice( 0, 1 )[0] );
+	    	setActiveCard();
+
+	    	setTimeout(function() { $('#'+actId).removeClass('zoomOutLeft') },1500);
 	    });
 
 	    removeCardLink.on('click', function() {
-	    	$('.reforma_card.is-active').addClass('zoomOutRight');
-	    	setTimeout(function() {
-		    	playDeck.splice( 0, 1 );
-		    	setActiveCard();
-		    	checkPlayDeck();
-	    	},700);
+	    	var actId = activeCard.attr('id');
+	    	$('#'+actId).addClass('zoomOutRight');
+
+	    	playDeck.splice( 0, 1 );
+	    	setActiveCard();
+	    	checkPlayDeck();
+
+	    	setTimeout(function() { $('#'+actId).removeClass('zoomOutRight') },1000);
 	    });
 
 	    endGame.on('click', function() {
@@ -643,6 +645,26 @@ var Reforma = function() {
 				popupHide(popupType);
 			}
 		});
+/*console.log(overlay.hasClass('is-hide'))
+		if(!overlay.hasClass('is-hide')) {
+			$(document).on('click', function(e) {
+				var parentElem = $(e.target).closest(popupContent).get();
+				console.log(parentElem)
+
+			    if(parentElem.length == 0) {
+			    	console.log($(e.target), e.target);
+					//popupHide(popupType);
+		            //setTimeout(function() { popupHide(popupType)}, 2000);
+			    }
+			});
+
+			popupContent.on('click', function(e) {
+				e.stopPropagation();
+			});
+		} else {
+			return false;
+		}*/
+
 	};
 
 	var popupHide = function(popupType) {
@@ -652,7 +674,7 @@ var Reforma = function() {
 		var unionCardContent = $('.reforma-popup_card-wrap');
 
 		overlay.addClass('is-hide');
-		popupContent.addClass('is-hide'); // for special popup use popupType
+		popupContent.addClass('is-hide');
 		popupCard.empty();
 		unionCardContent.empty();
 	};

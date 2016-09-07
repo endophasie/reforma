@@ -8,44 +8,51 @@ img {
 	min-height: 100vh;
 	background: #333 url('../img/bg-main.png') 0 0 repeat;
 	display: flex;
-	/*min-width: 1024px;
-	max-width: 1400px;
-	margin: 0 auto;*/
+	overflow-x: hidden;
 }
 
 @keyframes zoomOutRight {
-	40% {
-		opacity: 1;
-		transform: translate3d(-42px, 0, 0) scale3d(.475, .475, .475) ;
-	}
-
-	to {
-		opacity: 0;
-		transform: translate3d(2000px, 0, 0) scale(.1);
-		transform-origin: right center;
+	100% {
+		right: -400px;
+		top: -400px;
 	}
 }
 
 .zoomOutRight {
+	will-change: right top;
+
+	display: block !important;
+	position: absolute;
+	width: 300px;
+	top: 0;
+	right: 0;
+
 	animation-name: zoomOutRight;
 	animation-duration: 1s;
 	animation-fill-mode: both;
 }
 
 @keyframes zoomOutLeft {
-	40% {
-		opacity: 1;
-		transform: scale3d(.475, .475, .475) translate3d(42px, 0, 0);
+	50% {
+		transform: scale(.9,.9,.9);
+		left: -350px;
 	}
-
-	to {
-		opacity: 0;
-		transform: scale(.1) translate3d(-2000px, 0, 0);
+	100% {
+		left: 0;
+		z-index: -1;
 	}
 }
 
 .zoomOutLeft {
-	animation-duration: 1s;
+	will-change: transform left;
+
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300px;
+
+	animation-duration: 1.3s;
 	animation-fill-mode: both;
 	animation-name: zoomOutLeft;
 }
