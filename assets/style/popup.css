@@ -194,6 +194,7 @@
 			width: 48%;
 			cursor: pointer;
 			top: 0;
+			box-shadow: 0 1px 1px #757575;
 			transition: top 300ms ease;
 
 			&:hover {
@@ -205,6 +206,7 @@
 			content: '?';
 			position: absolute;
 			left: 50%;
+			z-index: 2;
 			margin: -25px 0 0 -25px;
 			top: 50%;
 			size: 50px;
@@ -276,6 +278,10 @@
 
 .reforma-popup_content-card {
 	padding: 0 30px 45px;
+
+	.reforma_card {
+		padding: 0;
+	}
 
 	.card-active-cards & {
 		padding-bottom: 30px;

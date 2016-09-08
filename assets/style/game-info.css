@@ -143,6 +143,10 @@
 	}
 }
 
+.reforma-game_info-message-title {
+	margin-bottom: 20px;
+}
+
 .reforma-game_info-message-title-text {
 	font: 700 23px/1 $sans;
 	margin-bottom: 9px;
