@@ -580,7 +580,7 @@ var Reforma = function() {
 
 	var checkVictory = function() {
 		var finish;
-		var victoryCard = '310x311&303&312';
+		var victoryCard = '310|311&303&312';
 		var victoryCardIds = getIds(victoryCard);
 		var actCards = filterIds(victoryCardIds, true);
 
@@ -616,19 +616,18 @@ var Reforma = function() {
 			var textTotal = $('.total-loose .reforma-game_info-message-text').text();
 			newTextTotal = textTotal;
 
-			if(playedCards.indexOf('303') < 0) {
+			if(!hasIdAct(303)) {
 				newTextTotal = newTextTotal += data.messages.finalFail[1].content;
-			}
-			if((playedCards.indexOf('310') < 0 || playedCards.indexOf('311') < 0) && playedCards.indexOf('303') > 0) {
+			} else if( hasIdAct(303) && (!hasIdAct(310) || !hasIdAct(311)) ) {
 				newTextTotal = newTextTotal += data.messages.finalFail[2].content;
-			} else if((playedCards.indexOf('310') < 0 || playedCards.indexOf('311') < 0) && playedCards.indexOf('303') < 0) {
-				newTextTotal = newTextTotal += ', '+data.messages.finalFail[2].content;
-			}
-			if(playedCards.indexOf('312') < 0 && playedCards.indexOf('303') < 0 || (playedCards.indexOf('310') < 0 || playedCards.indexOf('311') < 0)) {
-				newTextTotal = newTextTotal += ', '+data.messages.finalFail[3].content;
-			} else {
+			} else if( hasIdAct(303) && (hasIdAct(310) || hasIdAct(311)) && !hasIdAct(312) ) {
 				newTextTotal = newTextTotal += data.messages.finalFail[3].content;
+			} else if( !hasIdAct(303) && (!hasIdAct(310) || !hasIdAct(311)) ) {
+				newTextTotal = newTextTotal += ', '+data.messages.finalFail[2].content;
+			} else if (!hasIdAct(303) || (!hasIdAct(310) || !hasIdAct(311)) && !hasIdAct(312)) {
+				newTextTotal = newTextTotal += ', '+data.messages.finalFail[3].content;
 			}
+
 			newTextTotal = newTextTotal += '?';
 
 			$('.total-loose .reforma-game_info-message-text').text(newTextTotal);
@@ -813,7 +812,7 @@ var Reforma = function() {
 		var popupContent = $('.finish.js-popup');
 		var popupTitleText;
 		var popupTitle = $('.finish .reforma-popup_title');
-		var popupTextContainer = popupContent.find('.reforma-popup_wrap');
+		var popupCard = popupContent.find('.js-popup_content-card');
 
 		popup('finish');
 
@@ -835,7 +834,7 @@ var Reforma = function() {
 				var contentStr = '<div class="reforma-popup_par-extra">'+ cardsMessage +'</div>';
 			}
 
-			popupTextContainer.append(contentStr);
+			popupCard.append(contentStr);
 		}
 
 		if(finish == 'total-victory') {
@@ -919,10 +918,8 @@ var Reforma = function() {
 
 			cardsMessage = data.messages.finalWin[17].content;
 			addText(cardsMessage,'cardInfoExtra');
-		}
-
-		if(finish == 'total-loose') {
-			if (playedCards.indexOf('303') < 0 && playedCards.indexOf('312') < 0 && playedCards.indexOf('310') < 0 && playedCards.indexOf('311') < 0) {
+		} else if(finish == 'total-loose') {
+			if ( !hasIdAct(303) || !hasIdAct(310) || !hasIdAct(311) || !hasIdAct(312) ) {
 				cardsMessage = newTextTotal;
 				addText(cardsMessage,'cardInfo');
 			}
